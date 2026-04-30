@@ -1,0 +1,40 @@
+[09-Jun-2024 00:14:32 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Proxy\AbstractProxy' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/NativeProxy.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/NativeProxy.php on line 23
+[09-Jun-2024 00:14:34 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Proxy\AbstractProxy' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/SessionHandlerProxy.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/SessionHandlerProxy.php on line 17
+[09-Jun-2024 00:14:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Proxy\AbstractProxy' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/SessionHandlerProxy.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/SessionHandlerProxy.php on line 17
+[09-Jun-2024 00:15:00 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Proxy\AbstractProxy' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/NativeProxy.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/NativeProxy.php on line 23
+[09-Jun-2024 00:15:02 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Proxy\AbstractProxy' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/SessionHandlerProxy.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/SessionHandlerProxy.php on line 17
+[09-Jun-2024 00:15:09 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Proxy\AbstractProxy' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/SessionHandlerProxy.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/SessionHandlerProxy.php on line 17
+[09-Jun-2024 00:15:16 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Proxy\AbstractProxy' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/NativeProxy.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/NativeProxy.php on line 23
+[09-Jun-2024 00:15:18 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Proxy\AbstractProxy' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/SessionHandlerProxy.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/SessionHandlerProxy.php on line 17
+[09-Jun-2024 00:15:22 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Proxy\AbstractProxy' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/NativeProxy.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/NativeProxy.php on line 23
+[09-Jun-2024 00:16:10 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Proxy\AbstractProxy' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/NativeProxy.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Proxy/NativeProxy.php on line 23

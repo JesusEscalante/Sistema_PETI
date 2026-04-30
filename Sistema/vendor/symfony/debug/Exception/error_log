@@ -1,0 +1,96 @@
+[08-Jun-2024 22:05:16 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/ClassNotFoundException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/ClassNotFoundException.php on line 19
+[08-Jun-2024 22:05:18 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedMethodException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedMethodException.php on line 19
+[08-Jun-2024 22:05:28 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedFunctionException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedFunctionException.php on line 19
+[08-Jun-2024 22:05:37 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/OutOfMemoryException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/OutOfMemoryException.php on line 19
+[08-Jun-2024 22:06:51 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/ClassNotFoundException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/ClassNotFoundException.php on line 19
+[08-Jun-2024 22:07:04 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedMethodException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedMethodException.php on line 19
+[08-Jun-2024 22:07:09 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedFunctionException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedFunctionException.php on line 19
+[08-Jun-2024 22:07:13 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/FatalThrowableError.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/FatalThrowableError.php on line 19
+[08-Jun-2024 22:07:19 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/OutOfMemoryException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/OutOfMemoryException.php on line 19
+[08-Jun-2024 22:08:18 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/ClassNotFoundException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/ClassNotFoundException.php on line 19
+[08-Jun-2024 22:08:27 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedFunctionException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedFunctionException.php on line 19
+[08-Jun-2024 22:08:31 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedMethodException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedMethodException.php on line 19
+[08-Jun-2024 22:08:35 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/FatalThrowableError.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/FatalThrowableError.php on line 19
+[08-Jun-2024 22:08:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/OutOfMemoryException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/OutOfMemoryException.php on line 19
+[08-Jun-2024 22:10:03 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/ClassNotFoundException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/ClassNotFoundException.php on line 19
+[08-Jun-2024 22:10:08 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/FatalThrowableError.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/FatalThrowableError.php on line 19
+[08-Jun-2024 22:10:08 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedFunctionException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedFunctionException.php on line 19
+[08-Jun-2024 22:10:13 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedMethodException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedMethodException.php on line 19
+[08-Jun-2024 22:10:22 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/OutOfMemoryException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/OutOfMemoryException.php on line 19
+[08-Jun-2024 22:11:21 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/FatalThrowableError.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/FatalThrowableError.php on line 19
+[08-Jun-2024 22:11:23 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/ClassNotFoundException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/ClassNotFoundException.php on line 19
+[08-Jun-2024 22:11:26 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedFunctionException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedFunctionException.php on line 19
+[08-Jun-2024 22:11:28 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedMethodException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/UndefinedMethodException.php on line 19
+[08-Jun-2024 22:11:36 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\Debug\Exception\FatalErrorException' not found in /home/whatbot/public_html/vendor/symfony/debug/Exception/OutOfMemoryException.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/debug/Exception/OutOfMemoryException.php on line 19

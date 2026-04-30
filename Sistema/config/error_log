@@ -1,0 +1,176 @@
+[08-Jun-2024 19:13:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/session.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/session.php on line 19
+[08-Jun-2024 19:13:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/mail.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/mail.php on line 19
+[08-Jun-2024 19:13:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/app.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/app.php on line 15
+[08-Jun-2024 19:13:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/cache.php on line 18
+[08-Jun-2024 19:13:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/queue.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/queue.php on line 18
+[08-Jun-2024 19:13:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/session.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/session.php on line 19
+[08-Jun-2024 19:14:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/services.php on line 18
+[08-Jun-2024 19:14:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/mail.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/mail.php on line 19
+[08-Jun-2024 19:14:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/filesystems.php on line 16
+[08-Jun-2024 19:14:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/app.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/app.php on line 15
+[08-Jun-2024 19:14:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/cache.php on line 18
+[08-Jun-2024 19:14:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/session.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/session.php on line 19
+[08-Jun-2024 19:14:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/services.php on line 18
+[08-Jun-2024 19:14:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/queue.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/queue.php on line 18
+[08-Jun-2024 19:15:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/mail.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/mail.php on line 19
+[08-Jun-2024 19:15:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/broadcasting.php on line 18
+[08-Jun-2024 19:15:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/whatbot/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/view.php on line 17
+[08-Jun-2024 19:15:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/app.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/app.php on line 15
+[08-Jun-2024 19:15:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/mail.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/mail.php on line 19
+[08-Jun-2024 19:15:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/database.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/database.php on line 16
+[08-Jun-2024 19:15:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/services.php on line 18
+[08-Jun-2024 19:15:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/session.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/session.php on line 19
+[08-Jun-2024 19:15:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/cache.php on line 18
+[08-Jun-2024 19:15:54 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/mail.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/mail.php on line 19
+[08-Jun-2024 19:16:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/app.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/app.php on line 15
+[08-Jun-2024 19:16:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/queue.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/queue.php on line 18
+[08-Jun-2024 19:16:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/filesystems.php on line 16
+[08-Jun-2024 19:16:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/session.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/session.php on line 19
+[08-Jun-2024 19:16:31 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/database.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/database.php on line 16
+[08-Jun-2024 19:16:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/services.php on line 18
+[08-Jun-2024 19:16:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/broadcasting.php on line 18
+[08-Jun-2024 19:16:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/cache.php on line 18
+[08-Jun-2024 19:17:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/app.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/app.php on line 15
+[08-Jun-2024 19:18:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/queue.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/queue.php on line 18
+[08-Jun-2024 19:18:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/database.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/database.php on line 16
+[08-Jun-2024 19:18:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/filesystems.php on line 16
+[08-Jun-2024 19:18:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/broadcasting.php on line 18
+[08-Jun-2024 19:18:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/whatbot/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/view.php on line 17
+[08-Jun-2024 19:18:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/cache.php on line 18
+[08-Jun-2024 19:19:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/whatbot/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/view.php on line 17
+[08-Jun-2024 19:19:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/queue.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/queue.php on line 18
+[08-Jun-2024 19:20:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/broadcasting.php on line 18
+[08-Jun-2024 19:45:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/database.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/database.php on line 16
+[09-Jun-2024 08:48:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/whatbot/public_html/config/database.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/config/database.php on line 16

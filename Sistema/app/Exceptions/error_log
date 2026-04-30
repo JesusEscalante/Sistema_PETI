@@ -1,0 +1,12 @@
+[08-Jun-2024 20:10:36 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Exceptions\Handler' not found in /home/whatbot/public_html/app/Exceptions/Handler.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/app/Exceptions/Handler.php on line 9
+[08-Jun-2024 20:16:40 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Exceptions\Handler' not found in /home/whatbot/public_html/app/Exceptions/Handler.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/app/Exceptions/Handler.php on line 9
+[08-Jun-2024 20:17:47 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Exceptions\Handler' not found in /home/whatbot/public_html/app/Exceptions/Handler.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/app/Exceptions/Handler.php on line 9

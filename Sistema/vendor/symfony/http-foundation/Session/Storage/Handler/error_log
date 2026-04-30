@@ -1,0 +1,112 @@
+[09-Jun-2024 00:06:15 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/PdoSessionHandler.php:41
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/PdoSessionHandler.php on line 41
+[09-Jun-2024 00:06:16 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NativeFileSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NativeFileSessionHandler.php on line 19
+[09-Jun-2024 00:06:21 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MemcachedSessionHandler.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MemcachedSessionHandler.php on line 22
+[09-Jun-2024 00:06:21 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NullSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NullSessionHandler.php on line 19
+[09-Jun-2024 00:06:22 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/StrictSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/StrictSessionHandler.php on line 19
+[09-Jun-2024 00:06:25 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MongoDbSessionHandler.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MongoDbSessionHandler.php on line 22
+[09-Jun-2024 00:06:29 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/PdoSessionHandler.php:41
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/PdoSessionHandler.php on line 41
+[09-Jun-2024 00:06:35 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NativeFileSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NativeFileSessionHandler.php on line 19
+[09-Jun-2024 00:07:07 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MongoDbSessionHandler.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MongoDbSessionHandler.php on line 22
+[09-Jun-2024 00:07:19 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MemcachedSessionHandler.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MemcachedSessionHandler.php on line 22
+[09-Jun-2024 00:07:23 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/StrictSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/StrictSessionHandler.php on line 19
+[09-Jun-2024 00:07:25 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/PdoSessionHandler.php:41
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/PdoSessionHandler.php on line 41
+[09-Jun-2024 00:07:27 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NativeFileSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NativeFileSessionHandler.php on line 19
+[09-Jun-2024 00:07:36 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NullSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NullSessionHandler.php on line 19
+[09-Jun-2024 00:07:42 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/StrictSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/StrictSessionHandler.php on line 19
+[09-Jun-2024 00:07:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/PdoSessionHandler.php:41
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/PdoSessionHandler.php on line 41
+[09-Jun-2024 00:08:05 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/StrictSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/StrictSessionHandler.php on line 19
+[09-Jun-2024 00:08:07 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NullSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NullSessionHandler.php on line 19
+[09-Jun-2024 00:08:37 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MongoDbSessionHandler.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MongoDbSessionHandler.php on line 22
+[09-Jun-2024 00:09:23 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MemcachedSessionHandler.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MemcachedSessionHandler.php on line 22
+[09-Jun-2024 00:09:25 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NativeFileSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NativeFileSessionHandler.php on line 19
+[09-Jun-2024 00:09:35 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/StrictSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/StrictSessionHandler.php on line 19
+[09-Jun-2024 00:09:48 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/PdoSessionHandler.php:41
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/PdoSessionHandler.php on line 41
+[09-Jun-2024 00:09:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NullSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NullSessionHandler.php on line 19
+[09-Jun-2024 00:10:03 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MongoDbSessionHandler.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MongoDbSessionHandler.php on line 22
+[09-Jun-2024 00:10:13 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NullSessionHandler.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/NullSessionHandler.php on line 19
+[09-Jun-2024 00:10:27 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MemcachedSessionHandler.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MemcachedSessionHandler.php on line 22
+[09-Jun-2024 00:12:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler' not found in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MemcachedSessionHandler.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/symfony/http-foundation/Session/Storage/Handler/MemcachedSessionHandler.php on line 22

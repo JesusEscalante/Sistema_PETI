@@ -1,0 +1,520 @@
+[08-Jun-2024 23:06:41 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstantPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstantPassTest.php on line 16
+[08-Jun-2024 23:06:41 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidFunctionNamePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidFunctionNamePassTest.php on line 16
+[08-Jun-2024 23:06:48 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstantPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstantPassTest.php on line 16
+[08-Jun-2024 23:06:51 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\ParserTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CodeCleanerTestCase.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CodeCleanerTestCase.php on line 18
+[08-Jun-2024 23:06:52 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionContextPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionContextPassTest.php on line 16
+[08-Jun-2024 23:06:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LeavePsyshAlonePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LeavePsyshAlonePassTest.php on line 16
+[08-Jun-2024 23:06:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/StrictTypesPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/StrictTypesPassTest.php on line 16
+[08-Jun-2024 23:06:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstantPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstantPassTest.php on line 16
+[08-Jun-2024 23:07:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AbstractClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AbstractClassPassTest.php on line 16
+[08-Jun-2024 23:07:02 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LoopContextPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LoopContextPassTest.php on line 16
+[08-Jun-2024 23:07:02 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstantPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstantPassTest.php on line 16
+[08-Jun-2024 23:07:02 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionReturnInWriteContextPassTest.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionReturnInWriteContextPassTest.php on line 17
+[08-Jun-2024 23:07:11 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ExitPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ExitPassTest.php on line 16
+[08-Jun-2024 23:07:12 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ImplicitReturnPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ImplicitReturnPassTest.php on line 16
+[08-Jun-2024 23:07:13 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LegacyEmptyPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LegacyEmptyPassTest.php on line 16
+[08-Jun-2024 23:07:13 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/RequirePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/RequirePassTest.php on line 16
+[08-Jun-2024 23:07:20 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LegacyEmptyPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LegacyEmptyPassTest.php on line 16
+[08-Jun-2024 23:07:20 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CalledClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CalledClassPassTest.php on line 16
+[08-Jun-2024 23:07:21 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/UseStatementPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/UseStatementPassTest.php on line 16
+[08-Jun-2024 23:07:21 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ListPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ListPassTest.php on line 16
+[08-Jun-2024 23:07:23 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstructorPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstructorPassTest.php on line 16
+[08-Jun-2024 23:07:26 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FinalClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FinalClassPassTest.php on line 16
+[08-Jun-2024 23:07:27 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AssignThisVariablePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AssignThisVariablePassTest.php on line 16
+[08-Jun-2024 23:07:27 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CallTimePassByReferencePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CallTimePassByReferencePassTest.php on line 16
+[08-Jun-2024 23:07:28 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LegacyEmptyPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LegacyEmptyPassTest.php on line 16
+[08-Jun-2024 23:07:28 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/MagicConstantsPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/MagicConstantsPassTest.php on line 16
+[08-Jun-2024 23:07:28 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidClassNamePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidClassNamePassTest.php on line 16
+[08-Jun-2024 23:07:28 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/InstanceOfPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/InstanceOfPassTest.php on line 16
+[08-Jun-2024 23:07:28 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/PassableByReferencePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/PassableByReferencePassTest.php on line 16
+[08-Jun-2024 23:07:29 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ListPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ListPassTest.php on line 16
+[08-Jun-2024 23:07:29 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NamespacePassTest.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NamespacePassTest.php on line 17
+[08-Jun-2024 23:07:30 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\ParserTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NoReturnValueTest.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NoReturnValueTest.php on line 18
+[08-Jun-2024 23:07:34 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FinalClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FinalClassPassTest.php on line 16
+[08-Jun-2024 23:07:35 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ListPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ListPassTest.php on line 16
+[08-Jun-2024 23:07:42 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ListPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ListPassTest.php on line 16
+[08-Jun-2024 23:07:49 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ListPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ListPassTest.php on line 16
+[08-Jun-2024 23:07:53 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidFunctionNamePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidFunctionNamePassTest.php on line 16
+[08-Jun-2024 23:08:00 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstantPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstantPassTest.php on line 16
+[08-Jun-2024 23:08:14 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AssignThisVariablePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AssignThisVariablePassTest.php on line 16
+[08-Jun-2024 23:08:17 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionContextPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionContextPassTest.php on line 16
+[08-Jun-2024 23:08:18 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LoopContextPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LoopContextPassTest.php on line 16
+[08-Jun-2024 23:08:21 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/StrictTypesPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/StrictTypesPassTest.php on line 16
+[08-Jun-2024 23:08:26 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionReturnInWriteContextPassTest.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionReturnInWriteContextPassTest.php on line 17
+[08-Jun-2024 23:08:27 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/RequirePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/RequirePassTest.php on line 16
+[08-Jun-2024 23:08:29 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\ParserTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CodeCleanerTestCase.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CodeCleanerTestCase.php on line 18
+[08-Jun-2024 23:08:30 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ExitPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ExitPassTest.php on line 16
+[08-Jun-2024 23:08:33 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CalledClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CalledClassPassTest.php on line 16
+[08-Jun-2024 23:08:33 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LeavePsyshAlonePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LeavePsyshAlonePassTest.php on line 16
+[08-Jun-2024 23:08:33 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/UseStatementPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/UseStatementPassTest.php on line 16
+[08-Jun-2024 23:08:34 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/RequirePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/RequirePassTest.php on line 16
+[08-Jun-2024 23:08:35 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AbstractClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AbstractClassPassTest.php on line 16
+[08-Jun-2024 23:08:35 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\ParserTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NoReturnValueTest.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NoReturnValueTest.php on line 18
+[08-Jun-2024 23:08:44 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LegacyEmptyPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LegacyEmptyPassTest.php on line 16
+[08-Jun-2024 23:08:44 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ImplicitReturnPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ImplicitReturnPassTest.php on line 16
+[08-Jun-2024 23:08:45 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CallTimePassByReferencePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CallTimePassByReferencePassTest.php on line 16
+[08-Jun-2024 23:08:46 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/InstanceOfPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/InstanceOfPassTest.php on line 16
+[08-Jun-2024 23:08:47 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidClassNamePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidClassNamePassTest.php on line 16
+[08-Jun-2024 23:08:47 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/MagicConstantsPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/MagicConstantsPassTest.php on line 16
+[08-Jun-2024 23:08:48 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstructorPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstructorPassTest.php on line 16
+[08-Jun-2024 23:08:48 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NamespacePassTest.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NamespacePassTest.php on line 17
+[08-Jun-2024 23:08:49 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FinalClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FinalClassPassTest.php on line 16
+[08-Jun-2024 23:08:53 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/PassableByReferencePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/PassableByReferencePassTest.php on line 16
+[08-Jun-2024 23:08:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidClassNamePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidClassNamePassTest.php on line 16
+[08-Jun-2024 23:09:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidClassNamePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidClassNamePassTest.php on line 16
+[08-Jun-2024 23:09:07 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidClassNamePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidClassNamePassTest.php on line 16
+[08-Jun-2024 23:09:10 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/RequirePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/RequirePassTest.php on line 16
+[08-Jun-2024 23:09:17 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NamespacePassTest.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NamespacePassTest.php on line 17
+[08-Jun-2024 23:09:20 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LoopContextPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LoopContextPassTest.php on line 16
+[08-Jun-2024 23:09:31 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionReturnInWriteContextPassTest.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionReturnInWriteContextPassTest.php on line 17
+[08-Jun-2024 23:09:31 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NamespacePassTest.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NamespacePassTest.php on line 17
+[08-Jun-2024 23:09:32 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/RequirePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/RequirePassTest.php on line 16
+[08-Jun-2024 23:09:32 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionContextPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionContextPassTest.php on line 16
+[08-Jun-2024 23:09:32 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidFunctionNamePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidFunctionNamePassTest.php on line 16
+[08-Jun-2024 23:09:33 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\ParserTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NoReturnValueTest.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NoReturnValueTest.php on line 18
+[08-Jun-2024 23:09:34 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/StrictTypesPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/StrictTypesPassTest.php on line 16
+[08-Jun-2024 23:09:37 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AbstractClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AbstractClassPassTest.php on line 16
+[08-Jun-2024 23:09:42 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CalledClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CalledClassPassTest.php on line 16
+[08-Jun-2024 23:09:42 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ExitPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ExitPassTest.php on line 16
+[08-Jun-2024 23:09:42 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/UseStatementPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/UseStatementPassTest.php on line 16
+[08-Jun-2024 23:09:46 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AssignThisVariablePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AssignThisVariablePassTest.php on line 16
+[08-Jun-2024 23:09:48 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LegacyEmptyPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LegacyEmptyPassTest.php on line 16
+[08-Jun-2024 23:09:48 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FinalClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FinalClassPassTest.php on line 16
+[08-Jun-2024 23:09:49 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LeavePsyshAlonePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LeavePsyshAlonePassTest.php on line 16
+[08-Jun-2024 23:09:49 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CalledClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CalledClassPassTest.php on line 16
+[08-Jun-2024 23:09:51 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CallTimePassByReferencePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CallTimePassByReferencePassTest.php on line 16
+[08-Jun-2024 23:09:51 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NamespacePassTest.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NamespacePassTest.php on line 17
+[08-Jun-2024 23:09:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/MagicConstantsPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/MagicConstantsPassTest.php on line 16
+[08-Jun-2024 23:09:56 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CalledClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CalledClassPassTest.php on line 16
+[08-Jun-2024 23:09:56 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LoopContextPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LoopContextPassTest.php on line 16
+[08-Jun-2024 23:09:57 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ImplicitReturnPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ImplicitReturnPassTest.php on line 16
+[08-Jun-2024 23:09:59 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\ParserTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CodeCleanerTestCase.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CodeCleanerTestCase.php on line 18
+[08-Jun-2024 23:10:08 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/InstanceOfPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/InstanceOfPassTest.php on line 16
+[08-Jun-2024 23:10:08 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstructorPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstructorPassTest.php on line 16
+[08-Jun-2024 23:10:08 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/PassableByReferencePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/PassableByReferencePassTest.php on line 16
+[08-Jun-2024 23:10:11 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\ParserTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NoReturnValueTest.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NoReturnValueTest.php on line 18
+[08-Jun-2024 23:10:14 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionContextPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionContextPassTest.php on line 16
+[08-Jun-2024 23:10:17 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/StrictTypesPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/StrictTypesPassTest.php on line 16
+[08-Jun-2024 23:10:21 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/UseStatementPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/UseStatementPassTest.php on line 16
+[08-Jun-2024 23:10:22 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionReturnInWriteContextPassTest.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionReturnInWriteContextPassTest.php on line 17
+[08-Jun-2024 23:10:22 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AbstractClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AbstractClassPassTest.php on line 16
+[08-Jun-2024 23:10:23 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ExitPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ExitPassTest.php on line 16
+[08-Jun-2024 23:10:24 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/StrictTypesPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/StrictTypesPassTest.php on line 16
+[08-Jun-2024 23:10:25 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/MagicConstantsPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/MagicConstantsPassTest.php on line 16
+[08-Jun-2024 23:10:28 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LoopContextPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LoopContextPassTest.php on line 16
+[08-Jun-2024 23:10:32 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CallTimePassByReferencePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CallTimePassByReferencePassTest.php on line 16
+[08-Jun-2024 23:10:35 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FinalClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FinalClassPassTest.php on line 16
+[08-Jun-2024 23:10:36 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidFunctionNamePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidFunctionNamePassTest.php on line 16
+[08-Jun-2024 23:10:38 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\ParserTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NoReturnValueTest.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/NoReturnValueTest.php on line 18
+[08-Jun-2024 23:10:43 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionContextPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionContextPassTest.php on line 16
+[08-Jun-2024 23:10:44 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AssignThisVariablePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AssignThisVariablePassTest.php on line 16
+[08-Jun-2024 23:10:48 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ImplicitReturnPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ImplicitReturnPassTest.php on line 16
+[08-Jun-2024 23:10:48 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionReturnInWriteContextPassTest.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/FunctionReturnInWriteContextPassTest.php on line 17
+[08-Jun-2024 23:10:50 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\ParserTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CodeCleanerTestCase.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CodeCleanerTestCase.php on line 18
+[08-Jun-2024 23:10:51 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/MagicConstantsPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/MagicConstantsPassTest.php on line 16
+[08-Jun-2024 23:10:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CallTimePassByReferencePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CallTimePassByReferencePassTest.php on line 16
+[08-Jun-2024 23:10:58 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\ParserTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CodeCleanerTestCase.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/CodeCleanerTestCase.php on line 18
+[08-Jun-2024 23:11:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AbstractClassPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AbstractClassPassTest.php on line 16
+[08-Jun-2024 23:11:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/UseStatementPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/UseStatementPassTest.php on line 16
+[08-Jun-2024 23:11:05 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ExitPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ExitPassTest.php on line 16
+[08-Jun-2024 23:11:06 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LeavePsyshAlonePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LeavePsyshAlonePassTest.php on line 16
+[08-Jun-2024 23:11:07 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/InstanceOfPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/InstanceOfPassTest.php on line 16
+[08-Jun-2024 23:11:10 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstructorPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstructorPassTest.php on line 16
+[08-Jun-2024 23:11:18 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ImplicitReturnPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ImplicitReturnPassTest.php on line 16
+[08-Jun-2024 23:11:27 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/PassableByReferencePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/PassableByReferencePassTest.php on line 16
+[08-Jun-2024 23:11:31 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidFunctionNamePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidFunctionNamePassTest.php on line 16
+[08-Jun-2024 23:11:46 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AssignThisVariablePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/AssignThisVariablePassTest.php on line 16
+[08-Jun-2024 23:11:52 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LeavePsyshAlonePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/LeavePsyshAlonePassTest.php on line 16
+[08-Jun-2024 23:11:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/InstanceOfPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/InstanceOfPassTest.php on line 16
+[08-Jun-2024 23:11:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstructorPassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/ValidConstructorPassTest.php on line 16
+[08-Jun-2024 23:11:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Psy\Test\CodeCleaner\CodeCleanerTestCase' not found in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/PassableByReferencePassTest.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/whatbot/public_html/vendor/psy/psysh/test/CodeCleaner/PassableByReferencePassTest.php on line 16
