@@ -49,6 +49,11 @@ class Came extends Model
     {
         return Came::find($CameId);
     }
+
+    public static function ObtenerPorTipo($Tipo)
+    {
+        return Came::where('Tipo', $Tipo)->first();
+    }
 }
 
 ?>

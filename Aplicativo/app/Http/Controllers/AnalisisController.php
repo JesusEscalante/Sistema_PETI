@@ -12,6 +12,7 @@ use App\Models\Amenazas as Amenazas;
 use App\Models\CadenaValor as CadenaValor;
 use App\Models\FuerzasPorter as FuerzasPorter;
 use App\Models\Pest as Pest;
+use App\Models\Came as Came;
 use Illuminate\Support\Facades\Auth;
 
 class AnalisisController extends Controller
@@ -691,22 +692,121 @@ class AnalisisController extends Controller
         $ObjOportunidades = Oportunidades::Listar();
         $ObjAmenazas = Amenazas::Listar();
 
-        // - C ------------
-        foreach($ObjFortalezas)
+        // - Fortalezas / M ------------
+        foreach($ObjFortalezas as $Item)
         {
-            $ObjCame = new Came();
-            $ObjCame->Tipo = "C";
-            Came::Agregar($ObjCame);
-        }   
+            if(Came::ObtenerPorTipo('M' . $Item->Id) == null)
+            {
+                $ObjCame = new Came();
+                $ObjCame->Tipo = "M" . $Item->Id;
+                $ObjCame->Accion = "";
+                Came::Agregar($ObjCame);
+            }
+        }
+
+        // - Debilidades / C ------------
+        foreach($ObjDebilidades as $Item)
+        {
+            if(Came::ObtenerPorTipo('C' . $Item->Id) == null)
+            {
+                $ObjCame = new Came();
+                $ObjCame->Tipo = "C" . $Item->Id;
+                $ObjCame->Accion = "";
+                Came::Agregar($ObjCame);
+            }
+        }
+
+        // - Oportunidades / E ------------
+        foreach($ObjOportunidades as $Item)
+        {
+            if(Came::ObtenerPorTipo('E' . $Item->Id) == null)
+            {
+                $ObjCame = new Came();
+                $ObjCame->Tipo = "E" . $Item->Id;
+                $ObjCame->Accion = "";
+                Came::Agregar($ObjCame);
+            }
+        }
+
+        // - Amenazas / A ------------
+        foreach($ObjAmenazas as $Item)
+        {
+            if(Came::ObtenerPorTipo('A' . $Item->Id) == null)
+            {
+                $ObjCame = new Came();
+                $ObjCame->Tipo = "A" . $Item->Id;
+                $ObjCame->Accion = "";
+                Came::Agregar($ObjCame);
+            }
+        }
+
+        $ObjCame = Came::Listar();
 
         return view('Analisis.CAME',[
             'Fortalezas' => $ObjFortalezas,
             'Debilidades' => $ObjDebilidades,
             'Oportunidades' => $ObjOportunidades,
-            'Amenazas' => $ObjAmenazas
+            'Amenazas' => $ObjAmenazas,
+            'Came' => $ObjCame
         ]);
     }
 
+    public function GuardarCAME(Request $request)
+    {
+        try
+        {
+            $ObjCame = Came::Listar();
+
+            foreach($ObjCame as $C)
+            {
+                if(Debilidades::ObtenerPorId(substr($C->Tipo, 1)))
+                {
+                    if($request->input($C->Tipo) != null) { $C->Accion = $request->input($C->Tipo); }
+                    else { $C->Accion = null; }
+                    Came::Editar($C);
+                }
+            }
+            foreach($ObjCame as $A)
+            {
+                if(Amenazas::ObtenerPorId(substr($A->Tipo, 1)))
+                {
+                    if($request->input($A->Tipo) != null) { $A->Accion = $request->input($A->Tipo); }
+                    else { $A->Accion = null; }
+                    Came::Editar($A);
+                }
+            }
+            foreach($ObjCame as $M)
+            {
+                if(Fortalezas::ObtenerPorId(substr($M->Tipo, 1)))
+                {
+                    if($request->input($M->Tipo) != null) { $M->Accion = $request->input($M->Tipo); }
+                    else { $M->Accion = null; }
+                    Came::Editar($M);
+                }
+            }
+            foreach($ObjCame as $E)
+            {
+                if(Oportunidades::ObtenerPorId(substr($E->Tipo, 1)))
+                {
+                    if($request->input($E->Tipo) != null) { $E->Accion = $request->input($E->Tipo); }
+                    else { $M->Accion = null; }
+                    Came::Editar($E);
+                }
+            }
+
+            session_start();
+            $_SESSION["ALERTA"] = "success";
+            $_SESSION["MENSAJE"] = "Se guardo correctamente los datos de la matriz CAME";
+            return redirect()->action('AnalisisController@CAME');
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo guardar los datos de la matriz CAME";
+            return redirect()->action('AnalisisController@CAME');
+        }
+    }
     // -- END ANALISIS - CAME ----------------------------------
 }
 ?>

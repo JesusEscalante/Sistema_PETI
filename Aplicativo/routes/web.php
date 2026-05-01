@@ -87,6 +87,7 @@ Route::prefix('analisis')->group(function () {
     // -- END ANALISIS - PEST ----------------------------------
     // -- START ANALISIS - CAME ----------------------------------
     Route::get('/came', 'AnalisisController@CAME');
+    Route::post('/save_came', 'AnalisisController@GuardarCAME');
     // -- END ANALISIS - CAME ----------------------------------
 });
 
