@@ -24,8 +24,8 @@
                 <div class="col-lg-6 col-sm-12">
 
                     <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead class="table-light">
+                        <table class="table table-hover table-bordered">
+                            <thead class="bg-gray-100">
                                 <tr>
                                     <th colspan="8" class="text-center align-middle">RIVALIDAD DE EMPRESAS DEL SECTOR</th>
                                 </tr>
@@ -81,8 +81,8 @@
                 <div class="col-lg-6 col-sm-12">
 
                     <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead class="table-light">
+                        <table class="table table-hover table-bordered">
+                            <thead class="bg-gray-100">
                                 <tr>
                                     <th colspan="8" class="text-center align-middle">BARRERAS DE ENTRADA</th>
                                 </tr>
@@ -139,8 +139,8 @@
                 <div class="col-lg-6 col-sm-12">
 
                     <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead class="table-light">
+                        <table class="table table-hover table-bordered">
+                            <thead class="bg-gray-100">
                                 <tr>
                                     <th colspan="8" class="text-center align-middle">PODER DE LOS CLIENTES</th>
                                 </tr>
@@ -197,8 +197,8 @@
                 <div class="col-lg-6 col-sm-12">
 
                     <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead class="table-light">
+                        <table class="table table-hover table-bordered">
+                            <thead class="bg-gray-100">
                                 <tr>
                                     <th colspan="8" class="text-center align-middle">PRODUCTOS SUSTITUTIVOS</th>
                                 </tr>

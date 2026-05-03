@@ -95,6 +95,7 @@ Route::prefix('estrategia')->group(function () {
 Route::prefix('plan')->group(function () {
     Route::get('/list', 'PlanController@PlanesEstrategicos');
     Route::get('/add_plan', 'PlanController@AgregarPlan');
+    Route::post('/save_conclucion', 'PlanController@GuardarConclucion');
     Route::get('/detalle/{PlanId}', 'PlanController@Detalle');
 });
 

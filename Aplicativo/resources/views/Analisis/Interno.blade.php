@@ -23,7 +23,7 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table table-hover table-bordered">
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th>Fortaleza</th>
@@ -103,7 +103,7 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table table-hover table-bordered">
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th>Debilidad</th>

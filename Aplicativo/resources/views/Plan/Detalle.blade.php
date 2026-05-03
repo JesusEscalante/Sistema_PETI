@@ -9,6 +9,7 @@
         <div class="app-title justify-content-between mb-3" style="position: sticky; top: 80px; background-color: #fff; z-index: 999;">
             <h1>PLAN ESTRATÉGICO</h1>
             <div class="d-flex">
+                <a type="button" id="btnGuardar" class="btn btn-outline-primary mr-2" style="opacity: 0; transition: opacity 1s ease-out;"><i class="app-menu__icon fa fa-repeat"></i> Guardar Conclución</a>
                 <a type="button" onclick="Imprimir()" class="btn btn-outline-info mr-2"><i class="app-menu__icon fa fa-print"></i> Imprimir</a>
             </div>
         </div>
@@ -20,10 +21,40 @@
             <div class="inline-editor-container border border-shadow" id="Contenido">
               <div id="tiny-editor-inline">
                 <?= $Plan->Contenido ?>
+                <form id="fomrConclucion" action="/plan/save_conclucion" method="post">
+                    <input type="hidden" name="id" value="{{ $Plan->Id }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <textarea id='txtConclucion' name='conclucion' style='margin-left: 40px;width: 90%; max-width: 1050px;'>{{ $Plan->Conclucion }}</textarea>
+                </form>
               </div>
             </div>
             
         </div>
+
+        <script>
+            const textarea = document.getElementById('txtConclucion');
+            const botonGuardar = document.getElementById('btnGuardar');
+            let contenidoOriginal = textarea.value;
+
+            function verificarCambios() {
+                if (textarea.value !== contenidoOriginal) {
+                    botonGuardar.style.display = 'inline-block';
+                    botonGuardar.offsetHeight;
+                    botonGuardar.style.opacity = 1;
+                } else {
+                    botonGuardar.style.display = 'none';
+                    botonGuardar.style.opacity = 0;
+                }
+            }
+            
+            // Evento para detectar cambios en el textarea
+            textarea.addEventListener('input', verificarCambios);
+
+            // Guardar cambios
+            botonGuardar.addEventListener('click', function() {
+                document.getElementById('fomrConclucion').submit();
+            });
+        </script>
         
     </div>
 
@@ -54,7 +85,7 @@
         </div>
     </div>
     
-    <script>        
+    <script>      
         function Imprimir() {
             try {
                 function obtenerContenidoCompleto() {

@@ -182,8 +182,7 @@ class PlanController extends Controller
                     "</tbody>".
                     "</table>".
                     "<p>&nbsp;</p>".
-                    "<h6 style='padding-left: 40px;'>CONCLUSIONES:</h6>".
-                    "<textarea style='margin-left: 40px;width: 90%; max-width: 1050px;'></textarea>";
+                    "<h6 style='padding-left: 40px;'>CONCLUSIONES:</h6>";
 
         try{
             $ObjPlan = new PlanEstrategico();
@@ -218,6 +217,35 @@ class PlanController extends Controller
         return view('Plan.Detalle',[
             'Plan' => $ObjPlan
         ]);
+    }
+
+    public function GuardarConclucion(Request $request){
+        try
+        {
+            $Id = $request->input('id');
+            $ObjPlan = PlanEstrategico::ObtenerPorId($Id);
+            $ObjPlan->Conclucion = $request->input('conclucion');
+
+            if(PlanEstrategico::Editar($ObjPlan))
+            {
+                session_start();
+                $_SESSION["ALERTA"] = "success";
+                $_SESSION["MENSAJE"] = "Se guardo correctamente los cambios";
+                return redirect()->action('PlanController@Detalle', ['PlanId' => $Id]);
+            }else{
+                session_start();
+                $_SESSION["ALERTA"] = "error";
+                $_SESSION["MENSAJE"] = "No se pudo guardar los cambios";
+                return redirect()->action('PlanController@Detalle', ['PlanId' => $Id]);
+            }
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo guardar los cambios";
+            return redirect()->action('PlanController@Detalle', ['PlanId' => $Id]);
+        }
     }
 }
 ?>

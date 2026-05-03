@@ -19,19 +19,21 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-hover table-bordered" id="TableData">
                     <thead class="bg-gray-100">
                         <tr>
-                            <th>CODIGO</th>
-                            <th>FECHA</th>
-                            <th width="20%"><center>ACCIONES</center></th>
+                            <th width="10%" class="text-center">CODIGO</th>
+                            <th width="15%" class="text-center">FECHA</th>
+                            <th>CONCLUCIÓN</th>
+                            <th width="10%"><center>ACCIONES</center></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($Planes as $Plan)
                         <tr>
-                            <td>PE-{{ str_pad($Plan->Id, 3, "0", STR_PAD_LEFT) }}</td>
-                            <td>{{ date('d/m/Y h:i:s', strtotime($Plan->Fecha)) }}</td>
+                            <td class="text-center">PE-{{ str_pad($Plan->Id, 3, "0", STR_PAD_LEFT) }}</td>
+                            <td class="text-center">{{ date('d/m/Y h:i:s', strtotime($Plan->Fecha)) }}</td>
+                            <td>{{ $Plan->Conclucion }}</td>
                             <td class="text-center">
                                 <a href="/plan/detalle/{{ $Plan->Id }}" class="btn btn-success btn-sm text-uppercase" title="Resumen de Plan Estratégico"><i class="fa fa-bars" aria-hidden="true" style="margin: 0 auto;"></i></a>
 

@@ -18,8 +18,8 @@
             <div class="table-responsive">
                 <form class="form" action="/analisis/cadena_calcular" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <table class="table table-bordered">
-                    <thead class="table-light">
+                <table class="table table-hover table-bordered">
+                    <thead class="bg-gray-100">
                         <tr>
                             <th rowspan="3" width="15px" class="text-center align-middle">N°</th>
                             <th rowspan="3" width="60%" class="align-middle">AUTODIAGNÓSTICO DE LA CADENA DE VALOR INTERNA</th>
