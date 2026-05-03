@@ -30,7 +30,9 @@ $modulo = explode("/", $actual_link);
 
         <li><a class="app-menu__item <?= $modulo[2] == "came" ? "active" : "" ?>" href="/analisis/came"><i class="app-menu__icon fa fa-search"></i><span class="app-menu__label">Matriz CAME</span></a></li>
 
-        <li><a class="app-menu__item <?= $modulo[1] == "plan" ? "active" : "" ?>" href="/plan/detalle"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Plan Estratégico</span></a></li>
+        <hr>
+
+        <li><a class="app-menu__item <?= $modulo[1] == "plan" ? "active" : "" ?>" href="/plan/list"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Planes Estratégicos</span></a></li>
 
         <hr>
 

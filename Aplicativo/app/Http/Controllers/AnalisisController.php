@@ -10,6 +10,7 @@ use App\Models\Debilidades as Debilidades;
 use App\Models\Oportunidades as Oportunidades;
 use App\Models\Amenazas as Amenazas;
 use App\Models\CadenaValor as CadenaValor;
+use App\Models\Productos as Productos;
 use App\Models\FuerzasPorter as FuerzasPorter;
 use App\Models\Pest as Pest;
 use App\Models\Came as Came;
@@ -494,7 +495,19 @@ class AnalisisController extends Controller
     // -- START ANALISIS - PARTICIPACIÓN ----------------------------------
 
     public function Participacion(){
-        return view('Analisis.Participacion');
+        $ObjProductos = Productos::Listar();
+
+        $SUMA = 0;
+
+        foreach($ObjProductos as $Item)
+        {
+            $SUMA += $Item->Ventas;
+        }
+
+        return view('Analisis.Participacion',[
+            'Productos' => $ObjProductos,
+            'TotalProductos' => $SUMA
+        ]);
     }
 
     // -- END ANALISIS - PARTICIPACIÓN ----------------------------------

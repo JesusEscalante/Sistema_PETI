@@ -16,12 +16,6 @@ use Illuminate\Http\Request;
 //Auth
 Route::get('/', 'Auth\LoginController@FrmLogin')->middleware('guest');
 Route::post('login', 'Auth\LoginController@Login');
-Route::get('registrar', 'Auth\RegisterController@FrmRegistrar');
-Route::post('registrar', 'Auth\RegisterController@ActRegistrar');
-Route::get('verificar', 'Auth\LoginController@FrmVerificacion');
-Route::post('actVerificar', 'Auth\LoginController@ActVerificacion');
-Route::get('recuperar', 'Auth\LoginController@FrmRecuperar');
-Route::post('actRecuperar', 'Auth\LoginController@ActRecuperar');
 
 //start middleware
 Route::middleware('Administrador')->group(function(){
@@ -99,7 +93,9 @@ Route::prefix('estrategia')->group(function () {
 
 //Plan Estratégico
 Route::prefix('plan')->group(function () {
-    Route::get('/detalle', 'PlanController@Detalle');
+    Route::get('/list', 'PlanController@PlanesEstrategicos');
+    Route::get('/add_plan', 'PlanController@AgregarPlan');
+    Route::get('/detalle/{PlanId}', 'PlanController@Detalle');
 });
 
 //Usuario

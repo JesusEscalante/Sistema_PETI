@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // Importación de modelos necesarios
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\PlanEstrategico as PlanEstrategico;
 use App\Models\Empresa as Empresa;
 use App\Models\Valores as Valores;
 use App\Models\UnidadEstrategica as UnidadEstrategica;
@@ -15,11 +16,20 @@ use App\Models\Debilidades as Debilidades;
 use App\Models\Oportunidades as Oportunidades;
 use App\Models\Amenazas as Amenazas;
 use App\Models\Estrategia as Estrategia;
+use App\Models\Came as Came;
 use Illuminate\Support\Facades\Auth;
 
 class PlanController extends Controller
 {
-    public function Detalle(){
+    public function PlanesEstrategicos(){
+        $ObjPlanes = PlanEstrategico::Listar();
+
+        return view('Plan.Planes',[
+            'Planes' => $ObjPlanes
+        ]);
+    }
+
+    public function AgregarPlan(){
         $ObjEmpresa = Empresa::ObtenerPorId(1);
         $ObjValores = Valores::Listar();
         $ObjUnidadesEstrategicas = UnidadEstrategica::Listar();
@@ -30,6 +40,7 @@ class PlanController extends Controller
         $ObjOportunidades = Oportunidades::Listar();
         $ObjAmenazas = Amenazas::Listar();
         $ObjEstrategia = Estrategia::ObtenerPorId(1);
+        $ObjCame = Came::Listar();
 
         $VALORES = "";
         foreach($ObjValores as $Valor){
@@ -76,6 +87,30 @@ class PlanController extends Controller
         $FODA .= "<tr><th rowspan='" . ($ObjAmenazas->count() + 1) . "' width='150px' style='text-align: center;'>AMENAZAS</th></tr>";
         foreach($ObjAmenazas as $Obj){
             $FODA .= "<tr><td>" . $Obj->Amenaza . "</td></tr>";
+        }
+
+
+        $ACCIONES = "";
+
+        foreach($ObjDebilidades as $Item){
+            if($C = Came::ObtenerPorTipo("C".$Item->Id)){
+                $ACCIONES .= "<tr><td style='text-align: center;'>" . $C->Id . "</td><td>" . $C->Accion . "</td></tr>";
+            }
+        }
+        foreach($ObjAmenazas as $Item){
+            if($A = Came::ObtenerPorTipo("A".$Item->Id)){
+                $ACCIONES .= "<tr><td style='text-align: center;'>" . $A->Id . "</td><td>" . $A->Accion . "</td></tr>";
+            }
+        }
+        foreach($ObjFortalezas as $Item){
+            if($M = Came::ObtenerPorTipo("M".$Item->Id)){
+                $ACCIONES .= "<tr><td style='text-align: center;'>" . $M->Id . "</td><td>" . $M->Accion . "</td></tr>";
+            }
+        }
+        foreach($ObjOportunidades as $Item){
+            if($E = Came::ObtenerPorTipo("E".$Item->Id)){
+                $ACCIONES .= "<tr><td style='text-align: center;'>" . $E->Id . "</td><td>" . $E->Accion . "</td></tr>";
+            }
         }
 
         $CONTENIDO ="<p>&nbsp;</p>".
@@ -135,16 +170,53 @@ class PlanController extends Controller
                     "</ul>".
                     "<p>&nbsp;</p>".
                     "<h6 style='padding-left: 40px;'>ACCIONES COMPETITIVAS:</h6>".
+                    "<table style='width: 100%; max-width: 1050px; border-collapse: collapse;' border='1'>".
+                    "<thead>".
+                    "<tr>".
+                    "<th style='text-align: center; width: 80px;'>ID</th>".
+                    "<th style='text-align: center;'>ACCION</th>".
+                    "</tr>".
+                    "</thead>".
+                    "<tbody>".
+                    $ACCIONES .
+                    "</tbody>".
+                    "</table>".
                     "<p>&nbsp;</p>".
                     "<h6 style='padding-left: 40px;'>CONCLUSIONES:</h6>".
                     "<textarea style='margin-left: 40px;width: 90%; max-width: 1050px;'></textarea>";
 
+        try{
+            $ObjPlan = new PlanEstrategico();
+
+            $ObjPlan->Contenido = $CONTENIDO;
+
+            if(PlanEstrategico::Agregar($ObjPlan))
+            {
+                session_start();
+                $_SESSION["ALERTA"] = "success";
+                $_SESSION["MENSAJE"] = "Se genero correctamente el plan estrategico";
+                return redirect()->action('PlanController@PlanesEstrategicos');
+            }else{
+                session_start();
+                $_SESSION["ALERTA"] = "error";
+                $_SESSION["MENSAJE"] = "No se pudo generar el plan estrategico";
+                return redirect()->action('PlanController@PlanesEstrategicos');
+            }
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo generar el plan estratégico";
+            return redirect()->action('PlanController@PlanesEstrategicos');
+        }
+
+    }
+
+    public function Detalle($PlanId){
+        $ObjPlan = PlanEstrategico::ObtenerPorId($PlanId);
         return view('Plan.Detalle',[
-            'Fortalezas' => $ObjFortalezas,
-            'Debilidades' => $ObjDebilidades,
-            'Oportunidades' => $ObjOportunidades,
-            'Amenazas' => $ObjAmenazas,
-            'Contenido' => $CONTENIDO
+            'Plan' => $ObjPlan
         ]);
     }
 }

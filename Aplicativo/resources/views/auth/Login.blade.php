@@ -41,11 +41,6 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-sign-in fa-lg fa-fw"></i>Iniciar Sesión</button>
           </div>
-
-          <hr>
-          <div class="mt-3 text-center">
-          <!--a href="/recuperar">Recuperar Contraseña </a>/--><a href="/registrar"> Registrar Cuenta</a>
-          </div>
         </form>
       </div>
     </section>

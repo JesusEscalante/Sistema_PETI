@@ -19,7 +19,7 @@
             
             <div class="inline-editor-container border border-shadow" id="Contenido">
               <div id="tiny-editor-inline">
-                <?= $Contenido ?>
+                <?= $Plan->Contenido ?>
               </div>
             </div>
             
