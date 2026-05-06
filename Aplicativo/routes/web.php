@@ -70,6 +70,11 @@ Route::prefix('analisis')->group(function () {
     // -- END ANALISIS - CADENA DE VALOR ----------------------------------
     // -- START ANALISIS - PARTICIPACIÓN ----------------------------------
     Route::get('/participacion', 'AnalisisController@Participacion');
+    Route::post('/add_producto', 'AnalisisController@AgregarProducto');
+    Route::post('/edit_producto', 'AnalisisController@EditarProducto');
+    Route::get('/delete_producto/{ProductoId}', 'AnalisisController@EliminarProducto');
+    Route::post('/add_periodo', 'AnalisisController@AgregarPeriodo');
+    Route::get('/delete_periodo/{PeriodoId}', 'AnalisisController@EliminarPeriodo');
     // -- END ANALISIS - PARTICIPACIÓN ----------------------------------
     // -- START ANALISIS - PORTER ----------------------------------
     Route::get('/porter', 'AnalisisController@Porter');

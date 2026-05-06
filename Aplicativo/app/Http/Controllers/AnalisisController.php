@@ -10,7 +10,10 @@ use App\Models\Debilidades as Debilidades;
 use App\Models\Oportunidades as Oportunidades;
 use App\Models\Amenazas as Amenazas;
 use App\Models\CadenaValor as CadenaValor;
+use App\Models\Tcm as Tcm;
+use App\Models\Edgs as Edgs;
 use App\Models\Productos as Productos;
+use App\Models\Periodos as Periodos;
 use App\Models\FuerzasPorter as FuerzasPorter;
 use App\Models\Pest as Pest;
 use App\Models\Came as Came;
@@ -63,7 +66,7 @@ class AnalisisController extends Controller
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo agregar el objetivo específico";
+            $_SESSION["MENSAJE"] = "No se pudo agregar la fortaleza";
             if($request->input('modulo') == "cadena"){
                 return redirect()->action('AnalisisController@CadenaValor');
             }
@@ -97,7 +100,7 @@ class AnalisisController extends Controller
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo agregar el objetivo específico";
+            $_SESSION["MENSAJE"] = "No se pudo modificar la fortaleza";
             return redirect()->action('AnalisisController@Interno');
         }
     }
@@ -125,7 +128,7 @@ class AnalisisController extends Controller
          {
              session_start();
              $_SESSION["ALERTA"] = "error";
-             $_SESSION["MENSAJE"] = "No se pudo eliminar el objetivo específico";
+             $_SESSION["MENSAJE"] = "No se pudo eliminar la fortaleza";
              return redirect()->action('AnalisisController@Interno');
          }
     }
@@ -164,7 +167,7 @@ class AnalisisController extends Controller
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo agregar el objetivo específico";
+            $_SESSION["MENSAJE"] = "No se pudo agregar la debilidad";
             if($request->input('modulo') == "cadena"){
                 return redirect()->action('AnalisisController@CadenaValor');
             }
@@ -198,7 +201,7 @@ class AnalisisController extends Controller
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo agregar el objetivo específico";
+            $_SESSION["MENSAJE"] = "No se pudo modificar la debilidad";
             return redirect()->action('AnalisisController@Interno');
         }
     }
@@ -226,7 +229,7 @@ class AnalisisController extends Controller
          {
              session_start();
              $_SESSION["ALERTA"] = "error";
-             $_SESSION["MENSAJE"] = "No se pudo eliminar el objetivo específico";
+             $_SESSION["MENSAJE"] = "No se pudo eliminar la debilidad";
              return redirect()->action('AnalisisController@Interno');
          }
     }
@@ -278,7 +281,7 @@ class AnalisisController extends Controller
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo agregar el objetivo específico";
+            $_SESSION["MENSAJE"] = "No se pudo agregar la oportunidad";
             if($request->input('modulo') == "porter"){
                 return redirect()->action('AnalisisController@Porter');
             }
@@ -312,7 +315,7 @@ class AnalisisController extends Controller
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo agregar el objetivo específico";
+            $_SESSION["MENSAJE"] = "No se pudo modificar la oportunidad";
             return redirect()->action('AnalisisController@Externo');
         }
     }
@@ -340,7 +343,7 @@ class AnalisisController extends Controller
          {
              session_start();
              $_SESSION["ALERTA"] = "error";
-             $_SESSION["MENSAJE"] = "No se pudo eliminar el objetivo específico";
+             $_SESSION["MENSAJE"] = "No se pudo eliminar la oportunidad";
              return redirect()->action('AnalisisController@Externo');
          }
     }
@@ -379,7 +382,7 @@ class AnalisisController extends Controller
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo agregar el objetivo específico";
+            $_SESSION["MENSAJE"] = "No se pudo agregar la amenaza";
             if($request->input('modulo') == "porter"){
                 return redirect()->action('AnalisisController@Porter');
             }
@@ -413,7 +416,7 @@ class AnalisisController extends Controller
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo agregar el objetivo específico";
+            $_SESSION["MENSAJE"] = "No se pudo modificar la amenaza";
             return redirect()->action('AnalisisController@Externo');
         }
     }
@@ -436,14 +439,14 @@ class AnalisisController extends Controller
                 $_SESSION["MENSAJE"] = "No se pudo eliminar la amenaza";
                 return redirect()->action('AnalisisController@Externo');
             }
-         }
-         catch (\Illuminate\Database\QueryException $e)
-         {
-             session_start();
-             $_SESSION["ALERTA"] = "error";
-             $_SESSION["MENSAJE"] = "No se pudo eliminar el objetivo específico";
-             return redirect()->action('AnalisisController@Externo');
-         }
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo eliminar la amenaza";
+            return redirect()->action('AnalisisController@Externo');
+        }
     }
 
     // -- END ANALISIS EXTERNO ----------------------------------
@@ -496,6 +499,7 @@ class AnalisisController extends Controller
 
     public function Participacion(){
         $ObjProductos = Productos::Listar();
+        $ObjPeriodos = Periodos::Listar();
 
         $SUMA = 0;
 
@@ -504,10 +508,209 @@ class AnalisisController extends Controller
             $SUMA += $Item->Ventas;
         }
 
+        // - TCM -------
+        foreach($ObjPeriodos as $Item)
+        {
+            foreach($ObjProductos as $ItemP)
+            {
+                if(Tcm::ObtenerPorPeriodoProducto($Item->Periodo, $ItemP->Id) == null)
+                {
+                    $ObjTCM = new Tcm();
+                    $ObjTCM->Periodo = $Item->Periodo;
+                    $ObjTCM->ProductoId = $ItemP->Id;
+                    Tcm::Agregar($ObjTCM);
+                }
+            } 
+        }
+
+        // - EDGS -------
+        foreach($ObjPeriodos as $Item)
+        {
+            foreach($ObjProductos as $ItemP)
+            {
+                if(Edgs::ObtenerPorPeriodoProducto($Item->Periodo, $ItemP->Id) == null)
+                {
+                    $ObjEDGS = new Edgs();
+                    $ObjEDGS->Periodo = $Item->Periodo;
+                    $ObjEDGS->ProductoId = $ItemP->Id;
+                    Edgs::Agregar($ObjEDGS);
+                }
+            } 
+        }
+
+        $ObjTCM = Tcm::Listar();
+        $ObjTCMSuma = Tcm::ListarSUMA();
+        $ObjEDGS = Edgs::Listar();
+
         return view('Analisis.Participacion',[
             'Productos' => $ObjProductos,
+            'Periodos' => $ObjPeriodos,
+            'TCM' => $ObjTCM,
+            'TCMSuma' => $ObjTCMSuma,
+            'EDGS' => $ObjEDGS,
             'TotalProductos' => $SUMA
         ]);
+    }
+
+    public function AgregarProducto(Request $request)
+    {
+        try
+        {
+            $ObjProductos = Productos::Listar();
+            $SUMA = 0;
+            foreach($ObjProductos as $Item)
+            {
+                $SUMA += $Item->Ventas;
+            }
+
+            $ObjProducto = new Productos();
+            $ObjProducto->Nombre = $request->input('nombre');
+            $ObjProducto->Ventas = $request->input('ventas');
+            $porcent = ($ObjProducto->Ventas * 100) / $SUMA;
+            $ObjProducto->Porcentaje = number_format((float)$porcent, 2, '.', '');
+            
+            if(Productos::Agregar($ObjProducto))
+            {
+                session_start();
+                $_SESSION["ALERTA"] = "success";
+                $_SESSION["MENSAJE"] = "Se agrego correctamente el producto";
+                return redirect()->action('AnalisisController@Participacion');
+            }else{
+                session_start();
+                $_SESSION["ALERTA"] = "error";
+                $_SESSION["MENSAJE"] = "No se pudo agregar el producto";
+                return redirect()->action('AnalisisController@Participacion');
+            }
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo agregar el producto";
+            return redirect()->action('AnalisisController@Participacion');
+        }
+    }
+
+    public function ActualizarPorcentajes()
+    {
+        $ObjProductos = Productos::Listar();
+        $SUMA = 0;
+        foreach($ObjProductos as $Item)
+        {
+            $SUMA += $Item->Ventas;
+        }
+
+        foreach($ObjProductos as $Item)
+        {
+            $porcent = ($Item->Ventas * 100) / $SUMA;
+            $Item->Porcentaje = number_format((float)$porcent, 2, '.', '');
+            Productos::Editar($Item);
+        }
+    }
+
+    public function EditarProducto(Request $request)
+    {
+        try
+        {
+            $ObjProducto = Productos::ObtenerPorId($request->input('id'));
+            $ObjProducto->Nombre = $request->input('nombre');
+            $ObjProducto->Ventas = $request->input('ventas');
+            Productos::Editar($ObjProducto);
+
+            $this->ActualizarPorcentajes();
+
+            session_start();
+            $_SESSION["ALERTA"] = "success";
+            $_SESSION["MENSAJE"] = "Se modifico correctamente el producto";
+            return redirect()->action('AnalisisController@Participacion');
+
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo modificar el producto";
+            return redirect()->action('AnalisisController@Participacion');
+        }        
+    }
+
+    public function EliminarProducto($ProductoId)
+    {
+        try
+        {
+            $ObjProducto = Productos::ObtenerPorId($ProductoId);
+            Productos::Eliminar($ObjProducto);
+
+            $this->ActualizarPorcentajes();
+
+            session_start();
+            $_SESSION["ALERTA"] = "success";
+            $_SESSION["MENSAJE"] = "Se eliminó correctamente el producto";
+            return redirect()->action('AnalisisController@Participacion');
+
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo eliminar el producto";
+            return redirect()->action('AnalisisController@Participacion');
+        }
+    }
+
+    public function AgregarPeriodo(Request $request)
+    {
+        try
+        {
+            if(Periodos::ObtenerPorPeriodo($request->input('periodo'))) {
+                session_start();
+                $_SESSION["ALERTA"] = "warning";
+                $_SESSION["MENSAJE"] = "Periodo ingresado ya se encuentra registrado";
+                return redirect()->action('AnalisisController@Participacion');
+            } else {
+                $ObjPeriodo = new Periodos();
+                $ObjPeriodo->Periodo = $request->input('periodo');
+                if(Periodos::Agregar($ObjPeriodo)){
+                    session_start();
+                    $_SESSION["ALERTA"] = "success";
+                    $_SESSION["MENSAJE"] = "Se agrego correctamente el periodo";
+                    return redirect()->action('AnalisisController@Participacion');
+                } else {
+                    session_start();
+                    $_SESSION["ALERTA"] = "error";
+                    $_SESSION["MENSAJE"] = "No se pudo agregar el periodo";
+                    return redirect()->action('AnalisisController@Participacion');
+                }
+            }
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo agregar el periodo";
+            return redirect()->action('AnalisisController@Participacion');
+        }
+    }
+
+    public function EliminarPeriodo($PeriodoId)
+    {
+        try
+        {
+            $ObjPeriodo = Periodos::ObtenerPorId($PeriodoId);
+            Periodos::Eliminar($ObjPeriodo);
+            session_start();
+            $_SESSION["ALERTA"] = "success";
+            $_SESSION["MENSAJE"] = "Se eliminó correctamente el periodo";
+            return redirect()->action('AnalisisController@Participacion');
+
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo eliminar el periodo";
+            return redirect()->action('AnalisisController@Participacion');
+        }
     }
 
     // -- END ANALISIS - PARTICIPACIÓN ----------------------------------
