@@ -75,6 +75,9 @@ Route::prefix('analisis')->group(function () {
     Route::get('/delete_producto/{ProductoId}', 'AnalisisController@EliminarProducto');
     Route::post('/add_periodo', 'AnalisisController@AgregarPeriodo');
     Route::get('/delete_periodo/{PeriodoId}', 'AnalisisController@EliminarPeriodo');
+    Route::post('/save_tcm', 'AnalisisController@GuardarTCM');
+    Route::post('/save_edgs', 'AnalisisController@GuardarEDGS');
+    Route::get('/add_competidor', 'AnalisisController@AgregarCompetidor');
     // -- END ANALISIS - PARTICIPACIÓN ----------------------------------
     // -- START ANALISIS - PORTER ----------------------------------
     Route::get('/porter', 'AnalisisController@Porter');
@@ -88,6 +91,8 @@ Route::prefix('analisis')->group(function () {
     Route::get('/came', 'AnalisisController@CAME');
     Route::post('/save_came', 'AnalisisController@GuardarCAME');
     // -- END ANALISIS - CAME ----------------------------------
+
+    Route::get('/graficos', 'AnalisisController@Graficos');
 });
 
 //Estrategia

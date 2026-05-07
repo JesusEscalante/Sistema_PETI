@@ -14,6 +14,7 @@ use App\Models\Tcm as Tcm;
 use App\Models\Edgs as Edgs;
 use App\Models\Productos as Productos;
 use App\Models\Periodos as Periodos;
+use App\Models\Competidores as Competidores;
 use App\Models\FuerzasPorter as FuerzasPorter;
 use App\Models\Pest as Pest;
 use App\Models\Came as Came;
@@ -541,14 +542,36 @@ class AnalisisController extends Controller
         $ObjTCM = Tcm::Listar();
         $ObjTCMSuma = Tcm::ListarSUMA();
         $ObjEDGS = Edgs::Listar();
+        $ObjOrdenCompetidores = Competidores::ListarOrden();
+        $ObjCompetidores = Competidores::Listar();
+        $ObjCompetidoresMAYOR = Competidores::ListarMAYOR();
+
+        $PRM = Competidores::ListarMAYOR();
+
+        foreach($PRM as $prm){
+            if($prm->mayor_venta == 0){
+                $prm->mayor_venta = $prm->mayor_venta;
+            } else{
+                $Producto = Productos::ObtenerPorId($prm->ProductoId);
+                if(($Producto->Ventas / $prm->mayor_venta) > 2){
+                    $prm->mayor_venta = 2;
+                }else{
+                    $prm->mayor_venta = ($Producto->Ventas / $prm->mayor_venta);
+                }
+            }
+        }
 
         return view('Analisis.Participacion',[
             'Productos' => $ObjProductos,
             'Periodos' => $ObjPeriodos,
             'TCM' => $ObjTCM,
             'TCMSuma' => $ObjTCMSuma,
+            'PRM' => $PRM,
             'EDGS' => $ObjEDGS,
-            'TotalProductos' => $SUMA
+            'TotalProductos' => $SUMA,
+            'OrdenCompetidores' => $ObjOrdenCompetidores,
+            'Competidores' => $ObjCompetidores,
+            'CompetidoresMAYOR' => $ObjCompetidoresMAYOR
         ]);
     }
 
@@ -709,6 +732,94 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo eliminar el periodo";
+            return redirect()->action('AnalisisController@Participacion');
+        }
+    }
+
+    public function GuardarTCM(Request $request)
+    {
+        try
+        {
+            $ObjPeriodos = Periodos::Listar();
+            $ObjProductos = Productos::Listar();
+            $ObjTcm = Tcm::Listar();
+
+            foreach($ObjPeriodos as $Periodo){
+                foreach($ObjProductos as $Producto){
+                    if($ObjTcm = Tcm::ObtenerPorPeriodoProducto($Periodo->Periodo, $Producto->Id)){
+                        $ObjTcm->Valor = $request->input("PE".$Periodo->Periodo."PR".$Producto->Id);
+                        Tcm::Editar($ObjTcm);
+                    }
+                }
+            }
+
+            session_start();
+            $_SESSION["ALERTA"] = "success";
+            $_SESSION["MENSAJE"] = "Se guardo correctamente los valores del TCM";
+            return redirect()->action('AnalisisController@Participacion');
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo guardar los valores del TCM";
+            return redirect()->action('AnalisisController@Participacion');
+        }
+    }
+
+    public function GuardarEDGS(Request $request)
+    {
+        try
+        {
+            $ObjPeriodos = Periodos::Listar();
+            $ObjProductos = Productos::Listar();
+
+            foreach($ObjPeriodos as $Periodo){
+                foreach($ObjProductos as $Producto){
+                    if($ObjEdgs = Edgs::ObtenerPorPeriodoProducto($Periodo->Periodo, $Producto->Id)){
+                        $ObjEdgs->Valor = $request->input("PE".$Periodo->Periodo."PR".$Producto->Id);
+                        Edgs::Editar($ObjEdgs);
+                    }
+                }
+            }
+
+            session_start();
+            $_SESSION["ALERTA"] = "success";
+            $_SESSION["MENSAJE"] = "Se guardo correctamente los valores del EDGS";
+            return redirect()->action('AnalisisController@Participacion');
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo guardar los valores del EDGS";
+            return redirect()->action('AnalisisController@Participacion');
+        }
+    }
+
+    public function AgregarCompetidor()
+    {
+        try
+        {
+            $ObjProductos = Productos::Listar();
+            $ObjCompetidores = Competidores::ListarOrden();
+
+            foreach ($ObjProductos as $Item) {
+                $ObjCompetidor = new Competidores();
+                $ObjCompetidor->Competidor = count($ObjCompetidores) + 1;
+                $ObjCompetidor->ProductoId = $Item->Id;
+                Competidores::Agregar($ObjCompetidor);
+            }
+            session_start();
+            $_SESSION["ALERTA"] = "success";
+            $_SESSION["MENSAJE"] = "Se agrego correctamente al competidor";
+            return redirect()->action('AnalisisController@Participacion');
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo agregar al conpetidor";
             return redirect()->action('AnalisisController@Participacion');
         }
     }
@@ -1024,5 +1135,48 @@ class AnalisisController extends Controller
         }
     }
     // -- END ANALISIS - CAME ----------------------------------
+
+    public function Graficos()
+    {
+        $objPest = Pest::Listar();
+
+        $SUMA01 = 0;
+        $SUMA02 = 0;
+        $SUMA03 = 0;
+        $SUMA04 = 0;
+        $SUMA05 = 0;
+
+        foreach($objPest as $Pest){
+            if($Pest->Id >= 1 && $Pest->Id <= 5){
+                $SUMA01 += $Pest->Valor;
+            }
+            if($Pest->Id >= 6 && $Pest->Id <= 10){
+                $SUMA02 += $Pest->Valor;
+            }
+            if($Pest->Id >= 11 && $Pest->Id <= 15){
+                $SUMA03 += $Pest->Valor;
+            }
+            if($Pest->Id >= 16 && $Pest->Id <= 20){
+                $SUMA04 += $Pest->Valor;
+            }
+            if($Pest->Id >= 21 && $Pest->Id <= 25){
+                $SUMA05 += $Pest->Valor;
+            }
+        }
+
+        $Impacto01 = ($SUMA01 / 20) * 100;
+        $Impacto02 = ($SUMA02 / 20) * 100;
+        $Impacto03 = ($SUMA03 / 20) * 100;
+        $Impacto04 = ($SUMA04 / 20) * 100;
+        $Impacto05 = ($SUMA05 / 20) * 100;
+
+        return view('Analisis.Graficos',[
+            'Impacto1' => $Impacto01,
+            'Impacto2' => $Impacto02,
+            'Impacto3' => $Impacto03,
+            'Impacto4' => $Impacto04,
+            'Impacto5' => $Impacto05
+        ]);
+    }
 }
 ?>

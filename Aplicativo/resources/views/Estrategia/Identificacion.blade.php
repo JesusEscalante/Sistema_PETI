@@ -16,6 +16,8 @@
 
                 <div class="card-body">
 
+                    <p>0=En total desacuerdo, 1= No está de acuerdo, 2= Esta de acuerdo, 3= Bastante de acuerdo y 4=En total acuerdo</p>
+
                     <form method="POST" action="/estrategia/identificacion_calcular">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="card shadow mb-4">
@@ -26,6 +28,10 @@
                         </div>
 
                         <div class="card-body">
+
+                            <div class="table-responsive">
+                                <p>Las fortalezas se usan para tomar ventaja en cada una las oportunidades.</p>
+                            </div>
 
                             <div class="table-responsive">
                                 <table class="table table-bordered">
@@ -71,6 +77,10 @@
                         <div class="card-body">
 
                             <div class="table-responsive">
+                                <p>Las fortalezas evaden el efecto negativo de  las amenazas.</p>
+                            </div>
+
+                            <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <thead class="table-light">
                                         <tr>
@@ -114,6 +124,10 @@
                         <div class="card-body">
 
                             <div class="table-responsive">
+                                <p>Superamos las debilidades tomando ventaja de las oportunidades.</p>
+                            </div>
+
+                            <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <thead class="table-light">
                                         <tr>
@@ -155,6 +169,10 @@
                         </div>
 
                         <div class="card-body">
+
+                            <div class="table-responsive">
+                                <p>Las debilidades intensifican notablemente el efecto negativo de las amenazas.</p>
+                            </div>
 
                             <div class="table-responsive">
                                 <table class="table table-bordered">

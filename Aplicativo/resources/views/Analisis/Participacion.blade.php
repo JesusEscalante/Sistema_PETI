@@ -49,7 +49,7 @@
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <label for="unidad"><strong>Ventas:</strong></label>
-                                                            <input type="number" class="form-control" name="ventas" placeholder="Ventas..." title="Ventas">
+                                                            <input type="number" class="form-control" name="ventas" placeholder="Ventas..." title="Ventas" min="0" max="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -108,7 +108,7 @@
                                                                     </div>
                                                                     <div class="col-lg-4">
                                                                         <label for="unidad"><strong>Ventas:</strong></label>
-                                                                        <input type="number" class="form-control" name="ventas" placeholder="Ventas..." title="Ventas" value="{{ $Item->Ventas }}">
+                                                                        <input type="number" class="form-control" name="ventas" placeholder="Ventas..." title="Ventas" value="{{ $Item->Ventas }}" min="0" max="">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -319,8 +319,8 @@
                                 </tr>
                                 <tr>
                                     <th class="text-center">PRM</th>
-                                    @foreach($Productos as $ItemP)
-                                    <td class="text-center"></td>
+                                    @foreach($PRM as $prm)
+                                    <td class="text-center">{{ number_format((float)$prm->mayor_venta, 2, '.', '') }}</td>
                                     @endforeach
                                 </tr>
                                 <tr>
@@ -392,47 +392,17 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-sm-12"><h5 class="font-weight-bold text-primary m-0">NIVELES DE VENTA DE LOS COMPETIDORES DE CADA PRODUCTO</h5></div>
                         <div class="col-lg-6 col-sm-12 d-flex justify-content-end row">
-                            <a href="#" class="btn btn-primary btn-icon-split ml-1" data-toggle="modal" data-target="#AddProducto">
+                            <a href="/analisis/add_competidor" class="btn btn-primary btn-icon-split ml-1">
                                 <i class="fa fa-plus"></i>
                                 <span class="text">Agregar</span>
                             </a>
-                            <!-- Agregar Modal-->
-                            <div class="modal fade" id="AddProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content user">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-primary" id="exampleModalLabel"><b>Agregar Producto</b></h5>
-                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-                                        <form class="user" action="/empresa/add_producto" method="post">
-                                        <div class="modal-body" style="text-align: start;">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <div class="form-group row">
-                                                <div class="col-lg-8">
-                                                    <label for="unidad"><strong>Nombre de Producto:</strong></label>
-                                                    <input type="text" class="form-control" name="nombre" placeholder="Nombre de Producto..." title="Nombre de Producto">
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <label for="unidad"><strong>Ventas:</strong></label>
-                                                    <input type="number" class="form-control" name="ventas" placeholder="Ventas..." title="Ventas">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <input type="submit" class="btn btn-primary btn-block" value="Agregar Unidad">
-                                        </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Agregar Modal-->
                         </div>
                     </div>
                 </div>
 
                 <div class="card-body">
+                    <form action="/analisis/edit_competidor" method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered">
                             <thead class="bg-gray-100">
@@ -447,17 +417,41 @@
                                     <th class="text-center">{{ $Item->Ventas }}</th>
                                     @endforeach
                                 </tr>
-                            </thead>
-                            <tbody>
                                 <tr>
                                     @foreach($Productos as $Item)
                                     <td class="text-center">Competidor</td>
                                     <td class="text-center">Ventas</td>
                                     @endforeach
                                 </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($OrdenCompetidores as $ItemO)    
+                                    <tr>
+                                        @foreach($Competidores as $Item)
+                                            @if($Item->Competidor == $ItemO->Competidor)
+                                            <td class="text-center">CP{{ $Item->ProductoId }}-{{ $Item->Id }}</td>
+                                            <td class="text-center">
+                                                <input type="number" class="form-control" name="" value="{{ $Item->Venta }}" min="0" max="">
+                                            </td>
+                                            @endif
+                                        @endforeach
+                                    </tr>
+                                @endforeach
                             </tbody>
+                            <tfooter>
+                                <tr>
+                                    @foreach($CompetidoresMAYOR as $Item)
+                                    <td class="text-center">Mayor</td>
+                                    <td class="text-center">{{ $Item->mayor_venta }}</td>
+                                    @endforeach
+                                </tr>
+                            </tfooter>
                         </table>
                     </div>
+                    <div class="table-responsive">
+                        <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
+                    </div>
+                    </form>
                 </div>
             </div>
 
