@@ -29,7 +29,8 @@ class LoginController extends Controller
         if(Auth::attempt($CREDENCIALES))
         {
             return redirect()->intended('/empresa/home');
-        }else{
+        }
+        else{
             session_start(); // Inicia la sesión
             $_SESSION["ALERTA"] = "error"; // Variable de alerta para indicar error
             $_SESSION["MENSAJE"] = "Usuario o contraseña incorrectos"; // Mensaje de error
