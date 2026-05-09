@@ -39,7 +39,7 @@
                                                         <span aria-hidden="true">×</span>
                                                     </button>
                                                 </div>
-                                                <form class="user" action="/empresa/add_producto" method="post">
+                                                <form class="user" action="/analisis/add_producto" method="post">
                                                 <div class="modal-body" style="text-align: start;">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <div class="form-group row">
