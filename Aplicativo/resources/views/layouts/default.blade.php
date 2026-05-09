@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Sistema de Gestion de Proyectos</title>
+    <title>Sistema de Gestion de Planes Estratégicos de TI</title>
     <meta name="description" content="Sistema de Gestion de Proyectos">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

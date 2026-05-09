@@ -39,6 +39,7 @@ class AnalisisController extends Controller
         {
             $ObjFortaleza = new Fortalezas();
             $ObjFortaleza->Fortaleza = $request->input('fortaleza');
+            $ObjFortaleza->Origen = $request->input('modulo');
             
             if(Fortalezas::Agregar($ObjFortaleza))
             {
@@ -140,6 +141,7 @@ class AnalisisController extends Controller
         {
             $ObjDebilidad = new Debilidades();
             $ObjDebilidad->Debilidad = $request->input('debilidad');
+            $ObjFortaleza->Origen = $request->input('modulo');
             
             if(Debilidades::Agregar($ObjDebilidad))
             {
@@ -254,6 +256,7 @@ class AnalisisController extends Controller
         {
             $ObjOportunidad = new Oportunidades();
             $ObjOportunidad->Oportunidad = $request->input('oportunidad');
+            $ObjFortaleza->Origen = $request->input('modulo');
             
             if(Oportunidades::Agregar($ObjOportunidad))
             {
@@ -355,6 +358,7 @@ class AnalisisController extends Controller
         {
             $ObjAmenaza = new Amenazas();
             $ObjAmenaza->Amenaza = $request->input('amenaza');
+            $ObjFortaleza->Origen = $request->input('modulo');
             
             if(Amenazas::Agregar($ObjAmenaza))
             {
@@ -456,6 +460,8 @@ class AnalisisController extends Controller
 
     public function CadenaValor(){
         $objCadenaValor = CadenaValor::Listar();
+        $objFortalezas = Fortalezas::Listar();
+        $objDebilidades = Debilidades::Listar();
 
         $SUMA = 0;
         foreach($objCadenaValor as $Valor){
@@ -465,6 +471,8 @@ class AnalisisController extends Controller
 
         return view('Analisis.CadenaValor',[
             'CadenaValor' => $objCadenaValor,
+            'Fortalezas' => $objFortalezas,
+            'Debilidades' => $objDebilidades,
             'SUMA' => $SUMA,
             'Potencial' => ($Potencial * 100)
         ]);
