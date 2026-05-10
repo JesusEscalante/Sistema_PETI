@@ -63,6 +63,13 @@ class Competidores extends Model
     {
         return Competidores::find($CompetidorId);
     }
+
+    public static function ObtenerPorIdProductoId($CompetidorId, $ProductoId)
+    {
+        return Competidores::where('Id', $CompetidorId)
+               ->where('ProductoId', $ProductoId)
+               ->first();
+    }
 }
 
 ?>

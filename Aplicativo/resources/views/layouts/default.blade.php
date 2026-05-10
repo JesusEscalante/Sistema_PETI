@@ -17,6 +17,7 @@
     
     <link rel="stylesheet" href="admin-panel/css/admin.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="admin-panel/plugins/tagsinput/bootstrap-tagsinput.css">
     <link rel="stylesheet" href="admin-panel/plugins/summernote/summernote.css">
     <link rel="stylesheet" href="admin-panel/plugins/bootstrap-slider/slider.css">

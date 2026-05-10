@@ -844,6 +844,36 @@ class AnalisisController extends Controller
         }
     }
 
+    public function GuardarCompetidores(Request $request)
+    {
+        try
+        {
+            $ObjCompetidores = Competidores::Listar();
+
+            foreach($ObjCompetidores as $Item){
+                if($ObjCompetidor = Competidores::ObtenerPorIdProductoId($Item->Id, $Item->ProductoId)){
+                    $inputName = "C" . $Item->Id . "P" . $Item->ProductoId;
+                    if ($request->exists($inputName)) {
+                        $ObjCompetidor->Venta = $request->input($inputName);
+                        Competidores::Editar($ObjCompetidor);
+                    }
+                }
+            }
+
+            session_start();
+            $_SESSION["ALERTA"] = "success";
+            $_SESSION["MENSAJE"] = "Se agrego correctamente al competidor";
+            return redirect()->action('AnalisisController@Participacion');
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo agregar al conpetidor";
+            return redirect()->action('AnalisisController@Participacion');
+        }
+    }
+
     // -- END ANALISIS - PARTICIPACIÓN ----------------------------------
 
     // -- START ANALISIS - PORTER ----------------------------------
@@ -1167,6 +1197,33 @@ class AnalisisController extends Controller
     public function Graficos()
     {
         $objPest = Pest::Listar();
+        $objPeriodos = Periodos::Listar();
+        $objProductos = Productos::DatosGrafico();
+        $ObjCompetidores = Competidores::ListarMAYOR();
+
+        foreach($objProductos as $Item){
+            $tcm = $Item->TCM / count($objPeriodos);
+            if($tcm > (100 / count($objProductos))){
+                $Item->TCM = 20;
+            }else{
+                $Item->TCM = $tcm;
+            }
+            foreach($ObjCompetidores as $Comp){
+                if($Item->Id == $Comp->ProductoId){
+                    $Item->PRM = $Item->Ventas / $Comp->mayor_venta;
+                }
+            }
+        }
+
+        $SumTCM = 0;
+        $SumPRM = 0;
+        foreach($objProductos as $Item){
+            $SumTCM += $Item->TCM;
+            $SumPRM += $Item->PRM;
+        }
+
+        $PromTCM = $SumTCM / count($objProductos);
+        $PromPRM = $SumPRM / count($objProductos);
 
         $SUMA01 = 0;
         $SUMA02 = 0;
@@ -1203,7 +1260,10 @@ class AnalisisController extends Controller
             'Impacto2' => $Impacto02,
             'Impacto3' => $Impacto03,
             'Impacto4' => $Impacto04,
-            'Impacto5' => $Impacto05
+            'Impacto5' => $Impacto05,
+            'Productos' => $objProductos,
+            'PromTCM' => $PromTCM,
+            'PromPRM' => $PromPRM
         ]);
     }
 }

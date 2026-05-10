@@ -78,6 +78,7 @@ Route::prefix('analisis')->group(function () {
     Route::post('/save_tcm', 'AnalisisController@GuardarTCM');
     Route::post('/save_edgs', 'AnalisisController@GuardarEDGS');
     Route::get('/add_competidor', 'AnalisisController@AgregarCompetidor');
+    Route::post('/save_competidores', 'AnalisisController@GuardarCompetidores');
     // -- END ANALISIS - PARTICIPACIÓN ----------------------------------
     // -- START ANALISIS - PORTER ----------------------------------
     Route::get('/porter', 'AnalisisController@Porter');

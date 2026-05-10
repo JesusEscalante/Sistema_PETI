@@ -405,7 +405,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="/analisis/edit_competidor" method="POST">
+                    <form action="/analisis/save_competidores" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered">
@@ -436,7 +436,7 @@
                                                 @if($Item->Competidor == $ItemO->Competidor && $Item->ProductoId == $Producto->Id)
                                                 <td class="text-center">CP{{ $Item->ProductoId }}-{{ $Item->Competidor }}</td>
                                                 <td class="text-center">
-                                                    <input type="number" class="form-control" name="" value="{{ $Item->Venta }}" min="0" max="">
+                                                    <input type="number" class="form-control" name="C{{ $Item->Id }}P{{ $Item->ProductoId }}" value="{{ $Item->Venta }}" min="0" max="">
                                                 </td>
                                                 @endif
                                             @endforeach

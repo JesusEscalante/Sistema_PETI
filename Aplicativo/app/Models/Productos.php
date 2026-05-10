@@ -22,6 +22,21 @@ class Productos extends Model
         return Productos::all();
     }
 
+    public static function DatosGrafico()
+    {
+        return DB::table('productos as p')
+                ->select(
+                    'p.Id',
+                    'p.Nombre',
+                    'p.Ventas',
+                    'p.Porcentaje',
+                    DB::raw('SUM(t.Valor) as TCM')
+                )
+                ->join('tcm as t', 't.ProductoId', '=', 'p.Id')
+                ->groupBy('p.Id', 'p.Nombre', 'p.Ventas', 'p.Porcentaje')
+                ->get();
+    }
+
     public static function Agregar(Productos $ObjProductos)
     {
         if($ObjProductos->save())
