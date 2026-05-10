@@ -312,15 +312,19 @@
                                     @foreach($Productos as $ItemP)
                                         @foreach($TCMSuma as $Item)
                                             @if($Item->ProductoId == $ItemP->Id)
-                                                <td class="text-center">{{ $Item->total_valor / count($Productos) > 100 / count($Productos) ? 100 / count($Productos) : $Item->total_valor / count($Productos) }}%</td>
+                                                <td class="text-center">{{ $Item->total_valor / count($Productos) > 100 / count($Productos) ? number_format((float)100 / count($Productos), 2, '.', '') : number_format((float)$Item->total_valor / count($Productos), 2, '.', '') }}%</td>
                                             @endif
                                         @endforeach
                                     @endforeach
                                 </tr>
                                 <tr>
                                     <th class="text-center">PRM</th>
-                                    @foreach($PRM as $prm)
-                                    <td class="text-center">{{ number_format((float)$prm->mayor_venta, 2, '.', '') }}</td>
+                                    @foreach($Productos as $ItemP)
+                                        @foreach($PRM as $prm)
+                                            @if($prm->ProductoId == $ItemP->Id)
+                                            <td class="text-center">{{ number_format((float)$prm->mayor_venta, 2, '.', '') }}</td>
+                                            @endif
+                                        @endforeach
                                     @endforeach
                                 </tr>
                                 <tr>
@@ -427,22 +431,28 @@
                             <tbody>
                                 @foreach($OrdenCompetidores as $ItemO)    
                                     <tr>
-                                        @foreach($Competidores as $Item)
-                                            @if($Item->Competidor == $ItemO->Competidor)
-                                            <td class="text-center">CP{{ $Item->ProductoId }}-{{ $Item->Id }}</td>
-                                            <td class="text-center">
-                                                <input type="number" class="form-control" name="" value="{{ $Item->Venta }}" min="0" max="">
-                                            </td>
-                                            @endif
+                                        @foreach($Productos as $Producto)
+                                            @foreach($Competidores as $Item)
+                                                @if($Item->Competidor == $ItemO->Competidor && $Item->ProductoId == $Producto->Id)
+                                                <td class="text-center">CP{{ $Item->ProductoId }}-{{ $Item->Competidor }}</td>
+                                                <td class="text-center">
+                                                    <input type="number" class="form-control" name="" value="{{ $Item->Venta }}" min="0" max="">
+                                                </td>
+                                                @endif
+                                            @endforeach
                                         @endforeach
                                     </tr>
                                 @endforeach
                             </tbody>
-                            <tfooter>
+                            <tfooter class="bg-gray-100">
                                 <tr>
-                                    @foreach($CompetidoresMAYOR as $Item)
-                                    <td class="text-center">Mayor</td>
-                                    <td class="text-center">{{ $Item->mayor_venta }}</td>
+                                    @foreach($Productos as $Producto)
+                                        @foreach($CompetidoresMAYOR as $Item)
+                                            @if($Item->ProductoId == $Producto->Id)
+                                            <th class="text-center">Mayor</th>
+                                            <th class="text-center">{{ $Item->mayor_venta }}</th>
+                                            @endif
+                                        @endforeach
                                     @endforeach
                                 </tr>
                             </tfooter>

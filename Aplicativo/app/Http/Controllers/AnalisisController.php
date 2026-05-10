@@ -509,6 +509,8 @@ class AnalisisController extends Controller
     public function Participacion(){
         $ObjProductos = Productos::Listar();
         $ObjPeriodos = Periodos::Listar();
+        $ObjFortalezas = Fortalezas::Listar();
+        $ObjDebilidades = Debilidades::Listar();
 
         $SUMA = 0;
 
@@ -572,6 +574,8 @@ class AnalisisController extends Controller
         return view('Analisis.Participacion',[
             'Productos' => $ObjProductos,
             'Periodos' => $ObjPeriodos,
+            'Fortalezas' => $ObjFortalezas,
+            'Debilidades' => $ObjDebilidades,
             'TCM' => $ObjTCM,
             'TCMSuma' => $ObjTCMSuma,
             'PRM' => $PRM,
@@ -600,8 +604,16 @@ class AnalisisController extends Controller
             $porcent = ($ObjProducto->Ventas * 100) / $SUMA;
             $ObjProducto->Porcentaje = number_format((float)$porcent, 2, '.', '');
             
-            if(Productos::Agregar($ObjProducto))
+            if($ProductoId = Productos::Agregar($ObjProducto))
             {
+                $ObjCompetidores = Competidores::ListarOrden();
+                foreach($ObjCompetidores as $Item){
+                    $ObjCompetidor = new Competidores();
+                    $ObjCompetidor->Competidor = $Item->Competidor;
+                    $ObjCompetidor->ProductoId = $ProductoId;
+                    Competidores::Agregar($ObjCompetidor);
+                }
+
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se agrego correctamente el producto";
@@ -838,6 +850,8 @@ class AnalisisController extends Controller
 
     public function Porter(){
         $objFuerzasPorter = FuerzasPorter::Listar();
+        $objOportunidades = Oportunidades::Listar();
+        $objAmenazas = Amenazas::Listar();
 
         $objFuerza01 = [];
         $objFuerza02 = [];
@@ -880,6 +894,8 @@ class AnalisisController extends Controller
 
         return view('Analisis.Porter',[
             'FuerzasPorter' => $objFuerzasPorter,
+            'Oportunidades' => $objOportunidades,
+            'Amenazas' => $objAmenazas,
             'Fuerza01' => $objFuerza01,
             'Fuerza02' => $objFuerza02,
             'Fuerza03' => $objFuerza03,
@@ -920,6 +936,8 @@ class AnalisisController extends Controller
 
     public function PEST(){
         $objPest = Pest::Listar();
+        $objOportunidades = Oportunidades::Listar();
+        $objAmenazas = Amenazas::Listar();
 
         $SUMA01 = 0;
         $SUMA02 = 0;
@@ -985,6 +1003,8 @@ class AnalisisController extends Controller
 
         return view('Analisis.Pest',[
             'Pest' => $objPest,
+            'Oportunidades' => $objOportunidades,
+            'Amenazas' => $objAmenazas,
             'Conclusion01' => $Conclusion01,
             'Conclusion02' => $Conclusion02,
             'Conclusion03' => $Conclusion03,
