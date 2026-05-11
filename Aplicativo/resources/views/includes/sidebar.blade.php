@@ -25,6 +25,10 @@ $modulo = explode("/", $actual_link);
         <li><a class="app-menu__item <?= $modulo[2] == "externo" ? "active" : "" ?>" href="/analisis/externo"><i class="app-menu__icon fa fa-search"></i><span class="app-menu__label">Analisis Externo</span></a></li>
 
         <hr>
+
+        <li><a class="app-menu__item <?= $modulo[2] == "graficos" ? "active" : "" ?>" href="/analisis/graficos"><i class="app-menu__icon fa fa-line-chart"></i><span class="app-menu__label">Graficos</span></a></li>
+
+        <hr>
         
         <li><a class="app-menu__item <?= $modulo[1] == "estrategia" ? "active" : "" ?>" href="/estrategia/identificacion"><i class="app-menu__icon fa fa-check"></i><span class="app-menu__label">Identificación de Estrategia</span></a></li>
 

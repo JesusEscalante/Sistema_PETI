@@ -16,88 +16,89 @@
 
                 <div class="card-body">
                     <div class="matrix-grid">
-                        <!-- CUADRANTE ESTRELLAS (alto crecimiento + alta participación relativa / peso en ventas) -->
-                        <div class="quadrant border-right border-bottom">
-                            <h4 class="text-warning"><i class="fa fa-star mr-1"></i> ESTRELLAS</h4>
-                            <div class="mt-2">
-                                <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
-                                    <div><strong class="text-dark">Producto 5</strong> <span class="badge badge-secondary ml-1">Líder</span></div>
-                                    <div class="d-flex">
-                                        <span class="badge badge-info mr-1"><i class="fas fa-chart-line"></i> TCM 7%</span>
-                                        <span class="badge badge-success">PRM 0.51</span>
-                                        <span class="badge badge-light ml-1">33% cuota</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded">
-                                    <div><strong class="text-dark">Producto 4</strong></div>
-                                    <div class="d-flex">
-                                        <span class="badge badge-info mr-1"><i class="fas fa-chart-line"></i> TCM 7%</span>
-                                        <span class="badge badge-success">PRM 0.51</span>
-                                        <span class="badge badge-light ml-1">26.7% cuota</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="my-2">
-                            <div class="small text-muted"><i class="fa fa-bolt text-warning"></i> Alto crecimiento + alta participación relativa. Productos dominantes con potencial.</div>
-                        </div>
-
+                        
                         <!-- CUADRANTE INTERROGANTE -->
                         <div class="quadrant border-bottom">
                             <h4 class="text-primary"><i class="fa fa-question mr-1"></i> INTERROGANTE</h4>
                             <div class="mt-2">
+                                @foreach($Productos as $Item)
+                                @if($Item->PRM <= $PromPRM && $Item->TCM > $PromTCM)
                                 <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
-                                    <div><strong>Producto 3</strong></div>
+                                    <div><strong>{{ $Item->Nombre }}</strong></div>
                                     <div class="d-flex">
-                                        <span class="badge badge-info mr-1">TCM 7%</span>
-                                        <span class="badge badge-success">PRM 0.52</span>
-                                        <span class="badge badge-light">20% cuota</span>
+                                        <span class="badge badge-info mr-1">TCM {{ number_format((float)$Item->TCM, 2, '.', '') }}%</span>
+                                        <span class="badge badge-success">PRM {{ number_format((float)$Item->PRM, 2, '.', '') }}</span>
+                                        <span class="badge badge-light">{{ number_format((float)$Item->Porcentaje, 2, '.', '') }}% cuota</span>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded">
-                                    <div><strong>Producto 2</strong></div>
-                                    <div class="d-flex">
-                                        <span class="badge badge-info mr-1">TCM 7%</span>
-                                        <span class="badge badge-success">PRM 0.53</span>
-                                        <span class="badge badge-light">13.3% cuota</span>
-                                    </div>
-                                </div>
+                                @endif
+                                @endforeach
                             </div>
                             <hr class="my-2">
                             <div class="small text-primary"><i class="fa fa-puzzle-piece"></i> Alto crecimiento de mercado pero participación baja. Requieren inversión selectiva.</div>
                         </div>
 
-                        <!-- CUADRANTE VACAS LECHERAS (Cash Cow) -->
-                        <div class="quadrant border-right">
-                            <h4 class="text-success"><i class="fa fa-coffee mr-1"></i> VACAS LECHERAS</h4>
+                        <!-- CUADRANTE ESTRELLAS (alto crecimiento + alta participación relativa / peso en ventas) -->
+                        <div class="quadrant border-right border-bottom">
+                            <h4 class="text-warning"><i class="fa fa-star mr-1"></i> ESTRELLAS</h4>
                             <div class="mt-2">
+                                @foreach($Productos as $Item)
+                                @if($Item->PRM > $PromPRM && $Item->TCM > $PromTCM)
                                 <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
-                                    <div><strong>Producto 5*</strong> <span class="badge badge-secondary">Genera flujo</span></div>
-                                    <div><span class="badge badge-info">TCM estable 7%</span> <span class="badge badge-success ml-1">PRM 0.51</span></div>
+                                    <div><strong>{{ $Item->Nombre }}</strong></div>
+                                    <div class="d-flex">
+                                        <span class="badge badge-info mr-1">TCM {{ number_format((float)$Item->TCM, 2, '.', '') }}%</span>
+                                        <span class="badge badge-success">PRM {{ number_format((float)$Item->PRM, 2, '.', '') }}</span>
+                                        <span class="badge badge-light">{{ number_format((float)$Item->Porcentaje, 2, '.', '') }}% cuota</span>
+                                    </div>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded">
-                                    <div><strong>Producto 4*</strong></div>
-                                    <div><span class="badge badge-info">TCM 7%</span> <span class="badge badge-success ml-1">PRM 0.51</span></div>
-                                </div>
+                                @endif
+                                @endforeach
                             </div>
                             <hr class="my-2">
-                            <div class="small text-success"><i class="fas fa-hand-holding-usd"></i> Bajo crecimiento aparente (estable), alta participación. Financian otros productos.</div>
+                            <div class="small text-muted"><i class="fa fa-bolt text-warning"></i> Alto crecimiento + alta participación relativa. Productos dominantes con potencial.</div>
                         </div>
 
                         <!-- CUADRANTE PERROS (Dogs) -->
                         <div class="quadrant">
                             <h4 class="text-secondary"><i class="fas fa-dog mr-1"></i> PERROS</h4>
                             <div class="mt-2">
-                                <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded">
-                                    <div><strong>Producto 1</strong></div>
+                                @foreach($Productos as $Item)
+                                @if($Item->PRM <= $PromPRM && $Item->TCM <= $PromTCM)
+                                <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
+                                    <div><strong>{{ $Item->Nombre }}</strong></div>
                                     <div class="d-flex">
-                                        <span class="badge badge-info mr-1">TCM 7%</span>
-                                        <span class="badge badge-secondary">PRM 0.50</span>
-                                        <span class="badge badge-light">6.7% cuota</span>
+                                        <span class="badge badge-info mr-1">TCM {{ number_format((float)$Item->TCM, 2, '.', '') }}%</span>
+                                        <span class="badge badge-success">PRM {{ number_format((float)$Item->PRM, 2, '.', '') }}</span>
+                                        <span class="badge badge-light">{{ number_format((float)$Item->Porcentaje, 2, '.', '') }}% cuota</span>
                                     </div>
                                 </div>
+                                @endif
+                                @endforeach
                             </div>
                             <hr class="my-2">
                             <div class="small text-muted"><i class="fas fa-ban"></i> Baja participación y crecimiento limitado. Reevaluar rentabilidad.</div>
+                        </div>
+
+                        <!-- CUADRANTE VACAS LECHERAS (Cash Cow) -->
+                        <div class="quadrant border-right">
+                            <h4 class="text-success"><i class="fa fa-coffee mr-1"></i> VACAS LECHERAS</h4>
+                            <div class="mt-2">
+                                @foreach($Productos as $Item)
+                                @if($Item->PRM > $PromPRM && $Item->TCM <= $PromTCM)
+                                <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
+                                    <div><strong>{{ $Item->Nombre }}</strong></div>
+                                    <div class="d-flex">
+                                        <span class="badge badge-info mr-1">TCM {{ number_format((float)$Item->TCM, 2, '.', '') }}%</span>
+                                        <span class="badge badge-success">PRM {{ number_format((float)$Item->PRM, 2, '.', '') }}</span>
+                                        <span class="badge badge-light">{{ number_format((float)$Item->Porcentaje, 2, '.', '') }}% cuota</span>
+                                    </div>
+                                </div>
+                                @endif
+                                @endforeach
+                            </div>
+                            <hr class="my-2">
+                            <div class="small text-success"><i class="fas fa-hand-holding-usd"></i> Bajo crecimiento aparente (estable), alta participación. Financian otros productos.</div>
                         </div>
                     </div>
                 </div>

@@ -705,24 +705,14 @@ class AnalisisController extends Controller
     {
         try
         {
-            if(Periodos::ObtenerPorPeriodo($request->input('periodo'))) {
-                session_start();
-                $_SESSION["ALERTA"] = "warning";
-                $_SESSION["MENSAJE"] = "Periodo ingresado ya se encuentra registrado";
-                return redirect()->action('AnalisisController@Participacion');
-            } else {
-                $ObjPeriodo = new Periodos();
-                $ObjPeriodo->Periodo = $request->input('periodo');
-                if(Periodos::Agregar($ObjPeriodo)){
-                    session_start();
-                    $_SESSION["ALERTA"] = "success";
-                    $_SESSION["MENSAJE"] = "Se agrego correctamente el periodo";
-                    return redirect()->action('AnalisisController@Participacion');
-                } else {
-                    session_start();
-                    $_SESSION["ALERTA"] = "error";
-                    $_SESSION["MENSAJE"] = "No se pudo agregar el periodo";
-                    return redirect()->action('AnalisisController@Participacion');
+            $desde = $request->input('desde');
+            if (!is_null($request->input('hasta'))) {
+                $hasta = $request->input('hasta');
+
+                for($i = $desde; $i <= $hasta; $i++){
+                    if($objPeriodo = Periodos::ObtenerPorPeriodo($i)){
+
+                    }
                 }
             }
         }

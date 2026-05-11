@@ -182,9 +182,83 @@
                                                 <div class="modal-body" style="text-align: start;">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <div class="form-group">
-                                                        <label for="periodo"><strong>Periodo:</strong></label>
-                                                        <input type="number" class="form-control" name="periodo" id="desde" title="Desde" min="{{ date('Y') - 10}}" max="{{ date('Y') }}">
+                                                        <label for="desde"><strong>Desde:</strong></label>
+                                                        <input type="number" class="form-control" name="desde" id="desde" 
+                                                            title="Desde" min="{{ date('Y') - 10 }}" max="{{ date('Y') }}">
+                                                        <small class="text-muted">Año entre {{ date('Y') - 10 }} y {{ date('Y') }}</small>
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="hasta"><strong>Hasta:</strong></label>
+                                                        <input type="number" class="form-control" name="hasta" id="hasta" 
+                                                            title="Hasta" max="{{ date('Y') }}">
+                                                        <small id="hastaHelp" class="text-muted">Debe ser mayor que "Desde"</small>
+                                                    </div>
+
+                                                    <script>
+                                                        (function() {
+                                                            const desde = document.getElementById('desde');
+                                                            const hasta = document.getElementById('hasta');
+                                                            const maxAnio = parseInt(hasta.getAttribute('max'));
+                                                            const minDesde = parseInt(desde.getAttribute('min'));
+
+                                                            function actualizarValidacion() {
+                                                                const desdeVal = parseInt(desde.value);
+                                                                const hastaVal = parseInt(hasta.value);
+
+                                                                // Actualizar el atributo min del campo Hasta basado en Desde (si es válido)
+                                                                if (!isNaN(desdeVal) && desdeVal >= minDesde && desdeVal <= maxAnio) {
+                                                                    hasta.min = desdeVal + 1;   // Solo permite mayores estrictos
+                                                                } else {
+                                                                    hasta.min = '';  // Sin restricción mínima si Desde no es válido
+                                                                }
+
+                                                                // Validar y mostrar mensajes
+                                                                if (!isNaN(desdeVal) && !isNaN(hastaVal)) {
+                                                                    if (hastaVal <= desdeVal) {
+                                                                        mostrarAyuda('El año "Hasta" debe ser mayor que "' + desdeVal + '"', 'error');
+                                                                        hasta.setCustomValidity('El año Hasta debe ser mayor que Desde');
+                                                                    } else if (hastaVal > maxAnio) {
+                                                                        mostrarAyuda('El año no puede superar ' + maxAnio, 'warning');
+                                                                        hasta.setCustomValidity('Máximo ' + maxAnio);
+                                                                    } else {
+                                                                        mostrarAyuda('', 'ok');
+                                                                        hasta.setCustomValidity('');
+                                                                    }
+                                                                } else if (!isNaN(desdeVal) && isNaN(hastaVal)) {
+                                                                    mostrarAyuda('Ingrese un año mayor a ' + desdeVal, 'info');
+                                                                    hasta.setCustomValidity('');
+                                                                } else if (isNaN(desdeVal) && desde.value !== '') {
+                                                                    mostrarAyuda('Ingrese un año "Desde" válido (' + minDesde + ' - ' + maxAnio + ')', 'error');
+                                                                    hasta.setCustomValidity('');
+                                                                } else if (desde.value === '') {
+                                                                    mostrarAyuda('Primero complete el año "Desde" o déjelo vacío', 'info');
+                                                                    hasta.setCustomValidity('');
+                                                                } else {
+                                                                    mostrarAyuda('Debe ser mayor que "Desde"', 'muted');
+                                                                    hasta.setCustomValidity('');
+                                                                }
+                                                            }
+
+                                                            function mostrarAyuda(mensaje, tipo) {
+                                                                const helpSpan = document.getElementById('hastaHelp');
+                                                                if (!helpSpan) return;
+                                                                helpSpan.textContent = mensaje || 'Debe ser mayor que "Desde"';
+                                                                helpSpan.className = ''; // reset
+                                                                if (tipo === 'error') helpSpan.className = 'text-danger';
+                                                                else if (tipo === 'warning') helpSpan.className = 'text-warning';
+                                                                else if (tipo === 'ok') helpSpan.className = 'text-success';
+                                                                else if (tipo === 'info') helpSpan.className = 'text-info';
+                                                                else helpSpan.className = 'text-muted';
+                                                            }
+
+                                                            // Eventos: cualquier cambio en Desde o Hasta dispara la validación
+                                                            desde.addEventListener('input', actualizarValidacion);
+                                                            hasta.addEventListener('input', actualizarValidacion);
+
+                                                            // Validación inicial (por si hay valores precargados)
+                                                            actualizarValidacion();
+                                                        })();
+                                                    </script>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="submit" class="btn btn-primary btn-block" value="Agregar">
