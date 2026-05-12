@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.1.38-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.11-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             12.10.0.7000
+-- HeidiSQL Versión:             12.5.0.6677
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -23,53 +23,52 @@ USE `homestead`;
 CREATE TABLE IF NOT EXISTS `amenazas` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Amenaza` varchar(255) NOT NULL,
+  `Origen` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla homestead.amenazas: ~4 rows (aproximadamente)
-DELETE FROM `amenazas`;
-INSERT INTO `amenazas` (`Id`, `Amenaza`) VALUES
-	(1, 'Amenaza 01'),
-	(2, 'Amenaza 02'),
-	(3, 'Amenaza 03'),
-	(4, 'Amenaza 04');
+INSERT INTO `amenazas` (`Id`, `Amenaza`, `Origen`) VALUES
+	(1, 'Amenaza 01', 'pest'),
+	(2, 'Amenaza 02', 'porter'),
+	(3, 'Amenaza 03', 'pest'),
+	(4, 'Amenaza 04', 'porter');
 
 -- Volcando estructura para tabla homestead.cadena_valor
 CREATE TABLE IF NOT EXISTS `cadena_valor` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Pregunta` varchar(255) NOT NULL,
-  `Valor` int(11) NOT NULL DEFAULT '0',
+  `Valor` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla homestead.cadena_valor: ~25 rows (aproximadamente)
-DELETE FROM `cadena_valor`;
 INSERT INTO `cadena_valor` (`Id`, `Pregunta`, `Valor`) VALUES
-	(1, 'La empresa tiene una política sistematizada de cero defectos en la producción de productos/servicios.', 0),
-	(2, 'La empresa emplea los medios productivos tecnológicamente más avanzados de su sector.', 1),
+	(1, 'La empresa tiene una política sistematizada de cero defectos en la producción de productos/servicios.', 4),
+	(2, 'La empresa emplea los medios productivos tecnológicamente más avanzados de su sector.', 3),
 	(3, 'La empresa dispone de un sistema de información y control de gestión  eficiente y eficaz. ', 2),
 	(4, 'Los medios técnicos y técnológicos de la empresa están preparados para competir en un futuro a corto, medio y largo plazo.', 3),
 	(5, 'La empresa es un referente en su sector en I+D+i.', 4),
 	(6, 'La excelencia de los procedimientos de la empresa (en ISO, etc.) son una principal fuente de ventaja competiva.', 3),
 	(7, 'La empresa dispone de página web, y esta se emplea no sólo como escaparate virtual de productos/servicios, sino también para establecer relaciones con clientes y proveedores.', 2),
-	(8, 'Los productos/servicios que desarrolla nuestra empresa llevan incorporada una tecnología difícil de imitar.', 1),
-	(9, 'La empresa es referente en su sector en la optimización, en términos de coste,  de su cadena de producción, siendo ésta una de sus principales ventajas competitivas.', 0),
-	(10, 'La informatización de la empresa es una fuente de ventaja competitiva clara respecto a sus competidores.', 1),
+	(8, 'Los productos/servicios que desarrolla nuestra empresa llevan incorporada una tecnología difícil de imitar.', 3),
+	(9, 'La empresa es referente en su sector en la optimización, en términos de coste,  de su cadena de producción, siendo ésta una de sus principales ventajas competitivas.', 4),
+	(10, 'La informatización de la empresa es una fuente de ventaja competitiva clara respecto a sus competidores.', 3),
 	(11, 'Los canales de distribución de la empresa son una importante fuente de ventajas competitivas.', 2),
 	(12, 'Los productos/servicios de la empresa son altamente, y diferencialmente, valorados por el cliente respecto a nuestros competidores.', 3),
 	(13, 'La empresa dispone y ejecuta un sistematico plan de marketing y ventas.', 4),
 	(14, 'La empresa tiene optimizada su gestión financiera.', 3),
 	(15, 'La empresa busca continuamente el mejorar la relación con sus clientes cortando los plazos de ejecución, personalizando la oferta o mejorando las condiciones de entrega. Pero siempre partiendo de un plan previo.', 2),
-	(16, 'La empresa es referente en su sector en el lanzamiento de innovadores productos y servicio de éxito demostrado en el mercado.', 1),
-	(17, 'Los Recursos Humanos son especialmente responsables del éxito de la empresa, considerándolos incluso como el principal activo estratégico.', 0),
-	(18, 'Se tiene una plantilla altamente motivada, que conoce con claridad las metas, objetivos y estrategias de la organización.', 1),
+	(16, 'La empresa es referente en su sector en el lanzamiento de innovadores productos y servicio de éxito demostrado en el mercado.', 3),
+	(17, 'Los Recursos Humanos son especialmente responsables del éxito de la empresa, considerándolos incluso como el principal activo estratégico.', 4),
+	(18, 'Se tiene una plantilla altamente motivada, que conoce con claridad las metas, objetivos y estrategias de la organización.', 3),
 	(19, 'La empresa siempre trabaja conforme a una estrategia y objetivos claros. ', 2),
 	(20, 'La gestión del circulante está optimizada.', 3),
 	(21, 'Se tiene definido claramente el posicionamiento estratégico de todos los productos de la empresa.', 4),
 	(22, 'Se dispone de una política de marca basada en la reputación que la empresa genera, en la gestión de relación con el cliente y en el posicionamiento estratégico previamente definido.', 3),
 	(23, 'La cartera de clientes de nuestra empresa está altamente fidelizada, ya que tenemos como principal propósito el deleitarlos día a día.', 2),
-	(24, 'Nuestra política y equipo de ventas y marketing es una importante ventaja competitiva de nuestra empresa respecto al sector.', 1),
-	(25, 'El servicio al cliente que prestamos es uno de nuestras principales ventajas competitivas respecto a nuestros competidores.', 0);
+	(24, 'Nuestra política y equipo de ventas y marketing es una importante ventaja competitiva de nuestra empresa respecto al sector.', 3),
+	(25, 'El servicio al cliente que prestamos es uno de nuestras principales ventajas competitivas respecto a nuestros competidores.', 4);
 
 -- Volcando estructura para tabla homestead.came
 CREATE TABLE IF NOT EXISTS `came` (
@@ -80,7 +79,6 @@ CREATE TABLE IF NOT EXISTS `came` (
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla homestead.came: ~17 rows (aproximadamente)
-DELETE FROM `came`;
 INSERT INTO `came` (`Id`, `Tipo`, `Accion`) VALUES
 	(5, 'C1', 'asda'),
 	(6, 'C2', NULL),
@@ -103,81 +101,125 @@ INSERT INTO `came` (`Id`, `Tipo`, `Accion`) VALUES
 -- Volcando estructura para tabla homestead.competidores
 CREATE TABLE IF NOT EXISTS `competidores` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Codigo` varchar(50) NOT NULL DEFAULT '0',
-  `Venta` int(11) NOT NULL DEFAULT '0',
+  `Competidor` int(11) NOT NULL,
+  `ProductoId` int(11) NOT NULL,
+  `Venta` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.competidores: ~0 rows (aproximadamente)
-DELETE FROM `competidores`;
+-- Volcando datos para la tabla homestead.competidores: ~24 rows (aproximadamente)
+INSERT INTO `competidores` (`Id`, `Competidor`, `ProductoId`, `Venta`) VALUES
+	(1, 1, 1, 9),
+	(2, 1, 2, 8),
+	(3, 1, 3, 7),
+	(4, 1, 4, 6),
+	(5, 1, 5, 5),
+	(6, 2, 1, 0),
+	(7, 2, 2, 0),
+	(8, 2, 3, 0),
+	(9, 2, 4, 0),
+	(10, 2, 5, 0),
+	(11, 3, 1, 2),
+	(12, 3, 2, 0),
+	(13, 3, 3, 0),
+	(14, 3, 4, 0),
+	(15, 3, 5, 0),
+	(16, 4, 1, 0),
+	(17, 4, 2, 0),
+	(18, 4, 3, 0),
+	(19, 4, 4, 0),
+	(20, 4, 5, 0),
+	(21, 1, 6, 0),
+	(22, 2, 6, 0),
+	(23, 3, 6, 0),
+	(24, 4, 6, 0),
+	(25, 1, 7, 0),
+	(26, 2, 7, 0),
+	(27, 3, 7, 0),
+	(28, 4, 7, 0);
 
 -- Volcando estructura para tabla homestead.debilidades
 CREATE TABLE IF NOT EXISTS `debilidades` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Debilidad` varchar(255) NOT NULL,
+  `Origen` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla homestead.debilidades: ~4 rows (aproximadamente)
-DELETE FROM `debilidades`;
-INSERT INTO `debilidades` (`Id`, `Debilidad`) VALUES
-	(1, 'Debilidad 01'),
-	(2, 'Debilidad 02'),
-	(3, 'Debilidad 03'),
-	(4, 'Debilidad 04');
+INSERT INTO `debilidades` (`Id`, `Debilidad`, `Origen`) VALUES
+	(1, 'Debilidad 01', 'participacion'),
+	(2, 'Debilidad 02', 'cadena'),
+	(3, 'Debilidad 03', 'participacion'),
+	(4, 'Debilidad 04', 'cadena');
 
 -- Volcando estructura para tabla homestead.edgs
 CREATE TABLE IF NOT EXISTS `edgs` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Periodo` int(11) NOT NULL DEFAULT '0',
-  `ProductoId` int(11) NOT NULL DEFAULT '0',
-  `Valor` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `Periodo` int(11) NOT NULL DEFAULT 0,
+  `ProductoId` int(11) NOT NULL DEFAULT 0,
+  `Valor` decimal(10,2) NOT NULL DEFAULT 0.00,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.edgs: ~0 rows (aproximadamente)
-DELETE FROM `edgs`;
+-- Volcando datos para la tabla homestead.edgs: ~36 rows (aproximadamente)
 INSERT INTO `edgs` (`Id`, `Periodo`, `ProductoId`, `Valor`) VALUES
-	(1, 2016, 1, 0.00),
+	(1, 2016, 1, 10.00),
 	(2, 2016, 2, 0.00),
 	(3, 2016, 3, 0.00),
 	(4, 2016, 4, 0.00),
 	(5, 2016, 5, 0.00),
 	(6, 2017, 1, 0.00),
-	(7, 2017, 2, 0.00),
+	(7, 2017, 2, 8.00),
 	(8, 2017, 3, 0.00),
 	(9, 2017, 4, 0.00),
 	(10, 2017, 5, 0.00),
 	(11, 2018, 1, 0.00),
 	(12, 2018, 2, 0.00),
-	(13, 2018, 3, 0.00),
+	(13, 2018, 3, 5.00),
 	(14, 2018, 4, 0.00),
 	(15, 2018, 5, 0.00),
 	(16, 2019, 1, 0.00),
 	(17, 2019, 2, 0.00),
 	(18, 2019, 3, 0.00),
-	(19, 2019, 4, 0.00),
+	(19, 2019, 4, 8.00),
 	(20, 2019, 5, 0.00),
 	(21, 2020, 1, 0.00),
 	(22, 2020, 2, 0.00),
 	(23, 2020, 3, 0.00),
 	(24, 2020, 4, 0.00),
-	(25, 2020, 5, 0.00);
+	(25, 2020, 5, 2.00),
+	(26, 2026, 1, 0.00),
+	(27, 2026, 2, 0.00),
+	(28, 2026, 3, 0.00),
+	(29, 2026, 4, 0.00),
+	(30, 2026, 5, 0.00),
+	(31, 2016, 6, 0.00),
+	(32, 2017, 6, 0.00),
+	(33, 2018, 6, 0.00),
+	(34, 2019, 6, 0.00),
+	(35, 2020, 6, 0.00),
+	(36, 2026, 6, 0.00),
+	(37, 2016, 7, 0.00),
+	(38, 2017, 7, 0.00),
+	(39, 2018, 7, 0.00),
+	(40, 2019, 7, 0.00),
+	(41, 2020, 7, 0.00),
+	(42, 2026, 7, 0.00);
 
 -- Volcando estructura para tabla homestead.empresa
 CREATE TABLE IF NOT EXISTS `empresa` (
   `Id` int(10) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(255) NOT NULL,
-  `Descripcion` text,
+  `Descripcion` text DEFAULT NULL,
   `Mision` text NOT NULL,
   `Vision` text NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla homestead.empresa: ~0 rows (aproximadamente)
-DELETE FROM `empresa`;
 INSERT INTO `empresa` (`Id`, `Nombre`, `Descripcion`, `Mision`, `Vision`) VALUES
-	(1, 'Empresa 011', 'descripcion de la empresa 01', 'msision de la empresa 01', 'vision de la empresa 01');
+	(1, 'Empresa 011', 'descripción de la empresa 011', 'misión de la empresa 011', 'visión de la empresa 011');
 
 -- Volcando estructura para tabla homestead.estrategia
 CREATE TABLE IF NOT EXISTS `estrategia` (
@@ -188,8 +230,7 @@ CREATE TABLE IF NOT EXISTS `estrategia` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.estrategia: ~1 rows (aproximadamente)
-DELETE FROM `estrategia`;
+-- Volcando datos para la tabla homestead.estrategia: ~0 rows (aproximadamente)
 INSERT INTO `estrategia` (`Id`, `Estrategia`, `Tipo`, `Descripcion`) VALUES
 	(1, 'FA', 'ESTRATEGIA DEFENSIVA', 'La empresa está preparada para enfrentarse a las amenazas.');
 
@@ -203,7 +244,6 @@ CREATE TABLE IF NOT EXISTS `foda` (
 ) ENGINE=InnoDB AUTO_INCREMENT=209 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla homestead.foda: ~72 rows (aproximadamente)
-DELETE FROM `foda`;
 INSERT INTO `foda` (`Id`, `Tipo`, `Codigo`, `Valor`) VALUES
 	(137, 'FO', 'F1O1', 1),
 	(138, 'FO', 'F1O2', 0),
@@ -282,16 +322,17 @@ INSERT INTO `foda` (`Id`, `Tipo`, `Codigo`, `Valor`) VALUES
 CREATE TABLE IF NOT EXISTS `fortalezas` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Fortaleza` varchar(255) NOT NULL,
+  `Origen` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.fortalezas: ~4 rows (aproximadamente)
-DELETE FROM `fortalezas`;
-INSERT INTO `fortalezas` (`Id`, `Fortaleza`) VALUES
-	(1, 'Fortaleza 01'),
-	(2, 'Fortaleza 02'),
-	(3, 'Fortaleza 03'),
-	(5, 'Fortaleza 05');
+-- Volcando datos para la tabla homestead.fortalezas: ~5 rows (aproximadamente)
+INSERT INTO `fortalezas` (`Id`, `Fortaleza`, `Origen`) VALUES
+	(1, 'Fortaleza 01', 'cadena'),
+	(2, 'Fortaleza 02', 'participacion'),
+	(3, 'Fortaleza 03', 'cadena'),
+	(5, 'Fortaleza 05', 'participacion'),
+	(6, 'Fortaleza 000111', 'cadena');
 
 -- Volcando estructura para tabla homestead.fuerzas_porter
 CREATE TABLE IF NOT EXISTS `fuerzas_porter` (
@@ -299,13 +340,12 @@ CREATE TABLE IF NOT EXISTS `fuerzas_porter` (
   `Fuerza` int(11) NOT NULL,
   `Perfil` varchar(255) NOT NULL,
   `Hostil` varchar(100) NOT NULL,
-  `Valor` int(11) NOT NULL DEFAULT '1',
+  `Valor` int(11) NOT NULL DEFAULT 1,
   `Favorable` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla homestead.fuerzas_porter: ~17 rows (aproximadamente)
-DELETE FROM `fuerzas_porter`;
 INSERT INTO `fuerzas_porter` (`Id`, `Fuerza`, `Perfil`, `Hostil`, `Valor`, `Favorable`) VALUES
 	(1, 1, 'Crecimiento', 'Lento', 5, 'Rápido'),
 	(2, 1, 'Naturaleza de los competidores', 'Muchos', 4, 'Pocos'),
@@ -334,17 +374,17 @@ CREATE TABLE IF NOT EXISTS `objetivo_especifico` (
   PRIMARY KEY (`Id`),
   KEY `FK_objetivo_especifico_objetivo_general` (`ObjGeneral_Id`),
   CONSTRAINT `FK_objetivo_especifico_objetivo_general` FOREIGN KEY (`ObjGeneral_Id`) REFERENCES `objetivo_general` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.objetivo_especifico: ~6 rows (aproximadamente)
-DELETE FROM `objetivo_especifico`;
+-- Volcando datos para la tabla homestead.objetivo_especifico: ~7 rows (aproximadamente)
 INSERT INTO `objetivo_especifico` (`Id`, `ObjGeneral_Id`, `Tipo`, `Objetivo`) VALUES
 	(1, 1, 'Funcional', 'Objetivo Especifico Funcional 01'),
 	(2, 1, 'Operativo', 'Objetivo Especifico Operativo 01'),
 	(3, 2, 'Funcional', 'Objetivo Especifico Funcional 02'),
 	(4, 2, 'Operativo', 'Objetivo Especifico Operativo 02'),
 	(7, 4, 'Funcional', 'Objetivo Especifico Funcional 03'),
-	(8, 4, 'Operativo', 'Objetivo Especifico Operativo 03');
+	(8, 4, 'Operativo', 'Objetivo Especifico Operativo 03'),
+	(9, 1, 'Funcional', 'Objetivo Funcional 0022');
 
 -- Volcando estructura para tabla homestead.objetivo_general
 CREATE TABLE IF NOT EXISTS `objetivo_general` (
@@ -354,7 +394,6 @@ CREATE TABLE IF NOT EXISTS `objetivo_general` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla homestead.objetivo_general: ~3 rows (aproximadamente)
-DELETE FROM `objetivo_general`;
 INSERT INTO `objetivo_general` (`Id`, `Objetivo`) VALUES
 	(1, 'Objetivo general 01'),
 	(2, 'Objetivo general 02'),
@@ -364,43 +403,42 @@ INSERT INTO `objetivo_general` (`Id`, `Objetivo`) VALUES
 CREATE TABLE IF NOT EXISTS `oportunidades` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Oportunidad` varchar(255) NOT NULL,
+  `Origen` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla homestead.oportunidades: ~4 rows (aproximadamente)
-DELETE FROM `oportunidades`;
-INSERT INTO `oportunidades` (`Id`, `Oportunidad`) VALUES
-	(1, 'Oportunidad 01'),
-	(2, 'Oportunidad 02'),
-	(3, 'Oportunidad 03'),
-	(4, 'Oportunidad 04');
+INSERT INTO `oportunidades` (`Id`, `Oportunidad`, `Origen`) VALUES
+	(1, 'Oportunidad 01', 'porter'),
+	(2, 'Oportunidad 02', 'pest'),
+	(3, 'Oportunidad 03', 'porter'),
+	(4, 'Oportunidad 04', 'pest');
 
 -- Volcando estructura para tabla homestead.periodos
 CREATE TABLE IF NOT EXISTS `periodos` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Periodo` int(11) NOT NULL DEFAULT '0',
+  `Periodo` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.periodos: ~5 rows (aproximadamente)
-DELETE FROM `periodos`;
+-- Volcando datos para la tabla homestead.periodos: ~6 rows (aproximadamente)
 INSERT INTO `periodos` (`Id`, `Periodo`) VALUES
 	(1, 2016),
 	(2, 2017),
 	(3, 2018),
 	(4, 2019),
-	(5, 2020);
+	(5, 2020),
+	(6, 2026);
 
 -- Volcando estructura para tabla homestead.pest
 CREATE TABLE IF NOT EXISTS `pest` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Pregunta` varchar(255) NOT NULL,
-  `Valor` int(11) NOT NULL DEFAULT '0',
+  `Valor` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla homestead.pest: ~25 rows (aproximadamente)
-DELETE FROM `pest`;
 INSERT INTO `pest` (`Id`, `Pregunta`, `Valor`) VALUES
 	(1, 'Los cambios en la composicón étnica de los consumidores de nuestro mercado está teniendo un notable impacto.', 0),
 	(2, 'El envejecimiento de la población tiene un importante impacto en la demanda.', 1),
@@ -431,14 +469,13 @@ INSERT INTO `pest` (`Id`, `Pregunta`, `Valor`) VALUES
 -- Volcando estructura para tabla homestead.plan_estrategico
 CREATE TABLE IF NOT EXISTS `plan_estrategico` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Fecha` timestamp NOT NULL DEFAULT current_timestamp(),
   `Contenido` text NOT NULL,
-  `Conclucion` text,
+  `Conclucion` text DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.plan_estrategico: ~7 rows (aproximadamente)
-DELETE FROM `plan_estrategico`;
+-- Volcando datos para la tabla homestead.plan_estrategico: ~8 rows (aproximadamente)
 INSERT INTO `plan_estrategico` (`Id`, `Fecha`, `Contenido`, `Conclucion`) VALUES
 	(1, '2026-05-03 02:33:51', '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Nombre de la Empresa: Empresa 011</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 03/05/2026</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores: Jesus Humberto Escalante Alanoca</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px;\'>msision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px;\'>vision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Integridad</li><li style=\'margin-left: 80px;\'>Compromiso con el desarrollo humano</li><li style=\'margin-left: 80px;\'>Ética profesional </li><li style=\'margin-left: 80px;\'>Responsabilidad social</li><li style=\'margin-left: 80px;\'>Innovación</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>Ventas1</li><li style=\'margin-left: 80px;\'>Contabilidad</li><li style=\'margin-left: 80px;\'>Marketing1</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'10\'>msision de la empresa 01</th></tr><tr><th rowspan=\'3\'>Objetivo general 01</th></tr><tr><td>Objetivo Especifico Funcional 01</td></tr><tr><td>Objetivo Especifico Operativo 01</td></tr><tr><th rowspan=\'3\'>Objetivo general 02</th></tr><tr><td>Objetivo Especifico Funcional 02</td></tr><tr><td>Objetivo Especifico Operativo 02</td></tr><tr><th rowspan=\'3\'>Objetivo general 03</th></tr><tr><td>Objetivo Especifico Funcional 03</td></tr><tr><td>Objetivo Especifico Operativo 03</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><td>Fortaleza 01</td></tr><tr><td>Fortaleza 02</td></tr><tr><td>Fortaleza 03</td></tr><tr><td>Fortaleza 05</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><td>Debilidad 01</td></tr><tr><td>Debilidad 02</td></tr><tr><td>Debilidad 03</td></tr><tr><td>Debilidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><td>Oportunidad 01</td></tr><tr><td>Oportunidad 02</td></tr><tr><td>Oportunidad 03</td></tr><tr><td>Oportunidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr><tr><td>Amenaza 01</td></tr><tr><td>Amenaza 02</td></tr><tr><td>Amenaza 03</td></tr><tr><td>Amenaza 04</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> FA</li><li><strong>Tipo:</strong> ESTRATEGIA DEFENSIVA</li><li><strong>Descripción:</strong> La empresa está preparada para enfrentarse a las amenazas.</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', NULL),
 	(2, '2026-05-03 04:09:25', '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Nombre de la Empresa: Empresa 011</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 03/05/2026</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores: Jesus Humberto Escalante Alanoca</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px;\'>msision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px;\'>vision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Integridad</li><li style=\'margin-left: 80px;\'>Compromiso con el desarrollo humano</li><li style=\'margin-left: 80px;\'>Ética profesional </li><li style=\'margin-left: 80px;\'>Responsabilidad social</li><li style=\'margin-left: 80px;\'>Innovación</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>Ventas1</li><li style=\'margin-left: 80px;\'>Contabilidad</li><li style=\'margin-left: 80px;\'>Marketing1</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'10\'>msision de la empresa 01</th></tr><tr><th rowspan=\'3\'>Objetivo general 01</th></tr><tr><td>Objetivo Especifico Funcional 01</td></tr><tr><td>Objetivo Especifico Operativo 01</td></tr><tr><th rowspan=\'3\'>Objetivo general 02</th></tr><tr><td>Objetivo Especifico Funcional 02</td></tr><tr><td>Objetivo Especifico Operativo 02</td></tr><tr><th rowspan=\'3\'>Objetivo general 03</th></tr><tr><td>Objetivo Especifico Funcional 03</td></tr><tr><td>Objetivo Especifico Operativo 03</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><td>Fortaleza 01</td></tr><tr><td>Fortaleza 02</td></tr><tr><td>Fortaleza 03</td></tr><tr><td>Fortaleza 05</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><td>Debilidad 01</td></tr><tr><td>Debilidad 02</td></tr><tr><td>Debilidad 03</td></tr><tr><td>Debilidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><td>Oportunidad 01</td></tr><tr><td>Oportunidad 02</td></tr><tr><td>Oportunidad 03</td></tr><tr><td>Oportunidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr><tr><td>Amenaza 01</td></tr><tr><td>Amenaza 02</td></tr><tr><td>Amenaza 03</td></tr><tr><td>Amenaza 04</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> FA</li><li><strong>Tipo:</strong> ESTRATEGIA DEFENSIVA</li><li><strong>Descripción:</strong> La empresa está preparada para enfrentarse a las amenazas.</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', NULL),
@@ -446,42 +483,42 @@ INSERT INTO `plan_estrategico` (`Id`, `Fecha`, `Contenido`, `Conclucion`) VALUES
 	(4, '2026-05-03 06:00:26', '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Nombre de la Empresa: Empresa 011</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 03/05/2026</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores: Jesus Humberto Escalante Alanoca</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px;\'>msision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px;\'>vision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Integridad</li><li style=\'margin-left: 80px;\'>Compromiso con el desarrollo humano</li><li style=\'margin-left: 80px;\'>Ética profesional </li><li style=\'margin-left: 80px;\'>Responsabilidad social</li><li style=\'margin-left: 80px;\'>Innovación</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>Ventas1</li><li style=\'margin-left: 80px;\'>Contabilidad</li><li style=\'margin-left: 80px;\'>Marketing1</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'10\'>msision de la empresa 01</th></tr><tr><th rowspan=\'3\'>Objetivo general 01</th></tr><tr><td>Objetivo Especifico Funcional 01</td></tr><tr><td>Objetivo Especifico Operativo 01</td></tr><tr><th rowspan=\'3\'>Objetivo general 02</th></tr><tr><td>Objetivo Especifico Funcional 02</td></tr><tr><td>Objetivo Especifico Operativo 02</td></tr><tr><th rowspan=\'3\'>Objetivo general 03</th></tr><tr><td>Objetivo Especifico Funcional 03</td></tr><tr><td>Objetivo Especifico Operativo 03</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><td>Fortaleza 01</td></tr><tr><td>Fortaleza 02</td></tr><tr><td>Fortaleza 03</td></tr><tr><td>Fortaleza 05</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><td>Debilidad 01</td></tr><tr><td>Debilidad 02</td></tr><tr><td>Debilidad 03</td></tr><tr><td>Debilidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><td>Oportunidad 01</td></tr><tr><td>Oportunidad 02</td></tr><tr><td>Oportunidad 03</td></tr><tr><td>Oportunidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr><tr><td>Amenaza 01</td></tr><tr><td>Amenaza 02</td></tr><tr><td>Amenaza 03</td></tr><tr><td>Amenaza 04</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> FA</li><li><strong>Tipo:</strong> ESTRATEGIA DEFENSIVA</li><li><strong>Descripción:</strong> La empresa está preparada para enfrentarse a las amenazas.</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>ID</th><th style=\'text-align: center;\'>ACCION</th></tr></thead><tbody><tr><td>5</td><td>asda</td></tr><tr><td>6</td><td></td></tr><tr><td>7</td><td></td></tr><tr><td>8</td><td></td></tr><tr><td>9</td><td></td></tr><tr><td>10</td><td></td></tr><tr><td>11</td><td></td></tr><tr><td>12</td><td>SFD</td></tr><tr><td>13</td><td></td></tr><tr><td>14</td><td>SDF</td></tr><tr><td>15</td><td></td></tr><tr><td>16</td><td></td></tr><tr><td>17</td><td></td></tr><tr><td>18</td><td></td></tr><tr><td>19</td><td>SDF</td></tr><tr><td>5</td><td>asda</td></tr><tr><td>6</td><td></td></tr><tr><td>7</td><td></td></tr><tr><td>8</td><td></td></tr><tr><td>9</td><td></td></tr><tr><td>10</td><td></td></tr><tr><td>11</td><td></td></tr><tr><td>12</td><td>SFD</td></tr><tr><td>13</td><td></td></tr><tr><td>14</td><td>SDF</td></tr><tr><td>15</td><td></td></tr><tr><td>16</td><td></td></tr><tr><td>17</td><td></td></tr><tr><td>18</td><td></td></tr><tr><td>19</td><td>SDF</td></tr><tr><td>5</td><td>asda</td></tr><tr><td>6</td><td></td></tr><tr><td>7</td><td></td></tr><tr><td>9</td><td></td></tr><tr><td>10</td><td></td></tr><tr><td>11</td><td></td></tr><tr><td>13</td><td></td></tr><tr><td>14</td><td>SDF</td></tr><tr><td>15</td><td></td></tr><tr><td>17</td><td></td></tr><tr><td>18</td><td></td></tr><tr><td>19</td><td>SDF</td></tr><tr><td>20</td><td></td></tr><tr><td>5</td><td>asda</td></tr><tr><td>6</td><td></td></tr><tr><td>7</td><td></td></tr><tr><td>8</td><td></td></tr><tr><td>9</td><td></td></tr><tr><td>10</td><td></td></tr><tr><td>11</td><td></td></tr><tr><td>12</td><td>SFD</td></tr><tr><td>13</td><td></td></tr><tr><td>14</td><td>SDF</td></tr><tr><td>15</td><td></td></tr><tr><td>16</td><td></td></tr><tr><td>17</td><td></td></tr><tr><td>18</td><td></td></tr><tr><td>19</td><td>SDF</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', NULL),
 	(5, '2026-05-03 06:07:04', '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Nombre de la Empresa: Empresa 011</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 03/05/2026</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores: Jesus Humberto Escalante Alanoca</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px;\'>msision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px;\'>vision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Integridad</li><li style=\'margin-left: 80px;\'>Compromiso con el desarrollo humano</li><li style=\'margin-left: 80px;\'>Ética profesional </li><li style=\'margin-left: 80px;\'>Responsabilidad social</li><li style=\'margin-left: 80px;\'>Innovación</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>Ventas1</li><li style=\'margin-left: 80px;\'>Contabilidad</li><li style=\'margin-left: 80px;\'>Marketing1</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'10\'>msision de la empresa 01</th></tr><tr><th rowspan=\'3\'>Objetivo general 01</th></tr><tr><td>Objetivo Especifico Funcional 01</td></tr><tr><td>Objetivo Especifico Operativo 01</td></tr><tr><th rowspan=\'3\'>Objetivo general 02</th></tr><tr><td>Objetivo Especifico Funcional 02</td></tr><tr><td>Objetivo Especifico Operativo 02</td></tr><tr><th rowspan=\'3\'>Objetivo general 03</th></tr><tr><td>Objetivo Especifico Funcional 03</td></tr><tr><td>Objetivo Especifico Operativo 03</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><td>Fortaleza 01</td></tr><tr><td>Fortaleza 02</td></tr><tr><td>Fortaleza 03</td></tr><tr><td>Fortaleza 05</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><td>Debilidad 01</td></tr><tr><td>Debilidad 02</td></tr><tr><td>Debilidad 03</td></tr><tr><td>Debilidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><td>Oportunidad 01</td></tr><tr><td>Oportunidad 02</td></tr><tr><td>Oportunidad 03</td></tr><tr><td>Oportunidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr><tr><td>Amenaza 01</td></tr><tr><td>Amenaza 02</td></tr><tr><td>Amenaza 03</td></tr><tr><td>Amenaza 04</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> FA</li><li><strong>Tipo:</strong> ESTRATEGIA DEFENSIVA</li><li><strong>Descripción:</strong> La empresa está preparada para enfrentarse a las amenazas.</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>ID</th><th style=\'text-align: center;\'>ACCION</th></tr></thead><tbody><tr><td>5</td><td>asda</td></tr><tr><td>6</td><td></td></tr><tr><td>7</td><td></td></tr><tr><td>8</td><td></td></tr><tr><td>13</td><td></td></tr><tr><td>14</td><td>SDF</td></tr><tr><td>15</td><td></td></tr><tr><td>16</td><td></td></tr><tr><td>17</td><td></td></tr><tr><td>18</td><td></td></tr><tr><td>19</td><td>SDF</td></tr><tr><td>20</td><td></td></tr><tr><td>9</td><td></td></tr><tr><td>10</td><td></td></tr><tr><td>11</td><td></td></tr><tr><td>12</td><td>SFD</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', NULL),
 	(6, '2026-05-03 06:09:07', '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Nombre de la Empresa: Empresa 011</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 03/05/2026</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores: Jesus Humberto Escalante Alanoca</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px;\'>msision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px;\'>vision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Integridad</li><li style=\'margin-left: 80px;\'>Compromiso con el desarrollo humano</li><li style=\'margin-left: 80px;\'>Ética profesional </li><li style=\'margin-left: 80px;\'>Responsabilidad social</li><li style=\'margin-left: 80px;\'>Innovación</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>Ventas1</li><li style=\'margin-left: 80px;\'>Contabilidad</li><li style=\'margin-left: 80px;\'>Marketing1</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'10\'>msision de la empresa 01</th></tr><tr><th rowspan=\'3\'>Objetivo general 01</th></tr><tr><td>Objetivo Especifico Funcional 01</td></tr><tr><td>Objetivo Especifico Operativo 01</td></tr><tr><th rowspan=\'3\'>Objetivo general 02</th></tr><tr><td>Objetivo Especifico Funcional 02</td></tr><tr><td>Objetivo Especifico Operativo 02</td></tr><tr><th rowspan=\'3\'>Objetivo general 03</th></tr><tr><td>Objetivo Especifico Funcional 03</td></tr><tr><td>Objetivo Especifico Operativo 03</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><td>Fortaleza 01</td></tr><tr><td>Fortaleza 02</td></tr><tr><td>Fortaleza 03</td></tr><tr><td>Fortaleza 05</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><td>Debilidad 01</td></tr><tr><td>Debilidad 02</td></tr><tr><td>Debilidad 03</td></tr><tr><td>Debilidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><td>Oportunidad 01</td></tr><tr><td>Oportunidad 02</td></tr><tr><td>Oportunidad 03</td></tr><tr><td>Oportunidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr><tr><td>Amenaza 01</td></tr><tr><td>Amenaza 02</td></tr><tr><td>Amenaza 03</td></tr><tr><td>Amenaza 04</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> FA</li><li><strong>Tipo:</strong> ESTRATEGIA DEFENSIVA</li><li><strong>Descripción:</strong> La empresa está preparada para enfrentarse a las amenazas.</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center; width: 80px;\'>ID</th><th style=\'text-align: center;\'>ACCION</th></tr></thead><tbody><tr><td style=\'text-align: center;\'>5</td><td>asda</td></tr><tr><td style=\'text-align: center;\'>6</td><td></td></tr><tr><td style=\'text-align: center;\'>7</td><td></td></tr><tr><td style=\'text-align: center;\'>8</td><td></td></tr><tr><td style=\'text-align: center;\'>13</td><td></td></tr><tr><td style=\'text-align: center;\'>14</td><td>SDF</td></tr><tr><td style=\'text-align: center;\'>15</td><td></td></tr><tr><td style=\'text-align: center;\'>16</td><td></td></tr><tr><td style=\'text-align: center;\'>17</td><td></td></tr><tr><td style=\'text-align: center;\'>18</td><td></td></tr><tr><td style=\'text-align: center;\'>19</td><td>SDF</td></tr><tr><td style=\'text-align: center;\'>20</td><td></td></tr><tr><td style=\'text-align: center;\'>9</td><td></td></tr><tr><td style=\'text-align: center;\'>10</td><td></td></tr><tr><td style=\'text-align: center;\'>11</td><td></td></tr><tr><td style=\'text-align: center;\'>12</td><td>SFD</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', 'conclucion 000111'),
-	(7, '2026-05-06 10:56:51', '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Nombre de la Empresa: Empresa 011</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 06/05/2026</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores: Jesus Humberto Escalante Alanoca</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px;\'>msision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px;\'>vision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Integridad</li><li style=\'margin-left: 80px;\'>Compromiso con el desarrollo humano</li><li style=\'margin-left: 80px;\'>Ética profesional </li><li style=\'margin-left: 80px;\'>Responsabilidad social</li><li style=\'margin-left: 80px;\'>Innovación</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>Ventas1</li><li style=\'margin-left: 80px;\'>Contabilidad</li><li style=\'margin-left: 80px;\'>Marketing1</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'10\'>msision de la empresa 01</th></tr><tr><th rowspan=\'3\'>Objetivo general 01</th></tr><tr><td>Objetivo Especifico Funcional 01</td></tr><tr><td>Objetivo Especifico Operativo 01</td></tr><tr><th rowspan=\'3\'>Objetivo general 02</th></tr><tr><td>Objetivo Especifico Funcional 02</td></tr><tr><td>Objetivo Especifico Operativo 02</td></tr><tr><th rowspan=\'3\'>Objetivo general 03</th></tr><tr><td>Objetivo Especifico Funcional 03</td></tr><tr><td>Objetivo Especifico Operativo 03</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><td>Fortaleza 01</td></tr><tr><td>Fortaleza 02</td></tr><tr><td>Fortaleza 03</td></tr><tr><td>Fortaleza 05</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><td>Debilidad 01</td></tr><tr><td>Debilidad 02</td></tr><tr><td>Debilidad 03</td></tr><tr><td>Debilidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><td>Oportunidad 01</td></tr><tr><td>Oportunidad 02</td></tr><tr><td>Oportunidad 03</td></tr><tr><td>Oportunidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr><tr><td>Amenaza 01</td></tr><tr><td>Amenaza 02</td></tr><tr><td>Amenaza 03</td></tr><tr><td>Amenaza 04</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> FA</li><li><strong>Tipo:</strong> ESTRATEGIA DEFENSIVA</li><li><strong>Descripción:</strong> La empresa está preparada para enfrentarse a las amenazas.</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center; width: 80px;\'>ID</th><th style=\'text-align: center;\'>ACCION</th></tr></thead><tbody><tr><td style=\'text-align: center;\'>5</td><td>asda</td></tr><tr><td style=\'text-align: center;\'>6</td><td></td></tr><tr><td style=\'text-align: center;\'>7</td><td></td></tr><tr><td style=\'text-align: center;\'>8</td><td></td></tr><tr><td style=\'text-align: center;\'>13</td><td></td></tr><tr><td style=\'text-align: center;\'>14</td><td>SDF</td></tr><tr><td style=\'text-align: center;\'>15</td><td></td></tr><tr><td style=\'text-align: center;\'>16</td><td></td></tr><tr><td style=\'text-align: center;\'>17</td><td></td></tr><tr><td style=\'text-align: center;\'>18</td><td></td></tr><tr><td style=\'text-align: center;\'>19</td><td>SDF</td></tr><tr><td style=\'text-align: center;\'>20</td><td></td></tr><tr><td style=\'text-align: center;\'>9</td><td></td></tr><tr><td style=\'text-align: center;\'>10</td><td></td></tr><tr><td style=\'text-align: center;\'>11</td><td></td></tr><tr><td style=\'text-align: center;\'>12</td><td>SFD</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', NULL);
+	(7, '2026-05-06 10:56:51', '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Nombre de la Empresa: Empresa 011</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 06/05/2026</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores: Jesus Humberto Escalante Alanoca</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px;\'>msision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px;\'>vision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Integridad</li><li style=\'margin-left: 80px;\'>Compromiso con el desarrollo humano</li><li style=\'margin-left: 80px;\'>Ética profesional </li><li style=\'margin-left: 80px;\'>Responsabilidad social</li><li style=\'margin-left: 80px;\'>Innovación</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>Ventas1</li><li style=\'margin-left: 80px;\'>Contabilidad</li><li style=\'margin-left: 80px;\'>Marketing1</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'10\'>msision de la empresa 01</th></tr><tr><th rowspan=\'3\'>Objetivo general 01</th></tr><tr><td>Objetivo Especifico Funcional 01</td></tr><tr><td>Objetivo Especifico Operativo 01</td></tr><tr><th rowspan=\'3\'>Objetivo general 02</th></tr><tr><td>Objetivo Especifico Funcional 02</td></tr><tr><td>Objetivo Especifico Operativo 02</td></tr><tr><th rowspan=\'3\'>Objetivo general 03</th></tr><tr><td>Objetivo Especifico Funcional 03</td></tr><tr><td>Objetivo Especifico Operativo 03</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><td>Fortaleza 01</td></tr><tr><td>Fortaleza 02</td></tr><tr><td>Fortaleza 03</td></tr><tr><td>Fortaleza 05</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><td>Debilidad 01</td></tr><tr><td>Debilidad 02</td></tr><tr><td>Debilidad 03</td></tr><tr><td>Debilidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><td>Oportunidad 01</td></tr><tr><td>Oportunidad 02</td></tr><tr><td>Oportunidad 03</td></tr><tr><td>Oportunidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr><tr><td>Amenaza 01</td></tr><tr><td>Amenaza 02</td></tr><tr><td>Amenaza 03</td></tr><tr><td>Amenaza 04</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> FA</li><li><strong>Tipo:</strong> ESTRATEGIA DEFENSIVA</li><li><strong>Descripción:</strong> La empresa está preparada para enfrentarse a las amenazas.</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center; width: 80px;\'>ID</th><th style=\'text-align: center;\'>ACCION</th></tr></thead><tbody><tr><td style=\'text-align: center;\'>5</td><td>asda</td></tr><tr><td style=\'text-align: center;\'>6</td><td></td></tr><tr><td style=\'text-align: center;\'>7</td><td></td></tr><tr><td style=\'text-align: center;\'>8</td><td></td></tr><tr><td style=\'text-align: center;\'>13</td><td></td></tr><tr><td style=\'text-align: center;\'>14</td><td>SDF</td></tr><tr><td style=\'text-align: center;\'>15</td><td></td></tr><tr><td style=\'text-align: center;\'>16</td><td></td></tr><tr><td style=\'text-align: center;\'>17</td><td></td></tr><tr><td style=\'text-align: center;\'>18</td><td></td></tr><tr><td style=\'text-align: center;\'>19</td><td>SDF</td></tr><tr><td style=\'text-align: center;\'>20</td><td></td></tr><tr><td style=\'text-align: center;\'>9</td><td></td></tr><tr><td style=\'text-align: center;\'>10</td><td></td></tr><tr><td style=\'text-align: center;\'>11</td><td></td></tr><tr><td style=\'text-align: center;\'>12</td><td>SFD</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', NULL),
+	(8, '2026-05-06 22:19:18', '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Nombre de la Empresa: Empresa 011</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 06/05/2026</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores: Jesus Humberto Escalante Alanoca</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px;\'>msision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px;\'>vision de la empresa 01</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Integridad</li><li style=\'margin-left: 80px;\'>Compromiso con el desarrollo humano</li><li style=\'margin-left: 80px;\'>Ética profesional </li><li style=\'margin-left: 80px;\'>Responsabilidad social</li><li style=\'margin-left: 80px;\'>Innovación</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>Ventas1</li><li style=\'margin-left: 80px;\'>Contabilidad</li><li style=\'margin-left: 80px;\'>Marketing1</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'10\'>msision de la empresa 01</th></tr><tr><th rowspan=\'3\'>Objetivo general 01</th></tr><tr><td>Objetivo Especifico Funcional 01</td></tr><tr><td>Objetivo Especifico Operativo 01</td></tr><tr><th rowspan=\'3\'>Objetivo general 02</th></tr><tr><td>Objetivo Especifico Funcional 02</td></tr><tr><td>Objetivo Especifico Operativo 02</td></tr><tr><th rowspan=\'3\'>Objetivo general 03</th></tr><tr><td>Objetivo Especifico Funcional 03</td></tr><tr><td>Objetivo Especifico Operativo 03</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><td>Fortaleza 01</td></tr><tr><td>Fortaleza 02</td></tr><tr><td>Fortaleza 03</td></tr><tr><td>Fortaleza 05</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><td>Debilidad 01</td></tr><tr><td>Debilidad 02</td></tr><tr><td>Debilidad 03</td></tr><tr><td>Debilidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><td>Oportunidad 01</td></tr><tr><td>Oportunidad 02</td></tr><tr><td>Oportunidad 03</td></tr><tr><td>Oportunidad 04</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr><tr><td>Amenaza 01</td></tr><tr><td>Amenaza 02</td></tr><tr><td>Amenaza 03</td></tr><tr><td>Amenaza 04</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> FA</li><li><strong>Tipo:</strong> ESTRATEGIA DEFENSIVA</li><li><strong>Descripción:</strong> La empresa está preparada para enfrentarse a las amenazas.</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><table style=\'width: 100%; max-width: 1050px; border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center; width: 80px;\'>ID</th><th style=\'text-align: center;\'>ACCION</th></tr></thead><tbody><tr><td style=\'text-align: center;\'>5</td><td>asda</td></tr><tr><td style=\'text-align: center;\'>6</td><td></td></tr><tr><td style=\'text-align: center;\'>7</td><td></td></tr><tr><td style=\'text-align: center;\'>8</td><td></td></tr><tr><td style=\'text-align: center;\'>13</td><td></td></tr><tr><td style=\'text-align: center;\'>14</td><td>SDF</td></tr><tr><td style=\'text-align: center;\'>15</td><td></td></tr><tr><td style=\'text-align: center;\'>16</td><td></td></tr><tr><td style=\'text-align: center;\'>17</td><td></td></tr><tr><td style=\'text-align: center;\'>18</td><td></td></tr><tr><td style=\'text-align: center;\'>19</td><td>SDF</td></tr><tr><td style=\'text-align: center;\'>20</td><td></td></tr><tr><td style=\'text-align: center;\'>9</td><td></td></tr><tr><td style=\'text-align: center;\'>10</td><td></td></tr><tr><td style=\'text-align: center;\'>11</td><td></td></tr><tr><td style=\'text-align: center;\'>12</td><td>SFD</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', NULL);
 
 -- Volcando estructura para tabla homestead.productos
 CREATE TABLE IF NOT EXISTS `productos` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(255) NOT NULL,
-  `Ventas` int(11) NOT NULL DEFAULT '0',
-  `Porcentaje` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `Ventas` int(11) NOT NULL DEFAULT 0,
+  `Porcentaje` decimal(10,2) NOT NULL DEFAULT 0.00,
   `Color` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.productos: ~5 rows (aproximadamente)
-DELETE FROM `productos`;
+-- Volcando datos para la tabla homestead.productos: ~6 rows (aproximadamente)
 INSERT INTO `productos` (`Id`, `Nombre`, `Ventas`, `Porcentaje`, `Color`) VALUES
-	(1, 'Producto 01', 5, 6.67, ''),
+	(1, 'Hosting', 5, 6.67, ''),
 	(2, 'Producto 02', 10, 13.33, NULL),
 	(3, 'Producto 03', 15, 20.00, NULL),
 	(4, 'Producto 04', 20, 26.67, NULL),
-	(5, 'Producto 05', 25, 33.33, NULL);
+	(5, 'Producto 05', 25, 33.33, NULL),
+	(7, 'Producto 06', 40, 53.33, NULL);
 
 -- Volcando estructura para tabla homestead.tcm
 CREATE TABLE IF NOT EXISTS `tcm` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Periodo` int(11) NOT NULL DEFAULT '0',
-  `ProductoId` int(11) NOT NULL DEFAULT '0',
-  `Valor` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `Periodo` int(11) NOT NULL DEFAULT 0,
+  `ProductoId` int(11) NOT NULL DEFAULT 0,
+  `Valor` decimal(10,2) NOT NULL DEFAULT 0.00,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.tcm: ~25 rows (aproximadamente)
-DELETE FROM `tcm`;
+-- Volcando datos para la tabla homestead.tcm: ~36 rows (aproximadamente)
 INSERT INTO `tcm` (`Id`, `Periodo`, `ProductoId`, `Valor`) VALUES
 	(1, 2016, 1, 5.00),
 	(2, 2016, 2, 0.00),
-	(3, 2016, 3, 0.00),
+	(3, 2016, 3, 8.00),
 	(4, 2016, 4, 0.00),
 	(5, 2016, 5, 0.00),
 	(6, 2017, 1, 6.00),
@@ -503,21 +540,38 @@ INSERT INTO `tcm` (`Id`, `Periodo`, `ProductoId`, `Valor`) VALUES
 	(22, 2020, 2, 0.00),
 	(23, 2020, 3, 0.00),
 	(24, 2020, 4, 0.00),
-	(25, 2020, 5, 0.00);
+	(25, 2020, 5, 0.00),
+	(26, 2026, 1, 0.00),
+	(27, 2026, 2, 0.00),
+	(28, 2026, 3, 0.00),
+	(29, 2026, 4, 0.00),
+	(30, 2026, 5, 0.00),
+	(31, 2016, 6, 0.00),
+	(32, 2017, 6, 0.00),
+	(33, 2018, 6, 0.00),
+	(34, 2019, 6, 0.00),
+	(35, 2020, 6, 0.00),
+	(36, 2026, 6, 0.00),
+	(37, 2016, 7, 0.00),
+	(38, 2017, 7, 0.00),
+	(39, 2018, 7, 0.00),
+	(40, 2019, 7, 0.00),
+	(41, 2020, 7, 0.00),
+	(42, 2026, 7, 0.00);
 
 -- Volcando estructura para tabla homestead.unidad_estrategica
 CREATE TABLE IF NOT EXISTS `unidad_estrategica` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Unidad` varchar(255) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.unidad_estrategica: ~3 rows (aproximadamente)
-DELETE FROM `unidad_estrategica`;
+-- Volcando datos para la tabla homestead.unidad_estrategica: ~4 rows (aproximadamente)
 INSERT INTO `unidad_estrategica` (`Id`, `Unidad`) VALUES
 	(1, 'Ventas1'),
 	(2, 'Contabilidad'),
-	(5, 'Marketing1');
+	(5, 'Marketing1'),
+	(6, 'Producción');
 
 -- Volcando estructura para tabla homestead.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
@@ -533,7 +587,6 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla homestead.usuario: ~3 rows (aproximadamente)
-DELETE FROM `usuario`;
 INSERT INTO `usuario` (`Id`, `Nombre`, `Apellido`, `Correo`, `password`, `Avatar`, `Rol`, `Estado`) VALUES
 	(1, 'Admin', NULL, 'admin@virtual.upt.pe', '$2y$10$Iq62mkkgTScJVEMoQ/P3ouLeVm/Zjq1dujuBvlAlY1Z6EbRjkBS9W', 1, 'Administrador', 1),
 	(5, 'Jesus Humberto', 'Escalante Alanoca', 'je2015050641@virtual.upt.pe', '$2y$10$hn3NlEYExkoOHHqHm9lXDelSIm7U8KpnJ4xkHW2CbaWucUEQg9eqS', 1, 'Administrador', 1),
@@ -546,8 +599,7 @@ CREATE TABLE IF NOT EXISTS `valores` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.valores: ~6 rows (aproximadamente)
-DELETE FROM `valores`;
+-- Volcando datos para la tabla homestead.valores: ~5 rows (aproximadamente)
 INSERT INTO `valores` (`Id`, `Valor`) VALUES
 	(1, 'Integridad'),
 	(2, 'Compromiso con el desarrollo humano'),
