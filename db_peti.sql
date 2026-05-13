@@ -107,18 +107,18 @@ CREATE TABLE IF NOT EXISTS `competidores` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.competidores: ~24 rows (aproximadamente)
+-- Volcando datos para la tabla homestead.competidores: ~28 rows (aproximadamente)
 INSERT INTO `competidores` (`Id`, `Competidor`, `ProductoId`, `Venta`) VALUES
 	(1, 1, 1, 9),
-	(2, 1, 2, 8),
-	(3, 1, 3, 7),
-	(4, 1, 4, 6),
-	(5, 1, 5, 5),
-	(6, 2, 1, 0),
-	(7, 2, 2, 0),
-	(8, 2, 3, 0),
-	(9, 2, 4, 0),
-	(10, 2, 5, 0),
+	(2, 1, 2, 19),
+	(3, 1, 3, 29),
+	(4, 1, 4, 39),
+	(5, 1, 5, 49),
+	(6, 2, 1, 10),
+	(7, 2, 2, 11),
+	(8, 2, 3, 20),
+	(9, 2, 4, 30),
+	(10, 2, 5, 14),
 	(11, 3, 1, 2),
 	(12, 3, 2, 0),
 	(13, 3, 3, 0),
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `edgs` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.edgs: ~36 rows (aproximadamente)
+-- Volcando datos para la tabla homestead.edgs: ~42 rows (aproximadamente)
 INSERT INTO `edgs` (`Id`, `Periodo`, `ProductoId`, `Valor`) VALUES
 	(1, 2016, 1, 10.00),
 	(2, 2016, 2, 0.00),
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.empresa: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla homestead.empresa: ~1 rows (aproximadamente)
 INSERT INTO `empresa` (`Id`, `Nombre`, `Descripcion`, `Mision`, `Vision`) VALUES
 	(1, 'Empresa 011', 'descripción de la empresa 011', 'misión de la empresa 011', 'visión de la empresa 011');
 
@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `estrategia` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.estrategia: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla homestead.estrategia: ~1 rows (aproximadamente)
 INSERT INTO `estrategia` (`Id`, `Estrategia`, `Tipo`, `Descripcion`) VALUES
 	(1, 'FA', 'ESTRATEGIA DEFENSIVA', 'La empresa está preparada para enfrentarse a las amenazas.');
 
@@ -427,8 +427,7 @@ INSERT INTO `periodos` (`Id`, `Periodo`) VALUES
 	(2, 2017),
 	(3, 2018),
 	(4, 2019),
-	(5, 2020),
-	(6, 2026);
+	(5, 2020);
 
 -- Volcando estructura para tabla homestead.pest
 CREATE TABLE IF NOT EXISTS `pest` (
@@ -502,8 +501,7 @@ INSERT INTO `productos` (`Id`, `Nombre`, `Ventas`, `Porcentaje`, `Color`) VALUES
 	(2, 'Producto 02', 10, 13.33, NULL),
 	(3, 'Producto 03', 15, 20.00, NULL),
 	(4, 'Producto 04', 20, 26.67, NULL),
-	(5, 'Producto 05', 25, 33.33, NULL),
-	(7, 'Producto 06', 40, 53.33, NULL);
+	(5, 'Producto 05', 25, 33.33, NULL);
 
 -- Volcando estructura para tabla homestead.tcm
 CREATE TABLE IF NOT EXISTS `tcm` (
@@ -514,33 +512,33 @@ CREATE TABLE IF NOT EXISTS `tcm` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla homestead.tcm: ~36 rows (aproximadamente)
+-- Volcando datos para la tabla homestead.tcm: ~42 rows (aproximadamente)
 INSERT INTO `tcm` (`Id`, `Periodo`, `ProductoId`, `Valor`) VALUES
-	(1, 2016, 1, 5.00),
-	(2, 2016, 2, 0.00),
-	(3, 2016, 3, 8.00),
-	(4, 2016, 4, 0.00),
-	(5, 2016, 5, 0.00),
-	(6, 2017, 1, 6.00),
-	(7, 2017, 2, 0.00),
-	(8, 2017, 3, 0.00),
-	(9, 2017, 4, 0.00),
-	(10, 2017, 5, 0.00),
-	(11, 2018, 1, 7.00),
-	(12, 2018, 2, 0.00),
-	(13, 2018, 3, 0.00),
-	(14, 2018, 4, 0.00),
-	(15, 2018, 5, 0.00),
-	(16, 2019, 1, 8.00),
-	(17, 2019, 2, 0.00),
-	(18, 2019, 3, 0.00),
-	(19, 2019, 4, 0.00),
-	(20, 2019, 5, 0.00),
-	(21, 2020, 1, 9.00),
-	(22, 2020, 2, 0.00),
-	(23, 2020, 3, 0.00),
-	(24, 2020, 4, 0.00),
-	(25, 2020, 5, 0.00),
+	(1, 2016, 1, 1.00),
+	(2, 2016, 2, 9.00),
+	(3, 2016, 3, 10.00),
+	(4, 2016, 4, 5.00),
+	(5, 2016, 5, 1.00),
+	(6, 2017, 1, 2.00),
+	(7, 2017, 2, 8.00),
+	(8, 2017, 3, 4.00),
+	(9, 2017, 4, 6.00),
+	(10, 2017, 5, 4.00),
+	(11, 2018, 1, 3.00),
+	(12, 2018, 2, 7.00),
+	(13, 2018, 3, 7.00),
+	(14, 2018, 4, 7.00),
+	(15, 2018, 5, 5.00),
+	(16, 2019, 1, 4.00),
+	(17, 2019, 2, 6.00),
+	(18, 2019, 3, 8.00),
+	(19, 2019, 4, 8.00),
+	(20, 2019, 5, 2.00),
+	(21, 2020, 1, 5.00),
+	(22, 2020, 2, 5.00),
+	(23, 2020, 3, 15.00),
+	(24, 2020, 4, 10.00),
+	(25, 2020, 5, 9.00),
 	(26, 2026, 1, 0.00),
 	(27, 2026, 2, 0.00),
 	(28, 2026, 3, 0.00),
