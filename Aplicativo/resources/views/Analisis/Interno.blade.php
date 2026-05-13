@@ -6,14 +6,14 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-sm-12"><h5 class="font-weight-bold text-primary m-0">ANALISIS INTERNO</h5></div>
+            <div class="align-items-center">
+                <h5 class="font-weight-bold text-primary m-0">ANALISIS INTERNO</h5>
             </div>
         </div>
 
         <div class="card-body">
             <div class="row">
-                <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="align-items-center">
@@ -27,6 +27,7 @@
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th>Fortaleza</th>
+                                            <th width="20%" class="text-center">Origen</th>
                                             <th width="20%"><center>Acciones</center></th>
                                         </tr>
                                     </thead>
@@ -34,6 +35,7 @@
                                         @foreach($Fortalezas as $Fortaleza)
                                         <tr>
                                             <td>{{ $Fortaleza->Fortaleza }}</td>
+                                            <td class="text-center">{{ $Fortaleza->Origen == "cadena" ? "Cadena de Valor" : "Participacion de Mercado" }}</td>
                                             <td class="text-center">
                                                 <a href="#" class="btn btn-success btn-sm text-uppercase" title="Editar" data-toggle="modal" data-target="#EditFortaleza{{ $Fortaleza->Id }}"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
                                                 <!-- Editar Modal-->
@@ -93,7 +95,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="align-items-center">
@@ -107,6 +109,7 @@
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th>Debilidad</th>
+                                            <th class="text-center">Origen</th>
                                             <th width="20%"><center>Acciones</center></th>
                                         </tr>
                                     </thead>
@@ -114,6 +117,7 @@
                                         @foreach($Debilidades as $Debilidad)
                                         <tr>
                                             <td>{{ $Debilidad->Debilidad }}</td>
+                                            <td width="20%" class="text-center">{{ $Debilidad->Origen == "cadena" ? "Cadena de Valor" : "Participacion de Mercado" }}</td>
                                             <td class="text-center">
                                                 <a href="#" class="btn btn-success btn-sm text-uppercase" title="Editar" data-toggle="modal" data-target="#EditDebilidad{{ $Debilidad->Id }}"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
                                                 <!-- Editar Modal-->

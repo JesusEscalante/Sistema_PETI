@@ -13,7 +13,7 @@
 
         <div class="card-body">
             <div class="row">
-                <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="align-items-center">
@@ -27,6 +27,7 @@
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th>Oportunidad</th>
+                                            <th class="text-center">Origen</th>
                                             <th width="20%"><center>Acciones</center></th>
                                         </tr>
                                     </thead>
@@ -34,6 +35,7 @@
                                         @foreach($Oportunidades as $Oportunidad)
                                         <tr>
                                             <td>{{ $Oportunidad->Oportunidad }}</td>
+                                            <td width="20%" class="text-center">{{ $Oportunidad->Origen == "porter" ? "Fuerzas de Porter" : "PEST" }}</td>
                                             <td class="text-center">
                                                 <a href="#" class="btn btn-success btn-sm text-uppercase" title="Editar" data-toggle="modal" data-target="#EditOportunidad{{ $Oportunidad->Id }}"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
                                                 <!-- Editar Modal-->
@@ -93,7 +95,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="align-items-center">
@@ -107,6 +109,7 @@
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th>Amenaza</th>
+                                            <th class="text-center">Origen</th>
                                             <th width="20%"><center>Acciones</center></th>
                                         </tr>
                                     </thead>
@@ -114,6 +117,7 @@
                                         @foreach($Amenazas as $Amenaza)
                                         <tr>
                                             <td>{{ $Amenaza->Amenaza }}</td>
+                                            <td width="20%" class="text-center">{{ $Amenaza->Origen == "porter" ? "Fuerzas de Porter" : "PEST" }}</td>
                                             <td class="text-center">
                                                 <a href="#" class="btn btn-success btn-sm text-uppercase" title="Editar" data-toggle="modal" data-target="#EditAmenaza{{ $Amenaza->Id }}"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
                                                 <!-- Editar Modal-->

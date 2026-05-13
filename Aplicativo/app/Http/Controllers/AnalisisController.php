@@ -1207,13 +1207,16 @@ class AnalisisController extends Controller
 
         $SumTCM = 0;
         $SumPRM = 0;
+        $SumPorcentajes = 0;
         foreach($objProductos as $Item){
             $SumTCM += $Item->TCM;
             $SumPRM += $Item->PRM;
+            $SumPorcentajes += $Item->Porcentaje;
         }
 
         $PromTCM = $SumTCM / count($objProductos);
         $PromPRM = $SumPRM / count($objProductos);
+        $PromPorcentaje = $SumPorcentajes / count($objProductos);
 
         $SUMA01 = 0;
         $SUMA02 = 0;
@@ -1253,7 +1256,8 @@ class AnalisisController extends Controller
             'Impacto5' => $Impacto05,
             'Productos' => $objProductos,
             'PromTCM' => $PromTCM,
-            'PromPRM' => $PromPRM
+            'PromPRM' => $PromPRM,
+            'PromPorcentaje' => $PromPorcentaje
         ]);
     }
 }

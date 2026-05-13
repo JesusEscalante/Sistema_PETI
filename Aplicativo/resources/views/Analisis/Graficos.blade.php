@@ -10,95 +10,198 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="align-items-center">
-                        <h5 class="font-weight-bold text-primary m-0">MATRIZ PARTICIPACION</h5>
+                        <h5 class="font-weight-bold text-primary m-0">
+                            <i class="fa fa-chalkboard-teacher mr-2"></i>MATRIZ BCG - PARTICIPACIÓN Y CRECIMIENTO
+                        </h5>
                     </div>
                 </div>
 
                 <div class="card-body">
+                    @php
+                        // Determinar si todos los PRM son menores a 1
+                        $todosPRMMenores1 = true;
+                        foreach($Productos as $Item) {
+                            if($Item->PRM >= 1) {
+                                $todosPRMMenores1 = false;
+                                break;
+                            }
+                        }
+                        
+                        // Definir qué métrica usar para participación
+                        $metricaParticipacion = $todosPRMMenores1 ? 'Porcentaje' : 'PRM';
+                        $umbralParticipacion = $todosPRMMenores1 ? $PromPorcentaje : $PromPRM;
+                        $nombreMetrica = $todosPRMMenores1 ? 'Cuota de Mercado (%)' : 'Participación Relativa de Mercado (PRM)';
+                    @endphp
+
+                     <div class="alert alert-info mb-3">
+                        <i class="fa fa-info-circle"></i> 
+                        <strong>Métrica utilizada:</strong> {{ $nombreMetrica }} | 
+                        <strong>Umbral:</strong> {{ number_format($umbralParticipacion, 2) }}
+                        @if($todosPRMMenores1)
+                            <br><small class="text-muted">* Se utiliza Cuota de Mercado porque todos los valores PRM son menores a 1</small>
+                        @endif
+                    </div>
+                    
                     <div class="matrix-grid">
                         
-                        <!-- CUADRANTE INTERROGANTE -->
+                        <!-- CUADRANTE INTERROGANTE (Alto crecimiento, baja participación) -->
                         <div class="quadrant border-bottom">
-                            <h4 class="text-primary"><i class="fa fa-question mr-1"></i> INTERROGANTE</h4>
-                            <div class="mt-2">
+                            <h4 class="text-primary">
+                                <i class="fa fa-question-circle mr-1"></i> INTERROGANTE 
+                                <small class="text-muted">(Alto Crecimiento / Baja Participación)</small>
+                            </h4>
+                            <div class="mt-3">
+                                @php $interrogantes = 0; @endphp
                                 @foreach($Productos as $Item)
-                                @if($Item->PRM <= $PromPRM && $Item->TCM > $PromTCM)
-                                <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
-                                    <div><strong>{{ $Item->Nombre }}</strong></div>
-                                    <div class="d-flex">
-                                        <span class="badge badge-info mr-1">TCM {{ number_format((float)$Item->TCM, 2, '.', '') }}%</span>
-                                        <span class="badge badge-success">PRM {{ number_format((float)$Item->PRM, 2, '.', '') }}</span>
-                                        <span class="badge badge-light">{{ number_format((float)$Item->Porcentaje, 2, '.', '') }}% cuota</span>
-                                    </div>
-                                </div>
-                                @endif
+                                    @php
+                                        $participacion = $todosPRMMenores1 ? $Item->Porcentaje : $Item->PRM;
+                                        $cumpleCondicion = ($participacion < $umbralParticipacion && $Item->TCM >= $PromTCM);
+                                    @endphp
+                                    @if($cumpleCondicion)
+                                        @php $interrogantes++; @endphp
+                                        <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
+                                            <div><strong>{{ $Item->Nombre }}</strong></div>
+                                            <div class="d-flex flex-wrap">
+                                                <span class="badge badge-info mr-1">TCM: {{ number_format($Item->TCM, 2) }}%</span>
+                                                <span class="badge badge-success mr-1">
+                                                    {{ $todosPRMMenores1 ? 'Cuota:' : 'PRM:' }} 
+                                                    {{ number_format($participacion, 2) }}
+                                                    @if($todosPRMMenores1)%@endif
+                                                </span>
+                                                @if(!$todosPRMMenores1)
+                                                    <span class="badge badge-secondary">Cuota: {{ number_format($Item->Porcentaje, 2) }}%</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endif
                                 @endforeach
+                                
+                                @if($interrogantes == 0)
+                                    <div class="alert alert-info text-center py-3">
+                                        <i class="fa fa-info-circle"></i> No hay productos en este cuadrante
+                                    </div>
+                                @endif
                             </div>
-                            <hr class="my-2">
-                            <div class="small text-primary"><i class="fa fa-puzzle-piece"></i> Alto crecimiento de mercado pero participación baja. Requieren inversión selectiva.</div>
                         </div>
 
-                        <!-- CUADRANTE ESTRELLAS (alto crecimiento + alta participación relativa / peso en ventas) -->
+                        <!-- CUADRANTE ESTRELLAS (Alto crecimiento, alta participación) -->
                         <div class="quadrant border-right border-bottom">
-                            <h4 class="text-warning"><i class="fa fa-star mr-1"></i> ESTRELLAS</h4>
-                            <div class="mt-2">
+                            <h4 class="text-warning">
+                                <i class="fa fa-star mr-1"></i> ESTRELLAS 
+                                <small class="text-muted">(Alto Crecimiento / Alta Participación)</small>
+                            </h4>
+                            <div class="mt-3">
+                                @php $estrellas = 0; @endphp
                                 @foreach($Productos as $Item)
-                                @if($Item->PRM > $PromPRM && $Item->TCM > $PromTCM)
-                                <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
-                                    <div><strong>{{ $Item->Nombre }}</strong></div>
-                                    <div class="d-flex">
-                                        <span class="badge badge-info mr-1">TCM {{ number_format((float)$Item->TCM, 2, '.', '') }}%</span>
-                                        <span class="badge badge-success">PRM {{ number_format((float)$Item->PRM, 2, '.', '') }}</span>
-                                        <span class="badge badge-light">{{ number_format((float)$Item->Porcentaje, 2, '.', '') }}% cuota</span>
-                                    </div>
-                                </div>
-                                @endif
+                                    @php
+                                        $participacion = $todosPRMMenores1 ? $Item->Porcentaje : $Item->PRM;
+                                        $cumpleCondicion = ($participacion >= $umbralParticipacion && $Item->TCM >= $PromTCM);
+                                    @endphp
+                                    @if($cumpleCondicion)
+                                        @php $estrellas++; @endphp
+                                        <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
+                                            <div><strong>{{ $Item->Nombre }}</strong></div>
+                                            <div class="d-flex flex-wrap">
+                                                <span class="badge badge-info mr-1">TCM: {{ number_format($Item->TCM, 2) }}%</span>
+                                                <span class="badge badge-success mr-1">
+                                                    {{ $todosPRMMenores1 ? 'Cuota:' : 'PRM:' }} 
+                                                    {{ number_format($participacion, 2) }}
+                                                    @if($todosPRMMenores1)%@endif
+                                                </span>
+                                                @if(!$todosPRMMenores1)
+                                                    <span class="badge badge-secondary">Cuota: {{ number_format($Item->Porcentaje, 2) }}%</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endif
                                 @endforeach
+                                
+                                @if($estrellas == 0)
+                                    <div class="alert alert-warning text-center py-3">
+                                        <i class="fa fa-info-circle"></i> No hay productos en este cuadrante
+                                    </div>
+                                @endif
                             </div>
-                            <hr class="my-2">
-                            <div class="small text-muted"><i class="fa fa-bolt text-warning"></i> Alto crecimiento + alta participación relativa. Productos dominantes con potencial.</div>
                         </div>
 
-                        <!-- CUADRANTE PERROS (Dogs) -->
+                        <!-- CUADRANTE PERROS (Bajo crecimiento, baja participación) -->
                         <div class="quadrant">
-                            <h4 class="text-secondary"><i class="fas fa-dog mr-1"></i> PERROS</h4>
-                            <div class="mt-2">
+                            <h4 class="text-secondary">
+                                <i class="fas fa-dog mr-1"></i> PERROS 
+                                <small class="text-muted">(Bajo Crecimiento / Baja Participación)</small>
+                            </h4>
+                            <div class="mt-3">
+                                @php $perros = 0; @endphp
                                 @foreach($Productos as $Item)
-                                @if($Item->PRM <= $PromPRM && $Item->TCM <= $PromTCM)
-                                <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
-                                    <div><strong>{{ $Item->Nombre }}</strong></div>
-                                    <div class="d-flex">
-                                        <span class="badge badge-info mr-1">TCM {{ number_format((float)$Item->TCM, 2, '.', '') }}%</span>
-                                        <span class="badge badge-success">PRM {{ number_format((float)$Item->PRM, 2, '.', '') }}</span>
-                                        <span class="badge badge-light">{{ number_format((float)$Item->Porcentaje, 2, '.', '') }}% cuota</span>
-                                    </div>
-                                </div>
-                                @endif
+                                    @php
+                                        $participacion = $todosPRMMenores1 ? $Item->Porcentaje : $Item->PRM;
+                                        $cumpleCondicion = ($participacion < $umbralParticipacion && $Item->TCM < $PromTCM);
+                                    @endphp
+                                    @if($cumpleCondicion)
+                                        @php $perros++; @endphp
+                                        <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
+                                            <div><strong>{{ $Item->Nombre }}</strong></div>
+                                            <div class="d-flex flex-wrap">
+                                                <span class="badge badge-info mr-1">TCM: {{ number_format($Item->TCM, 2) }}%</span>
+                                                <span class="badge badge-success mr-1">
+                                                    {{ $todosPRMMenores1 ? 'Cuota:' : 'PRM:' }} 
+                                                    {{ number_format($participacion, 2) }}
+                                                    @if($todosPRMMenores1)%@endif
+                                                </span>
+                                                @if(!$todosPRMMenores1)
+                                                    <span class="badge badge-secondary">Cuota: {{ number_format($Item->Porcentaje, 2) }}%</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endif
                                 @endforeach
+                                
+                                @if($perros == 0)
+                                    <div class="alert alert-secondary text-center py-3">
+                                        <i class="fa fa-info-circle"></i> No hay productos en este cuadrante
+                                    </div>
+                                @endif
                             </div>
-                            <hr class="my-2">
-                            <div class="small text-muted"><i class="fas fa-ban"></i> Baja participación y crecimiento limitado. Reevaluar rentabilidad.</div>
                         </div>
 
-                        <!-- CUADRANTE VACAS LECHERAS (Cash Cow) -->
+                        <!-- CUADRANTE VACAS LECHERAS (Bajo crecimiento, alta participación) -->
                         <div class="quadrant border-right">
-                            <h4 class="text-success"><i class="fa fa-coffee mr-1"></i> VACAS LECHERAS</h4>
-                            <div class="mt-2">
+                            <h4 class="text-success">
+                                <i class="fa fa-coffee mr-1"></i> VACAS LECHERAS 
+                                <small class="text-muted">(Bajo Crecimiento / Alta Participación)</small>
+                            </h4>
+                            <div class="mt-3">
+                                @php $vacas = 0; @endphp
                                 @foreach($Productos as $Item)
-                                @if($Item->PRM > $PromPRM && $Item->TCM <= $PromTCM)
-                                <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
-                                    <div><strong>{{ $Item->Nombre }}</strong></div>
-                                    <div class="d-flex">
-                                        <span class="badge badge-info mr-1">TCM {{ number_format((float)$Item->TCM, 2, '.', '') }}%</span>
-                                        <span class="badge badge-success">PRM {{ number_format((float)$Item->PRM, 2, '.', '') }}</span>
-                                        <span class="badge badge-light">{{ number_format((float)$Item->Porcentaje, 2, '.', '') }}% cuota</span>
-                                    </div>
-                                </div>
-                                @endif
+                                    @php
+                                        $participacion = $todosPRMMenores1 ? $Item->Porcentaje : $Item->PRM;
+                                        $cumpleCondicion = ($participacion >= $umbralParticipacion && $Item->TCM < $PromTCM);
+                                    @endphp
+                                    @if($cumpleCondicion)
+                                        @php $vacas++; @endphp
+                                        <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded mb-2">
+                                            <div><strong>{{ $Item->Nombre }}</strong></div>
+                                            <div class="d-flex flex-wrap">
+                                                <span class="badge badge-info mr-1">TCM: {{ number_format($Item->TCM, 2) }}%</span>
+                                                <span class="badge badge-success mr-1">
+                                                    {{ $todosPRMMenores1 ? 'Cuota:' : 'PRM:' }} 
+                                                    {{ number_format($participacion, 2) }}
+                                                    @if($todosPRMMenores1)%@endif
+                                                </span>
+                                                @if(!$todosPRMMenores1)
+                                                    <span class="badge badge-secondary">Cuota: {{ number_format($Item->Porcentaje, 2) }}%</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endif
                                 @endforeach
+                                
+                                @if($vacas == 0)
+                                    <div class="alert alert-success text-center py-3">
+                                        <i class="fa fa-info-circle"></i> No hay productos en este cuadrante
+                                    </div>
+                                @endif
                             </div>
-                            <hr class="my-2">
-                            <div class="small text-success"><i class="fas fa-hand-holding-usd"></i> Bajo crecimiento aparente (estable), alta participación. Financian otros productos.</div>
                         </div>
                     </div>
                 </div>
@@ -113,16 +216,16 @@
                 <div class="card-body">
                     <div class="mb-4">
                         <div class="d-flex align-items-center mb-3">
-                        <div><strong class="d-block"><i class="fa fa-star mr-2 text-warning"></i> Estrellas</strong><small class="text-muted">Alto crecimiento + alta cuota. Invertir para mantener liderazgo.</small></div>
+                        <div><strong class="d-block"><i class="fa fa-star mr-2 text-warning"></i> Estrellas</strong><small class="text-muted">Alto crecimiento y alta participación. Mantener inversión, son el futuro de la empresa.</small></div>
                         </div>
                         <div class="d-flex align-items-center mb-3">
-                        <div><strong class="d-block"><i class="fa fa-question mr-2 text-primary"></i> Interrogación</strong><small class="text-muted">Alto crecimiento, baja cuota. Inversión selectiva o desinversión.</small></div>
+                        <div><strong class="d-block"><i class="fa fa-question mr-2 text-primary"></i> Interrogación</strong><small class="text-muted">Alto crecimiento pero baja participación. Invertir selectivamente para convertirlos en Estrellas.</small></div>
                         </div>
                         <div class="d-flex align-items-center mb-3">
-                        <div><strong class="d-block"><i class="fa fa-coffee mr-2 text-success"></i> Vacas lecheras</strong><small class="text-muted">Bajo crecimiento, alta cuota. Maximizar flujo de caja.</small></div>
+                        <div><strong class="d-block"><i class="fa fa-coffee mr-2 text-success"></i> Vacas lecheras</strong><small class="text-muted">Bajo crecimiento pero alta participación. Generan efectivo para financiar otros productos.</small></div>
                         </div>
                         <div class="d-flex align-items-center mb-3">
-                        <div><strong class="d-block"><i class="fas fa-dog mr-2 text-secondary"></i> Perros</strong><small class="text-muted">Baja participación, bajo crecimiento. Reasignar recursos.</small></div>
+                        <div><strong class="d-block"><i class="fas fa-dog mr-2 text-secondary"></i> Perros</strong><small class="text-muted">Baja participación y crecimiento. Considerar desinversión o eliminación.</small></div>
                         </div>
                     </div>
                     <hr>
@@ -164,131 +267,169 @@
                                 tcm.push(<?= json_encode($Item->TCM) ?>);
                                 prm.push(<?= json_encode($Item->PRM) ?>);
                             <?php } ?>
-                            
-                            // Umbrales: Alto crecimiento >= 6% , Alta participación relativa >= 0.52 (por encima de la media aproximada)
+
                             const ALTO_CRECIMIENTO = <?= $PromTCM ?>;
                             const ALTA_PRM = <?= $PromPRM ?>;
-                            
-                            // ------------------ GRÁFICO DE BURBUJAS (CHART.JS) ------------------
-                            
-                            const ctx = document.getElementById('bubbleChart').getContext('2d');
-                            
-                            // radios proporcionales a ventas (área ~ ventas)
-                            const maxVenta = Math.max(...ventas);
-                            const getRadius = (v) => {
-                                const minR = 8;
-                                const maxR = 26;
-                                const ratio = v / maxVenta;
-                                return minR + ratio * (maxR - minR);
-                            };
-                            const radii = ventas.map(v => getRadius(v));
-                            
-                            const bubbleData = {
-                                datasets: [{
-                                    label: 'Productos',
-                                    data: productos.map((_, idx) => ({
-                                        x: prm[idx],
-                                        y: tcm[idx],
-                                        r: radii[idx]
-                                    })),
-                                    backgroundColor: ['#f97316', '#3b82f6', '#8b5cf6', '#10b981', '#f59e0b'],
-                                    borderColor: '#ffffff',
-                                    borderWidth: 2,
-                                    hoverBorderWidth: 2.5,
-                                    hoverBorderColor: '#1e2b3c'
-                                }]
-                            };
-                            
-                            const options = {
-                                responsive: true,
-                                maintainAspectRatio: true,
-                                plugins: {
-                                    tooltip: {
-                                        callbacks: {
-                                            label: (context) => {
-                                                const idx = context.dataIndex;
-                                                if (idx === undefined) return '';
-                                                return [
-                                                    `${productos[idx]}`,
-                                                    `PRM: ${prm[idx].toFixed(2)}`,
-                                                    `TCM: ${tcm[idx].toFixed(1)}%`,
-                                                    `Ventas: ${ventas[idx]}`,
-                                                    `Cuota: ${pctVentas[idx]}%`
-                                                ];
-                                            }
-                                        },
-                                        backgroundColor: '#0f172ad9',
-                                        titleColor: '#f1f5f9'
-                                    },
-                                    datalabels: {
-                                        
-                                    },
-                                    legend: { display: false }
-                                },
-                                scales: {
-                                    x: {
-                                        title: { display: true, text: 'Participación Relativa de Mercado (PRM)', font: { size: 11, weight: 'bold' } },
-                                        ticks: { stepSize: 0.02, callback: (val) => val.toFixed(2) },
-                                        grid: { color: '#e2edf2' }
-                                    },
-                                    y: {
-                                        title: { display: true, text: 'Tasa de Crecimiento del Mercado (%)', font: { size: 11, weight: 'bold' } },
-                                        ticks: { stepSize: 1, callback: (val) => val + '%' },
-                                        grid: { color: '#e2edf2' }
-                                    }
-                                },
-                                layout: { padding: { top: 25, bottom: 15, left: 10, right: 15 } }
-                            };
-                            
-                            const bubbleChart = new Chart(ctx, {
-                                type: 'bubble',
-                                data: bubbleData,
-                                options: options
-                            });
-                            
-                            // Línea de referencia vertical/horizontal personalizada: umbral TCM
-                            const originalDraw = bubbleChart.draw;
-                            bubbleChart.draw = function() {
-                                originalDraw.apply(this, arguments);
-                                const ctxCanvas = this.ctx;
-                                const yScale = this.scales.y;
-                                const xScale = this.scales.x;
-                                if (yScale && this.chartArea) {
-                                    const yPos = yScale.getPixelForValue(ALTO_CRECIMIENTO);
-                                    ctxCanvas.save();
-                                    ctxCanvas.beginPath();
-                                    ctxCanvas.moveTo(this.chartArea.left, yPos);
-                                    ctxCanvas.lineTo(this.chartArea.right, yPos);
-                                    ctxCanvas.strokeStyle = '#f97316';
-                                    ctxCanvas.lineWidth = 2;
-                                    ctxCanvas.setLineDash([8, 6]);
-                                    ctxCanvas.stroke();
-                                    ctxCanvas.setLineDash([]);
-                                    ctxCanvas.font = 'bold 9px "Segoe UI"';
-                                    ctxCanvas.fillStyle = '#c2410c';
-                                    ctxCanvas.fillText('▲ Umbral TCM ≥ '+ALTO_CRECIMIENTO+'% (alto crecimiento)', this.chartArea.right - 170, yPos - 5);
-                                    
-                                    // línea vertical referencia PRM
-                                    if (xScale) {
-                                        const xPos = xScale.getPixelForValue(ALTA_PRM);
-                                        ctxCanvas.beginPath();
-                                        ctxCanvas.moveTo(xPos, this.chartArea.top);
-                                        ctxCanvas.lineTo(xPos, this.chartArea.bottom);
-                                        ctxCanvas.strokeStyle = '#2c6e9e';
-                                        ctxCanvas.lineWidth = 1.8;
-                                        ctxCanvas.setLineDash([5, 5]);
-                                        ctxCanvas.stroke();
-                                        ctxCanvas.fillStyle = '#1e5480';
-                                        ctxCanvas.font = 'bold 9px "Segoe UI"';
-                                        ctxCanvas.fillText('PRM = '+Number.parseFloat(ALTA_PRM).toFixed(2), xPos + 3, this.chartArea.top + 12);
-                                    }
-                                    ctxCanvas.restore();
+                            const ALTA_CUOTA = <?= $PromPorcentaje ?>;
+
+                            // Validar datos
+                            if (productos.length === 0) {
+                                console.error('No hay productos para mostrar');
+                                document.getElementById('bubbleChart').style.display = 'none';
+                                document.write('<p>No hay datos disponibles</p>');
+                            } else {
+                                // Gráfico de burbujas
+                                const ctx = document.getElementById('bubbleChart').getContext('2d');
+                                
+                                const maxVenta = Math.max(...ventas);
+                                const getRadius = (v) => {
+                                    const minR = 8;
+                                    const maxR = 26;
+                                    const ratio = v / maxVenta;
+                                    return minR + ratio * (maxR - minR);
+                                };
+                                const radii = ventas.map(v => getRadius(v));
+                                
+                                const todosPRMMenores1 = prm.every(valor => valor < 1);
+                                const tituloEjeX = todosPRMMenores1 
+                                    ? 'Participación de Mercado (%)' 
+                                    : 'Participación Relativa de Mercado (PRM)';
+                                
+                                let bubbleData;
+                                if(todosPRMMenores1) {
+                                    bubbleData = {
+                                        datasets: [{
+                                            label: 'Productos',
+                                            data: productos.map((_, idx) => ({
+                                                x: pctVentas[idx],
+                                                y: tcm[idx],
+                                                r: radii[idx]
+                                            })),
+                                            backgroundColor: '#3b82f6',
+                                            borderColor: '#ffffff',
+                                            borderWidth: 2,
+                                            hoverBorderWidth: 2.5,
+                                            hoverBorderColor: '#1e2b3c'
+                                        }]
+                                    };
+                                } else {
+                                    bubbleData = {
+                                        datasets: [{
+                                            label: 'Productos',
+                                            data: productos.map((_, idx) => ({
+                                                x: prm[idx],
+                                                y: tcm[idx],
+                                                r: radii[idx]
+                                            })),
+                                            backgroundColor: '#3b82f6',
+                                            borderColor: '#ffffff',
+                                            borderWidth: 2,
+                                            hoverBorderWidth: 2.5,
+                                            hoverBorderColor: '#1e2b3c'
+                                        }]
+                                    };
                                 }
-                            };
-                            bubbleChart.draw();
-                            
-                            // Ajuste en resize
-                            window.addEventListener('resize', () => bubbleChart.draw());
+                                
+                                const options = {
+                                    responsive: true,
+                                    maintainAspectRatio: true,
+                                    plugins: {
+                                        tooltip: {
+                                            callbacks: {
+                                                label: (context) => {
+                                                    const idx = context.dataIndex;
+                                                    if (idx === undefined) return '';
+                                                    return [
+                                                        `${productos[idx]}`,
+                                                        `PRM: ${prm[idx].toFixed(2)}`,
+                                                        `TCM: ${tcm[idx].toFixed(2)}%`,
+                                                        `Ventas: ${ventas[idx]}`,
+                                                        `Cuota: ${pctVentas[idx]}%`
+                                                    ];
+                                                }
+                                            },
+                                            backgroundColor: '#0f172ad9',
+                                            titleColor: '#f1f5f9'
+                                        },
+                                        legend: { display: false }
+                                    },
+                                    scales: {
+                                        x: {
+                                            title: { display: true, text: tituloEjeX, font: { size: 11, weight: 'bold' } },
+                                            ticks: { stepSize: 0.02, callback: (val) => val.toFixed(2) },
+                                            grid: { color: '#e2edf2' }
+                                        },
+                                        y: {
+                                            title: { display: true, text: 'Tasa de Crecimiento del Mercado (%)', font: { size: 11, weight: 'bold' } },
+                                            ticks: { stepSize: 1, callback: (val) => val + '%' },
+                                            grid: { color: '#e2edf2' }
+                                        }
+                                    },
+                                    layout: { padding: { top: 25, bottom: 15, left: 10, right: 15 } }
+                                };
+                                
+                                const bubbleChart = new Chart(ctx, {
+                                    type: 'bubble',
+                                    data: bubbleData,
+                                    options: options
+                                });
+                                
+                                // Líneas de referencia
+                                const originalDraw = bubbleChart.draw;
+                                bubbleChart.draw = function() {
+                                    originalDraw.apply(this, arguments);
+                                    const ctxCanvas = this.ctx;
+                                    const yScale = this.scales.y;
+                                    const xScale = this.scales.x;
+                                    if (yScale && this.chartArea) {
+                                        const yPos = yScale.getPixelForValue(ALTO_CRECIMIENTO);
+                                        ctxCanvas.save();
+                                        ctxCanvas.beginPath();
+                                        ctxCanvas.moveTo(this.chartArea.left, yPos);
+                                        ctxCanvas.lineTo(this.chartArea.right, yPos);
+                                        ctxCanvas.strokeStyle = '#f97316';
+                                        ctxCanvas.lineWidth = 2;
+                                        ctxCanvas.setLineDash([8, 6]);
+                                        ctxCanvas.stroke();
+                                        ctxCanvas.setLineDash([]);
+                                        ctxCanvas.font = 'bold 9px "Segoe UI"';
+                                        ctxCanvas.fillStyle = '#c2410c';
+                                        ctxCanvas.fillText('▲ Umbral TCM ≥ '+ALTO_CRECIMIENTO+'% (alto crecimiento)', this.chartArea.right - 170, yPos - 5);
+                                        
+                                        if (xScale) {
+                                            if(todosPRMMenores1) {
+                                                const xPos = xScale.getPixelForValue(ALTA_CUOTA);
+                                                ctxCanvas.beginPath();
+                                                ctxCanvas.moveTo(xPos, this.chartArea.top);
+                                                ctxCanvas.lineTo(xPos, this.chartArea.bottom);
+                                                ctxCanvas.strokeStyle = '#2c6e9e';
+                                                ctxCanvas.lineWidth = 1.8;
+                                                ctxCanvas.setLineDash([5, 5]);
+                                                ctxCanvas.stroke();
+                                                ctxCanvas.fillStyle = '#1e5480';
+                                                ctxCanvas.font = 'bold 9px "Segoe UI"';
+                                                ctxCanvas.fillText('▶ Umbral Cuota de Mercado ≥ '+Number.parseFloat(ALTA_CUOTA).toFixed(2)+'%', xPos + 3, this.chartArea.top + 12);
+                                            } else {
+                                                const xPos = xScale.getPixelForValue(ALTA_PRM);
+                                                ctxCanvas.beginPath();
+                                                ctxCanvas.moveTo(xPos, this.chartArea.top);
+                                                ctxCanvas.lineTo(xPos, this.chartArea.bottom);
+                                                ctxCanvas.strokeStyle = '#2c6e9e';
+                                                ctxCanvas.lineWidth = 1.8;
+                                                ctxCanvas.setLineDash([5, 5]);
+                                                ctxCanvas.stroke();
+                                                ctxCanvas.fillStyle = '#1e5480';
+                                                ctxCanvas.font = 'bold 9px "Segoe UI"';
+                                                ctxCanvas.fillText('▶ Umbral PRM ≥ '+Number.parseFloat(ALTA_PRM).toFixed(2), xPos + 3, this.chartArea.top + 12);
+                                            }
+                                        }
+                                        ctxCanvas.restore();
+                                    }
+                                };
+                                bubbleChart.draw();
+                                
+                                window.addEventListener('resize', () => bubbleChart.draw());
+                            }
                         </script>
                     </div>
                 </div>
@@ -328,14 +469,14 @@
                                 responsive: true,
                                 maintainAspectRatio: true,
                                 plugins: {
-                                    legend: { position: 'top', labels: { font: { size: 10 } } },
+                                    legend: { display: false, position: 'top', labels: { font: { size: 10 } } },
                                     tooltip: { callbacks: { label: (ctx) => `Impacto: ${ctx.raw} pts` } }
                                 },
                                 scales: {
                                     y: { 
                                     beginAtZero: true, 
                                     max: 100,
-                                    title: { display: true, text: 'Nivel de impacto de factores generales externos', font: { size: 10 } },
+                                    title: { display: true, text: 'Nivel de impacto de factores generales externos', font: { size: 12 } },
                                     grid: { color: '#cfdfe5' }
                                     },
                                     x: { ticks: { font: { weight: 'bold', size: 11 } } }

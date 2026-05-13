@@ -113,10 +113,8 @@ Route::prefix('plan')->group(function () {
 //Usuario
 Route::prefix('usuario')->group(function () {
     Route::get('/listar', 'UsuarioController@Listar');
-    Route::get('/agregar', 'UsuarioController@FrmAgregar');
-    Route::get('/editar/{UsuarioId}', 'UsuarioController@FrmEditar');
-    Route::post('/actagregar', 'UsuarioController@ActAgregar');
-    Route::post('/acteditar', 'UsuarioController@ActEditar');
+    Route::post('/add_usuario', 'UsuarioController@Agregar');
+    Route::post('/edit_usuario', 'UsuarioController@Editar');
 });
 
 //Perfil
