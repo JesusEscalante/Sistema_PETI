@@ -89,7 +89,7 @@ Route::prefix('analisis')->group(function () {
     Route::post('/pest_calcular', 'AnalisisController@CalcularPEST');
     // -- END ANALISIS - PEST ----------------------------------
     // -- START ANALISIS - CAME ----------------------------------
-    Route::get('/came', 'AnalisisController@CAME');
+    Route::get('/came/{PlanId}', 'AnalisisController@CAME');
     Route::post('/save_came', 'AnalisisController@GuardarCAME');
     // -- END ANALISIS - CAME ----------------------------------
 
@@ -98,7 +98,7 @@ Route::prefix('analisis')->group(function () {
 
 //Estrategia
 Route::prefix('estrategia')->group(function () {
-    Route::get('/identificacion', 'EstrategiaController@Identificacion');
+    Route::get('/identificacion/{PlanId}', 'EstrategiaController@Identificacion');
     Route::post('/identificacion_calcular', 'EstrategiaController@CalcularIdentificacion');
 });
 
@@ -108,6 +108,9 @@ Route::prefix('plan')->group(function () {
     Route::get('/add_plan', 'PlanController@AgregarPlan');
     Route::post('/save_conclucion', 'PlanController@GuardarConclucion');
     Route::get('/detalle/{PlanId}', 'PlanController@Detalle');
+    Route::get('/delete_plan/{PlanId}', 'PlanController@EliminarPlan');
+    Route::post('/add_colaborador', 'PlanController@AgregarColaborador');
+    Route::get('/delete_colaborador/{ColaboradorId}', 'PlanController@EliminarColaborador');
 });
 
 //Usuario

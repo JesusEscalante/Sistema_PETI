@@ -25,36 +25,23 @@ class UsuarioController extends Controller
             $ObjUsuario->Nombre = $request->input('nombre');
             $ObjUsuario->Apellido = $request->input('apellido');
             $ObjUsuario->Correo = $request->input('correo');
-            $ObjUsuario->Password = bcrypt('gestion'); // Encripta la contraseña por defecto.
+            $ObjUsuario->password = bcrypt('gestion'); // Encripta la contraseña por defecto.
             $ObjUsuario->Avatar = 1; // Asigna un avatar por defecto.
             $ObjUsuario->Rol = $request->input('rol');
             $ObjUsuario->Estado = 1;
 
-            $apiKey = "6cf6bcb50d7acdbc892c9f63efcb06cde738f768";
-            $url = "https://api.hunter.io/v2/email-verifier?email=" . urlencode($ObjUsuario->Correo) . "&api_key=" . $apiKey;
-            $response = file_get_contents($url);
-            $data = json_decode($response, true);
-
-            if ($data['data']['status'] = "valid"){
-                if(Usuario::ObtenerPorCorreo($ObjUsuario->Correo) == null) 
-                {
-                    if(Usuario::Agregar($ObjUsuario) > 0){
-                        session_start();
-                        $_SESSION["ALERTA"] = "success";
-                        $_SESSION["MENSAJE"] = "Se agrego correctamente el Usuario";
-
-                        return redirect()->action('UsuarioController@Listar');
-                    }
-                }else{
+            if(Usuario::ObtenerPorCorreo($ObjUsuario->Correo) == null) 
+            {
+                if(Usuario::Agregar($ObjUsuario)){
                     session_start();
-                    $_SESSION["ALERTA"] = "error";
-                    $_SESSION["MENSAJE"] = "El correo ya se encuentra registrado";
+                    $_SESSION["ALERTA"] = "success";
+                    $_SESSION["MENSAJE"] = "Se agrego correctamente el Usuario";
                     return redirect()->action('UsuarioController@Listar');
                 }
-            } else {
+            }else{
                 session_start();
                 $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "El correo no existe";
+                $_SESSION["MENSAJE"] = "El correo ya se encuentra registrado";
                 return redirect()->action('UsuarioController@Listar');
             }
         } 

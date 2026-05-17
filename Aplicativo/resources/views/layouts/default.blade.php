@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Sistema de Gestion de Planes Estratégicos de TI</title>
+    <title>SisPETI</title>
     <meta name="description" content="Sistema de Gestion de Proyectos">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,16 +41,13 @@
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      @if(Route::current()->getPrefix() == "/doc")
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="/assets/img/avatar-{{ auth()->user()->Avatar }}.jpg" alt="User Image">
-      @else
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="../../assets/img/avatar-{{ auth()->user()->Avatar }}.jpg" alt="User Image">
-      @endif
-        <div>
-            <?php 
-                $Nombre = explode(" ", auth()->user()->Nombre);
-                $Apellido = explode(" ", auth()->user()->Apellido);
-            ?>
+      <?php 
+          $Nombre = explode(" ", auth()->user()->Nombre);
+          $Apellido = explode(" ", auth()->user()->Apellido);
+      ?>
+      <div class="app-sidebar__user">
+        <img class="app-sidebar__user-avatar" src="https://ui-avatars.com/api/?background=3949A3&color=fff&name={{ $Nombre[0] }} {{ $Apellido[0] }}" alt="User Image">
+        <div> 
           <p class="app-sidebar__user-name">{{ $Nombre[0] }} {{ $Apellido[0] }}</p>
         </div>
       </div>

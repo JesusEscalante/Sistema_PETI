@@ -10,6 +10,8 @@ $modulo = explode("/", $actual_link);
 
         <hr>
 
+        @if(auth()->user()->Rol == "Administrador" || auth()->user()->Rol == "Editor")
+
         <li><a class="app-menu__item <?= $modulo[2] == "cadena" ? "active" : "" ?>" href="/analisis/cadena"><i class="app-menu__icon fa fa-check"></i><span class="app-menu__label">Analisis de Cadena de Valor</span></a></li>
 
         <li><a class="app-menu__item <?= $modulo[2] == "participacion" ? "active" : "" ?>" href="/analisis/participacion"><i class="app-menu__icon fa fa-check"></i><span class="app-menu__label">Analisis de Participación</span></a></li>
@@ -25,14 +27,9 @@ $modulo = explode("/", $actual_link);
         <li><a class="app-menu__item <?= $modulo[2] == "externo" ? "active" : "" ?>" href="/analisis/externo"><i class="app-menu__icon fa fa-search"></i><span class="app-menu__label">Analisis Externo</span></a></li>
 
         <hr>
+        @endif
 
         <li><a class="app-menu__item <?= $modulo[2] == "graficos" ? "active" : "" ?>" href="/analisis/graficos"><i class="app-menu__icon fa fa-line-chart"></i><span class="app-menu__label">Graficos</span></a></li>
-
-        <hr>
-        
-        <li><a class="app-menu__item <?= $modulo[1] == "estrategia" ? "active" : "" ?>" href="/estrategia/identificacion"><i class="app-menu__icon fa fa-check"></i><span class="app-menu__label">Identificación de Estrategia</span></a></li>
-
-        <li><a class="app-menu__item <?= $modulo[2] == "came" ? "active" : "" ?>" href="/analisis/came"><i class="app-menu__icon fa fa-search"></i><span class="app-menu__label">Matriz CAME</span></a></li>
 
         <hr>
 

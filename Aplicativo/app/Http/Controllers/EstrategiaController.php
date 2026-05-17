@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class EstrategiaController extends Controller
 {
-    public function Identificacion(){
+    public function Identificacion($PlanId){
         $ObjFortalezas = Fortalezas::Listar();
         $ObjDebilidades = Debilidades::Listar();
         $ObjOportunidades = Oportunidades::Listar();
@@ -88,7 +88,13 @@ class EstrategiaController extends Controller
         }
 
         $ObjFoda = Foda::Listar();
-        $ObjEstrategia = Estrategia::ObtenerPorId(1);
+        if(Estrategia::ObtenerPorPlanId($PlanId)) {
+            $ObjEstrategia = Estrategia::ObtenerPorPlanId($PlanId);
+        } else {
+            $ObjEstrategia = new Estrategia();
+            $ObjEstrategia->PlanId = $PlanId;
+            $ObjEstrategia->RelacionEstrategia = "SE";
+        }
 
         return view('Estrategia.Identificacion',[
             'Fortalezas' => $ObjFortalezas,
@@ -96,7 +102,8 @@ class EstrategiaController extends Controller
             'Oportunidades' => $ObjOportunidades,
             'Amenazas' => $ObjAmenazas,
             'Foda' => $ObjFoda,
-            'Estrategia' => $ObjEstrategia
+            'Estrategia' => $ObjEstrategia,
+            'PlanId' => $PlanId
         ]);
     }
 
@@ -224,15 +231,10 @@ class EstrategiaController extends Controller
 
             if($SumaFO == 0 && $SumaFA == 0 && $SumaDO == 0 && $SumaDA == 0)
             {
-                $ObjEstrategia = Estrategia::ObtenerPorId(1);
-                $ObjEstrategia->Estrategia = "NA";
-                $ObjEstrategia->Tipo = "SA";
-                $ObjEstrategia->Descripcion = "SA";
-                Estrategia::Editar($ObjEstrategia);
                 session_start();
                 $_SESSION["ALERTA"] = "warning";
                 $_SESSION["MENSAJE"] = "Debe ingresar al menos un valor para identificar la estrategia";
-                return redirect()->action('EstrategiaController@Identificacion');
+                return redirect()->action('EstrategiaController@Identificacion', ['PlanId' => $request->input('planid')]);
             }
             else
             {
@@ -245,33 +247,19 @@ class EstrategiaController extends Controller
 
                 $Estrategia = array_keys($valores, max($valores))[0];
 
-                $ObjEstrategia = Estrategia::ObtenerPorId(1);
-                $ObjEstrategia->Estrategia = $Estrategia;
-                switch($Estrategia)
-                {
-                    case 'FO':
-                        $ObjEstrategia->Tipo = "ESTRATEGIA OFENSIVA";
-                        $ObjEstrategia->Descripcion = "Deberá adoptar estrategias de crecimiento.";
-                        break;
-                    case 'FA':
-                        $ObjEstrategia->Tipo = "ESTRATEGIA DEFENSIVA";
-                        $ObjEstrategia->Descripcion = "La empresa está preparada para enfrentarse a las amenazas.";
-                        break;
-                    case 'DO':
-                        $ObjEstrategia->Tipo = "ESTRATEGIA DE REORIENTACIÓN";
-                        $ObjEstrategia->Descripcion = "La empresa no puede aprovechar las oportunidades porque carece de preparación adecuada.";
-                        break;
-                    case 'DA':
-                        $ObjEstrategia->Tipo = "ESTRATEGIA DE SUPERVIVENCIA";
-                        $ObjEstrategia->Descripcion = "Se enfrenta a amenazas externas sin las fortalezas necesarias para luchar con la competencia.";
-                        break;
+                if($ObjEstrategia = Estrategia::ObtenerPorPlanId($request->input('planid'))){
+                    $ObjEstrategia->RelacionEstrategia = $Estrategia;
+                    Estrategia::Editar($ObjEstrategia);
+                } else {
+                    $ObjEstrategia = new Estrategia();
+                    $ObjEstrategia->PlanId = $request->input('planid');
+                    $ObjEstrategia->RelacionEstrategia = $Estrategia;
+                    Estrategia::Agregar($ObjEstrategia);
                 }
-                Estrategia::Editar($ObjEstrategia);
-
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se identificó la estrategia correctamente";
-                return redirect()->action('EstrategiaController@Identificacion');
+                return redirect()->action('EstrategiaController@Identificacion', ['PlanId' => $request->input('planid')]);
             }            
         }
         catch(\Exception $e)
@@ -279,7 +267,7 @@ class EstrategiaController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "Ocurrió un error al identificar la estrategia";
-            return redirect()->action('EstrategiaController@Identificacion');
+            return redirect()->action('EstrategiaController@Identificacion', ['PlanId' => $request->input('planid')]);
         }
     }
 }

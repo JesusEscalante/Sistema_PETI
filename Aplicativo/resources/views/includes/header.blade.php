@@ -1,16 +1,10 @@
 <!-- Navbar-->
-<header class="app-header"><a class="app-header__logo" href="{{ url('grupos/index') }}" title="Gestion de la Configuración de Software">SGP</a>
+<header class="app-header"><a class="app-header__logo" href="{{ url('empresa/home') }}" title="Sistema de Gestion de Planes Estratégicos de TI">SisPETI</a>
       <!-- Sidebar toggle button-->
       <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
         <!-- User Menu-->
-
-        <!--li class="dropdown">
-          <a class="app-nav__item" href="#" id="openOffcanvas">
-            <i class="fa fa-users fa-lg"></i>
-          </a>          
-        </li-->
 
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">

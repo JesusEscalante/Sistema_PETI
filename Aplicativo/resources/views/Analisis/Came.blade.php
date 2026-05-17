@@ -17,6 +17,7 @@
             </div>
             <div class="table-responsive">
                 <form class="form" action="/analisis/save_came" method="POST">
+                <input type="hidden" name="planid" value="{{ $PlanId }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <table class="table table-bordered">
                     <thead class="table-light">
@@ -24,6 +25,7 @@
                             <th></th>
                             <th class="text-center align-middle" width="10%">Acciones</th>
                             <th class="text-center">Corregir las Debilidades</th>
+                            <th class="text-center" width="5%">Detalle</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +39,9 @@
                                         <td class="text-center align-middle">A{{ $C->Id }}</td>
                                         <td>
                                             <input type="text" class="form-control" name="{{ $C->Tipo }}" value="{{ $C->Accion }}">
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-outline-secondary"></a>
                                         </td>
                                     </tr>
                                 @endif

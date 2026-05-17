@@ -19,7 +19,33 @@ class PlanEstrategico extends Model
 
     public static function Listar()
     {
-        return PlanEstrategico::all();
+        return PlanEstrategico::orderBy('Id', 'DESC')->get();
+    }
+
+    public static function ListarPorUsuario()
+    {
+        return PlanEstrategico::from('plan_estrategico as pe')
+            ->select('pe.Id', 'pe.Fecha', 'pe.Contenido', 'pe.Conclucion', 'pe.UsuarioId', 'u.Nombre', 'u.Apellido', 'u.Correo', 'u.Rol', 'u.Estado')
+            ->join('usuario as u', 'u.Id', '=', 'pe.UsuarioId')
+            ->where('pe.UsuarioId', auth()->user()->Id)
+            ->get();
+    }
+
+    public static function ListarPorColaborador()
+    {
+        return DB::table('colaboradores as c')
+            ->select('c.Id', 'c.PlanId', 'pe.Fecha', 'pe.Contenido', 'pe.Conclucion')
+            ->join('plan_estrategico as pe', 'pe.Id', '=', 'c.PlanId')
+            ->where('c.UsuarioId', auth()->user()->Id)
+            ->get();
+    }
+
+    public static function ListarColaboradores()
+    {
+        return DB::table('colaboradores as c')
+            ->select('c.Id', 'c.PlanId', 'c.UsuarioId', 'u.Nombre', 'u.Apellido', 'u.Correo', 'u.Rol', 'u.Estado')
+            ->join('usuario as u', 'u.Id', '=', 'c.UsuarioId')
+            ->get();
     }
 
     public static function Agregar(PlanEstrategico $ObjPlan)
@@ -48,6 +74,15 @@ class PlanEstrategico extends Model
     public static function ObtenerPorId($PlanId)
     {
         return PlanEstrategico::find($PlanId);
+    }
+
+    public static function ObtenerColaboradoresPorPlanId($PlanId)
+    {
+        return DB::table('colaboradores as c')
+            ->select('c.Id', 'c.PlanId', 'c.UsuarioId', 'u.Nombre', 'u.Apellido', 'u.Correo', 'u.Rol', 'u.Estado')
+            ->join('usuario as u', 'u.Id', '=', 'c.UsuarioId')
+            ->where('c.PlanId', '=', $PlanId)
+            ->get();
     }
 }
 

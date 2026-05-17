@@ -50,9 +50,16 @@ class Came extends Model
         return Came::find($CameId);
     }
 
-    public static function ObtenerPorTipo($Tipo)
+    public static function ObtenerPorPlanId($PlanId)
     {
-        return Came::where('Tipo', $Tipo)->first();
+        return Came::where('PlanId', $PlanId)->get();
+    }
+
+    public static function ObtenerPorTipo($PlanId, $Tipo)
+    {
+        return Came::where('PlanId', $PlanId)
+                    ->where('Tipo', $Tipo)
+                    ->first();
     }
 }
 

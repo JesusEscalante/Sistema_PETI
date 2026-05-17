@@ -20,6 +20,7 @@
 
                     <form method="POST" action="/estrategia/identificacion_calcular">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="planid" value="{{ $PlanId }}">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="row align-items-center">
@@ -290,22 +291,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="{{ $Estrategia->Estrategia == 'FO' ? 'table-success' : '' }}">
+                <tr class="{{ $Estrategia->RelacionEstrategia == 'FO' ? 'table-success' : '' }}">
                     <td class="text-center"><strong>FO</strong></td>
                     <td class="text-center">OFENSIVA</td>
                     <td>Deberá adoptar estrategias de crecimiento.</td>
                 </tr>
-                <tr class="{{ $Estrategia->Estrategia == 'FA' ? 'table-success' : '' }}">
+                <tr class="{{ $Estrategia->RelacionEstrategia == 'FA' ? 'table-success' : '' }}">
                     <td class="text-center"><strong>FA</strong></td>
                     <td class="text-center">DEFENSIVA</td>
                     <td>La empresa está preparada para enfrentarse a las amenazas.</td>
                 </tr>
-                <tr class="{{ $Estrategia->Estrategia == 'DO' ? 'table-success' : '' }}">
+                <tr class="{{ $Estrategia->RelacionEstrategia == 'DO' ? 'table-success' : '' }}">
                     <td class="text-center"><strong>DO</strong></td>
                     <td class="text-center">REORIENTACIÓN</td>
                     <td>La empresa no puede aprovechar las oportunidades porque carece de preparación adecuada.</td>
                 </tr>
-                <tr class="{{ $Estrategia->Estrategia == 'DA' ? 'table-success' : '' }}">
+                <tr class="{{ $Estrategia->RelacionEstrategia == 'DA' ? 'table-success' : '' }}">
                     <td class="text-center"><strong>DA</strong></td>
                     <td class="text-center">SUPERVIVENCIA</td>
                     <td>Se enfrenta a amenazas externas sin las fortalezas necesarias para luchar con la competencia.</td>
