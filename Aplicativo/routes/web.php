@@ -74,7 +74,6 @@ Route::prefix('analisis')->group(function () {
     Route::post('/edit_producto', 'AnalisisController@EditarProducto');
     Route::get('/delete_producto/{ProductoId}', 'AnalisisController@EliminarProducto');
     Route::post('/add_periodo', 'AnalisisController@AgregarPeriodo');
-    Route::get('/delete_periodo/{PeriodoId}', 'AnalisisController@EliminarPeriodo');
     Route::post('/save_tcm', 'AnalisisController@GuardarTCM');
     Route::post('/save_edgs', 'AnalisisController@GuardarEDGS');
     Route::get('/add_competidor', 'AnalisisController@AgregarCompetidor');

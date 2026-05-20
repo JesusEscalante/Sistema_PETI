@@ -724,27 +724,6 @@ class AnalisisController extends Controller
         }
     }
 
-    public function EliminarPeriodo($PeriodoId)
-    {
-        try
-        {
-            $ObjPeriodo = Periodos::ObtenerPorId($PeriodoId);
-            Periodos::Eliminar($ObjPeriodo);
-            session_start();
-            $_SESSION["ALERTA"] = "success";
-            $_SESSION["MENSAJE"] = "Se eliminó correctamente el periodo";
-            return redirect()->action('AnalisisController@Participacion');
-
-        }
-        catch (\Illuminate\Database\QueryException $e)
-        {
-            session_start();
-            $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo eliminar el periodo";
-            return redirect()->action('AnalisisController@Participacion');
-        }
-    }
-
     public function GuardarTCM(Request $request)
     {
         try
