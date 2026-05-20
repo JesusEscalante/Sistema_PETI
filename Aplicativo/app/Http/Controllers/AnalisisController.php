@@ -706,21 +706,20 @@ class AnalisisController extends Controller
         try
         {
             $desde = $request->input('desde');
-            if (!is_null($request->input('hasta'))) {
-                $hasta = $request->input('hasta');
+            $hasta = $request->input('hasta');
 
-                for($i = $desde; $i <= $hasta; $i++){
-                    if($objPeriodo = Periodos::ObtenerPorPeriodo($i)){
-
-                    }
-                }
-            }
+            if(Periodos::Modificar($desde, $hasta) == 1){
+                session_start();
+                $_SESSION["ALERTA"] = "success";
+                $_SESSION["MENSAJE"] = "Se modifico correctamente los periodos";
+                return redirect()->action('AnalisisController@Participacion');
+            }            
         }
         catch (\Illuminate\Database\QueryException $e)
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo agregar el periodo";
+            $_SESSION["MENSAJE"] = "No se pudo modificar los periodos";
             return redirect()->action('AnalisisController@Participacion');
         }
     }

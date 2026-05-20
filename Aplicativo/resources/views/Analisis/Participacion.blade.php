@@ -184,13 +184,13 @@
                                                     <div class="form-group">
                                                         <label for="desde"><strong>Desde:</strong></label>
                                                         <input type="number" class="form-control" name="desde" id="desde" 
-                                                            title="Desde" min="{{ date('Y') - 10 }}" max="{{ date('Y') }}">
+                                                            title="Desde" min="{{ date('Y') - 10 }}" max="{{ date('Y') }}" required>
                                                         <small class="text-muted">Año entre {{ date('Y') - 10 }} y {{ date('Y') }}</small>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="hasta"><strong>Hasta:</strong></label>
                                                         <input type="number" class="form-control" name="hasta" id="hasta" 
-                                                            title="Hasta" max="{{ date('Y') }}">
+                                                            title="Hasta" max="{{ date('Y') }}" required>
                                                         <small id="hastaHelp" class="text-muted">Debe ser mayor que "Desde"</small>
                                                     </div>
 
@@ -216,7 +216,7 @@
                                                                 if (!isNaN(desdeVal) && !isNaN(hastaVal)) {
                                                                     if (hastaVal <= desdeVal) {
                                                                         mostrarAyuda('El año "Hasta" debe ser mayor que "' + desdeVal + '"', 'error');
-                                                                        hasta.setCustomValidity('El año Hasta debe ser mayor que Desde');
+                                                                        hasta.setCustomValidity('El año Hasta debe ser mayor que el año Desde');
                                                                     } else if (hastaVal > maxAnio) {
                                                                         mostrarAyuda('El año no puede superar ' + maxAnio, 'warning');
                                                                         hasta.setCustomValidity('Máximo ' + maxAnio);
@@ -231,7 +231,7 @@
                                                                     mostrarAyuda('Ingrese un año "Desde" válido (' + minDesde + ' - ' + maxAnio + ')', 'error');
                                                                     hasta.setCustomValidity('');
                                                                 } else if (desde.value === '') {
-                                                                    mostrarAyuda('Primero complete el año "Desde" o déjelo vacío', 'info');
+                                                                    mostrarAyuda('Primero complete el año "Desde"', 'info');
                                                                     hasta.setCustomValidity('');
                                                                 } else {
                                                                     mostrarAyuda('Debe ser mayor que "Desde"', 'muted');
