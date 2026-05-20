@@ -39,9 +39,10 @@ class LoginController extends Controller
     }
 
     // Método para mostrar el perfil de un usuario.
-    public function FrmPerfil($UsuarioId)
+    public function FrmPerfil()
     {
-        $ObjUsuario = Usuario::ObtenerPorId($UsuarioId); // Obtiene el usuario por su ID.
+        $UsuarioId = auth()->user()->Id;
+        $ObjUsuario = Usuario::ObtenerPorId($UsuarioId);
         return view('auth.Perfil',[
             'Usuario' => $ObjUsuario
         ]);// Retorna la vista 'auth.Perfil' con los datos del usuario.
@@ -58,7 +59,6 @@ class LoginController extends Controller
             if($request->input('Password') != ""){
                 $ObjUsuario->password = bcrypt($request->input('Password')); // Encripta y actualiza la contraseña.
             }
-            $ObjUsuario->Avatar = $request->input('Avatar'); // Actualiza el avatar del usuario.
             if(Usuario::Editar($ObjUsuario) > 0)// Intenta guardar los cambios en la base de datos.
             {
                 session_start(); // Inicia la sesión

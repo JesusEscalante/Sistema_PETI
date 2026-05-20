@@ -18,9 +18,14 @@
                     <div class="form-group">
                         <label for="TxtNombre"><b>Nombre de la Empresa:</b></label>
                         <div class="row">
+                            @if(auth()->user()->Rol == "Administrador")
                             <div class="col-lg-11">
+                            @else
+                            <div class="col-lg-12">
+                            @endif
                                 <input type="text" class="form-control" id="TxtNombre" value="{{$Empresa->Nombre}}" readonly>
                             </div>
+                            @if(auth()->user()->Rol == "Administrador")
                             <div class="col-lg-1 text-center pl-0">
                                 <a href="#" class="btn btn-light btn-sm" title="Editar" data-toggle="modal" data-target="#EditNombre"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
                             </div>
@@ -51,15 +56,21 @@
                                 </div>
                             </div>
                             <!-- Editar Modal-->
+                             @endif
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="TxtDescripcion"><b>Descripción de la Empresa:</b></label>
                         <div class="row">
+                            @if(auth()->user()->Rol == "Administrador")
                             <div class="col-lg-11">
+                            @else
+                            <div class="col-lg-12">
+                            @endif
                                 <textarea class="form-control" id="TxtDescripcion" rows="5" readonly>{{$Empresa->Descripcion}}</textarea>
                             </div>
+                            @if(auth()->user()->Rol == "Administrador")
                             <div class="col-lg-1 text-center pl-0">
                                 <a href="#" class="btn btn-light btn-sm" title="Editar" data-toggle="modal" data-target="#EditDescripcion"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
                             </div>
@@ -89,15 +100,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Editar Modal-->
+                            @endif
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="TxtMision"><b>Misión de la Empresa:</b></label>
                         <div class="row">
+                            @if(auth()->user()->Rol == "Administrador")
                             <div class="col-lg-11">
+                            @else
+                            <div class="col-lg-12">
+                            @endif
                                 <textarea class="form-control" id="TxtMision" rows="5" readonly>{{$Empresa->Mision}}</textarea>
                             </div>
+                            @if(auth()->user()->Rol == "Administrador")
                             <div class="col-lg-1 text-center pl-0">
                                 <a href="#" class="btn btn-light btn-sm" title="Editar" data-toggle="modal" data-target="#EditMision"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
                             </div>
@@ -127,15 +145,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Editar Modal-->
+                            @endif
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="TxtVision"><b>Visión de la Empresa:</b></label>
                         <div class="row">
+                            @if(auth()->user()->Rol == "Administrador")
                             <div class="col-lg-11">
+                            @else
+                            <div class="col-lg-12">
+                            @endif
                                 <textarea class="form-control" id="TxtVision" rows="5" readonly>{{$Empresa->Vision}}</textarea>
                             </div>
+                            @if(auth()->user()->Rol == "Administrador")
                             <div class="col-lg-1 text-center pl-0">
                                 <a href="#" class="btn btn-light btn-sm" title="Editar" data-toggle="modal" data-target="#EditVision"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
                             </div>
@@ -165,6 +190,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Editar Modal-->
+                            @endif
                         </div>
                     </div>
 
@@ -176,6 +203,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-sm-12"><h5 class="font-weight-bold text-primary">Unidades Estratégicas de la Empresa</h5></div>
                         <div class="col-lg-6 col-sm-12 d-flex justify-content-end row">
+                            @if(auth()->user()->Rol == "Administrador")
                             <a href="#" class="btn btn-primary btn-icon-split ml-1" data-toggle="modal" data-target="#AddUnidad">
                                 <i class="fa fa-plus"></i>
                                 <span class="text">Agregar</span>
@@ -206,6 +234,7 @@
                                 </div>
                             </div>
                             <!-- Agregar Modal-->
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -216,13 +245,16 @@
                             <thead class="bg-gray-100">
                                 <tr>
                                     <th>Unidad Estratégica</th>
+                                    @if(auth()->user()->Rol == "Administrador")
                                     <th width="20%"><center>Acciones</center></th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($UnidadesEstrategicas as $Unidad)
                                 <tr>
                                     <td>{{ $Unidad->Unidad }}</td>
+                                    @if(auth()->user()->Rol == "Administrador")
                                     <td class="text-center">
                                         <a href="#" class="btn btn-success btn-sm text-uppercase" title="Editar" data-toggle="modal" data-target="#EditUnidad{{ $Unidad->Id }}"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
                                         <!-- Editar Modal-->
@@ -273,6 +305,7 @@
                                         </div>
                                         <!-- Delete Modal-->
                                     </td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -291,6 +324,7 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-6 col-sm-12"><h5 class="font-weight-bold text-primary">Valores de la Empresa</h5></div>
                                 <div class="col-lg-6 col-sm-12 d-flex justify-content-end row">
+                                    @if(auth()->user()->Rol == "Administrador")
                                     <a href="#" class="btn btn-primary btn-icon-split ml-1" data-toggle="modal" data-target="#AddValor">
                                         <i class="fa fa-plus"></i>
                                         <span class="text">Agregar</span>
@@ -321,6 +355,7 @@
                                         </div>
                                     </div>
                                     <!-- Agregar Modal-->
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -331,13 +366,16 @@
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th>Valor</th>
+                                            @if(auth()->user()->Rol == "Administrador")
                                             <th width="20%"><center>Acciones</center></th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($Valores as $Valor)
                                         <tr>
                                             <td>{{ $Valor->Valor }}</td>
+                                            @if(auth()->user()->Rol == "Administrador")
                                             <td class="text-center">
                                                 <a href="#" class="btn btn-success btn-sm text-uppercase" title="Editar" data-toggle="modal" data-target="#EditValor{{ $Valor->Id }}"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
                                                 <!-- Editar Modal-->
@@ -388,6 +426,7 @@
                                                 </div>
                                                 <!-- Delete Modal-->
                                             </td>
+                                            @endif
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -403,6 +442,7 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-6 col-sm-12"><h5 class="font-weight-bold text-primary">Objetivos Generales de la Empresa</h5></div>
                                 <div class="col-lg-6 col-sm-12 d-flex justify-content-end row">
+                                    @if(auth()->user()->Rol == "Administrador")
                                     <a href="#" class="btn btn-primary btn-icon-split ml-1" data-toggle="modal" data-target="#AddObjetivo">
                                         <i class="fa fa-plus"></i>
                                         <span class="text">Agregar</span>
@@ -433,6 +473,7 @@
                                         </div>
                                     </div>
                                     <!-- Agregar Modal-->
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -452,6 +493,7 @@
                                             <td>{{ $Objetivo->Objetivo }}</td>
                                             <td class="text-center">
                                                 <a href="/empresa/objetivo/{{ $Objetivo->Id }}" class="btn btn-info btn-sm text-uppercase" title="Objetivos Especificos"><i class="fa fa-list" aria-hidden="true" style="margin: 0 auto;"></i></a>
+                                                @if(auth()->user()->Rol == "Administrador")
                                                 <a href="#" class="btn btn-success btn-sm text-uppercase" title="Editar" data-toggle="modal" data-target="#EditObjetivo{{ $Objetivo->Id }}"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
                                                 <!-- Editar Modal-->
                                                 <div class="modal fade" id="EditObjetivo{{ $Objetivo->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -500,6 +542,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- Delete Modal-->
+                                                 @endif
                                             </td>
                                         </tr>
                                         @endforeach

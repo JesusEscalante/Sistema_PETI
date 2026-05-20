@@ -14,6 +14,9 @@ class Usuario extends Model
     // Especificación del nombre de la tabla en la base de datos.
     protected $table = 'usuario';
 
+    // Deshabilitación de los timestamps (created_at y updated_at).
+    public $timestamps = false;
+
     // Método para agregar un nuevo usuario a la base de datos.
     public static function Agregar(Usuario $ObjUsuario)
     {

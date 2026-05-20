@@ -12,7 +12,7 @@ class Estrategia extends Model
     protected  $primaryKey = "Id";
 
     // Especificación del nombre de la tabla en la base de datos.
-    protected $table = 'estrategia';
+    protected $table = 'estrategia_plan';
 
     // Deshabilitación de los timestamps (created_at y updated_at).
     public $timestamps = false;
@@ -48,6 +48,15 @@ class Estrategia extends Model
     public static function ObtenerPorId($EstrategiaId)
     {
         return Estrategia::find($EstrategiaId);
+    }
+
+    public static function ObtenerPorPlanId($PlanId)
+    {
+        return Estrategia::from('estrategia_plan as ep')
+                ->select('ep.Id', 'ep.PlanId', 'ep.RelacionEstrategia', 'de.Tipo', 'de.Descripcion')
+                ->join('detalle_estrategia as de', 'de.Relacion', '=', 'ep.RelacionEstrategia')
+                ->where('ep.PlanId', $PlanId)
+                ->first();
     }
 }
 

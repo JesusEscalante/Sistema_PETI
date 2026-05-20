@@ -22,23 +22,43 @@ class Periodos extends Model
         return Periodos::orderBy('Periodo', 'asc')->get();
     }
 
-    public static function Agregar(Periodos $ObjPeriodo)
-    {
-        if($ObjPeriodo->save())
-        {
-            return $ObjPeriodo->Id;
+    public static function Modificar($Desde, $Hasta)
+{
+    try {
+        // Validar que Desde <= Hasta
+        if ($Desde > $Hasta) {
+            throw new \Exception('El rango es inválido: "Desde" debe ser menor o igual a "Hasta"');
         }
-        return 0;
-    }
-
-    public static function Editar(Periodos $ObjPeriodo)
-    {
-        if($ObjPeriodo->update())
-        {
-            return $ObjPeriodo->Id;
+        
+        // 1. Eliminar períodos fuera del rango
+        Periodos::where('Periodo', '<', $Desde)
+            ->orWhere('Periodo', '>', $Hasta)
+            ->delete();
+        
+        // 2. Generar años del rango
+        $añosRequeridos = range($Desde, $Hasta);
+        
+        // 3. Obtener años existentes (solo dentro del rango)
+        $añosExistentes = Periodos::whereBetween('Periodo', [$Desde, $Hasta])
+            ->pluck('Periodo')
+            ->toArray();
+        
+        // 4. Insertar faltantes
+        $añosFaltantes = array_diff($añosRequeridos, $añosExistentes);
+        
+        if (!empty($añosFaltantes)) {
+            $datosInsertar = array_map(function($anio) {
+                return ['Periodo' => $anio];
+            }, $añosFaltantes);
+            
+            Periodos::insert($datosInsertar); // Bulk insert más eficiente
         }
-        return 0;
+        
+        return 1;
+    } catch (\Throwable $th) {
+        return null;
     }
+}
 
     public static function Eliminar(Periodos $ObjPeriodo)
     {

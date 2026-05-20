@@ -17,6 +17,7 @@
             </div>
             <div class="table-responsive">
                 <form class="form" action="/analisis/save_came" method="POST">
+                <input type="hidden" name="planid" value="{{ $PlanId }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <table class="table table-bordered">
                     <thead class="table-light">
@@ -24,6 +25,7 @@
                             <th></th>
                             <th class="text-center align-middle" width="10%">Acciones</th>
                             <th class="text-center">Corregir las Debilidades</th>
+                            <th class="text-center" width="5%">Detalle</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +40,26 @@
                                         <td>
                                             <input type="text" class="form-control" name="{{ $C->Tipo }}" value="{{ $C->Accion }}">
                                         </td>
+                                        <td>
+                                            <center><a class="btn btn-outline-secondary" title="Detalle" data-toggle="modal" data-target="#D{{ $D->Id }}"><i class="fa fa-search" aria-hidden="true" style="margin: 0 auto;"></i></a></center>
+                                            <!-- Colaboradores Modal-->
+                                            <div class="modal fade" id="D{{ $D->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Debilidad</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>{{ $D->Debilidad }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Colaboradores Modal-->
+                                        </td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -51,6 +73,7 @@
                             <th></th>
                             <th class="text-center align-middle" width="10%">Acciones</th>
                             <th class="text-center">Afrontar las Amenazas</th>
+                            <th class="text-center" width="5%">Detalle</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,6 +88,26 @@
                                         <td>
                                             <input type="text" class="form-control" name="{{ $A->Tipo }}" value="{{ $A->Accion }}">
                                         </td>
+                                        <td>
+                                            <center><a class="btn btn-outline-secondary" title="Detalle" data-toggle="modal" data-target="#A{{ $Am->Id }}"><i class="fa fa-search" aria-hidden="true" style="margin: 0 auto;"></i></a></center>
+                                            <!-- Colaboradores Modal-->
+                                            <div class="modal fade" id="A{{ $Am->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Amenaza</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>{{ $Am->Amenaza }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Colaboradores Modal-->
+                                        </td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -78,6 +121,7 @@
                             <th></th>
                             <th class="text-center align-middle" width="10%">Acciones</th>
                             <th class="text-center">Mantener las Fortalezas </th>
+                            <th class="text-center" width="5%">Detalle</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,6 +136,26 @@
                                         <td>
                                             <input type="text" class="form-control" name="{{ $M->Tipo }}" value="{{ $M->Accion }}">
                                         </td>
+                                        <td>
+                                            <center><a class="btn btn-outline-secondary" title="Detalle" data-toggle="modal" data-target="#F{{ $F->Id }}"><i class="fa fa-search" aria-hidden="true" style="margin: 0 auto;"></i></a></center>
+                                            <!-- Colaboradores Modal-->
+                                            <div class="modal fade" id="F{{ $F->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Fortaleza</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>{{ $F->Fortaleza }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Colaboradores Modal-->
+                                        </td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -105,6 +169,7 @@
                             <th></th>
                             <th class="text-center align-middle" width="10%">Acciones</th>
                             <th class="text-center">Explotar las Oportunidades</th>
+                            <th class="text-center" width="5%">Detalle</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,6 +183,26 @@
                                         <td class="text-center align-middle">A{{ $E->Id }}</td>
                                         <td>
                                             <input type="text" class="form-control" name="{{ $E->Tipo }}" value="{{ $E->Accion }}">
+                                        </td>
+                                        <td>
+                                            <center><a class="btn btn-outline-secondary" title="Detalle" data-toggle="modal" data-target="#O{{ $O->Id }}"><i class="fa fa-search" aria-hidden="true" style="margin: 0 auto;"></i></a></center>
+                                            <!-- Colaboradores Modal-->
+                                            <div class="modal fade" id="O{{ $O->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Oportunidad</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>{{ $O->Oportunidad }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Colaboradores Modal-->
                                         </td>
                                     </tr>
                                 @endif

@@ -11,7 +11,7 @@
 
     <script src="assets/js/plugins/sweetalert.min.js"></script>
 
-    <title>SGPETI</title>
+    <title>SisPETI</title>
   </head>
   <body>
     <section class="material-half-bg">

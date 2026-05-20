@@ -24,7 +24,11 @@
                 <form id="fomrConclucion" action="/plan/save_conclucion" method="post">
                     <input type="hidden" name="id" value="{{ $Plan->Id }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <textarea id='txtConclucion' name='conclucion' style='margin-left: 40px;width: 90%; max-width: 1050px;'>{{ $Plan->Conclucion }}</textarea>
+                    @if(auth()->user()->Rol == "Administrador" || auth()->user()->Rol == "Editor")
+                    <textarea class="form-control" id='txtConclucion' name='conclucion' style='margin-left: 40px; width: calc(100% - 80px);'>{{ $Plan->Conclucion }}</textarea>
+                    @else
+                    <h6 style='padding-left: 40px; width: calc(100% - 40px);'>{{ $Plan->Conclucion }}</h6>
+                    @endif
                 </form>
                 </div>
             </div>
@@ -156,7 +160,7 @@
                     <!DOCTYPE html>
                     <html>
                         <head>
-                            <title>Documento de</title>
+                            <title>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</title>
                             <meta charset="utf-8">
                             ${printStyles}
                             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">

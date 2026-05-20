@@ -706,42 +706,20 @@ class AnalisisController extends Controller
         try
         {
             $desde = $request->input('desde');
-            if (!is_null($request->input('hasta'))) {
-                $hasta = $request->input('hasta');
+            $hasta = $request->input('hasta');
 
-                for($i = $desde; $i <= $hasta; $i++){
-                    if($objPeriodo = Periodos::ObtenerPorPeriodo($i)){
-
-                    }
-                }
-            }
+            if(Periodos::Modificar($desde, $hasta) == 1){
+                session_start();
+                $_SESSION["ALERTA"] = "success";
+                $_SESSION["MENSAJE"] = "Se modifico correctamente los periodos";
+                return redirect()->action('AnalisisController@Participacion');
+            }            
         }
         catch (\Illuminate\Database\QueryException $e)
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo agregar el periodo";
-            return redirect()->action('AnalisisController@Participacion');
-        }
-    }
-
-    public function EliminarPeriodo($PeriodoId)
-    {
-        try
-        {
-            $ObjPeriodo = Periodos::ObtenerPorId($PeriodoId);
-            Periodos::Eliminar($ObjPeriodo);
-            session_start();
-            $_SESSION["ALERTA"] = "success";
-            $_SESSION["MENSAJE"] = "Se eliminó correctamente el periodo";
-            return redirect()->action('AnalisisController@Participacion');
-
-        }
-        catch (\Illuminate\Database\QueryException $e)
-        {
-            session_start();
-            $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo eliminar el periodo";
+            $_SESSION["MENSAJE"] = "No se pudo modificar los periodos";
             return redirect()->action('AnalisisController@Participacion');
         }
     }
@@ -1061,7 +1039,7 @@ class AnalisisController extends Controller
 
     // -- START ANALISIS - CAME ----------------------------------
 
-    public function CAME(){
+    public function CAME($PlanId){
         $ObjFortalezas = Fortalezas::Listar();
         $ObjDebilidades = Debilidades::Listar();
         $ObjOportunidades = Oportunidades::Listar();
@@ -1070,11 +1048,11 @@ class AnalisisController extends Controller
         // - Fortalezas / M ------------
         foreach($ObjFortalezas as $Item)
         {
-            if(Came::ObtenerPorTipo('M' . $Item->Id) == null)
+            if(Came::ObtenerPorTipo($PlanId, 'M' . $Item->Id) == null)
             {
                 $ObjCame = new Came();
+                $ObjCame->PlanId = $PlanId;
                 $ObjCame->Tipo = "M" . $Item->Id;
-                $ObjCame->Accion = "";
                 Came::Agregar($ObjCame);
             }
         }
@@ -1082,11 +1060,11 @@ class AnalisisController extends Controller
         // - Debilidades / C ------------
         foreach($ObjDebilidades as $Item)
         {
-            if(Came::ObtenerPorTipo('C' . $Item->Id) == null)
+            if(Came::ObtenerPorTipo($PlanId, 'C' . $Item->Id) == null)
             {
                 $ObjCame = new Came();
+                $ObjCame->PlanId = $PlanId;
                 $ObjCame->Tipo = "C" . $Item->Id;
-                $ObjCame->Accion = "";
                 Came::Agregar($ObjCame);
             }
         }
@@ -1094,11 +1072,11 @@ class AnalisisController extends Controller
         // - Oportunidades / E ------------
         foreach($ObjOportunidades as $Item)
         {
-            if(Came::ObtenerPorTipo('E' . $Item->Id) == null)
+            if(Came::ObtenerPorTipo($PlanId, 'E' . $Item->Id) == null)
             {
                 $ObjCame = new Came();
+                $ObjCame->PlanId = $PlanId;
                 $ObjCame->Tipo = "E" . $Item->Id;
-                $ObjCame->Accion = "";
                 Came::Agregar($ObjCame);
             }
         }
@@ -1106,23 +1084,24 @@ class AnalisisController extends Controller
         // - Amenazas / A ------------
         foreach($ObjAmenazas as $Item)
         {
-            if(Came::ObtenerPorTipo('A' . $Item->Id) == null)
+            if(Came::ObtenerPorTipo($PlanId, 'A' . $Item->Id) == null)
             {
                 $ObjCame = new Came();
+                $ObjCame->PlanId = $PlanId;
                 $ObjCame->Tipo = "A" . $Item->Id;
-                $ObjCame->Accion = "";
                 Came::Agregar($ObjCame);
             }
         }
 
-        $ObjCame = Came::Listar();
+        $ObjCame = Came::ObtenerPorPlanId($PlanId);
 
         return view('Analisis.CAME',[
             'Fortalezas' => $ObjFortalezas,
             'Debilidades' => $ObjDebilidades,
             'Oportunidades' => $ObjOportunidades,
             'Amenazas' => $ObjAmenazas,
-            'Came' => $ObjCame
+            'Came' => $ObjCame,
+            'PlanId' => $PlanId
         ]);
     }
 
@@ -1130,7 +1109,7 @@ class AnalisisController extends Controller
     {
         try
         {
-            $ObjCame = Came::Listar();
+            $ObjCame = Came::ObtenerPorPlanId($request->input('planid'));
 
             foreach($ObjCame as $C)
             {
@@ -1172,14 +1151,14 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "success";
             $_SESSION["MENSAJE"] = "Se guardo correctamente los datos de la matriz CAME";
-            return redirect()->action('AnalisisController@CAME');
+            return redirect()->action('AnalisisController@CAME', ['PlanId' => $request->input('planid')]);
         }
         catch (\Illuminate\Database\QueryException $e)
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo guardar los datos de la matriz CAME";
-            return redirect()->action('AnalisisController@CAME');
+            return redirect()->action('AnalisisController@CAME', ['PlanId' => $request->input('planid')]);
         }
     }
     // -- END ANALISIS - CAME ----------------------------------

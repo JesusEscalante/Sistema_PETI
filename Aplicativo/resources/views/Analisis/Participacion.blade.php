@@ -19,7 +19,7 @@
 
             <div class="row">
 
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="row align-items-center">
@@ -74,9 +74,9 @@
                                         </tr>
                                         <tr>
                                             <th class="text-center align-middle">PRODUCTOS</th>
-                                            <th class="text-center align-middle" width="110px">VENTAS</th>
-                                            <th class="text-center align-middle" width="110px">% VENTAS</th>
-                                            <th class="text-center align-middle" width="110px">ACCIONES</th>
+                                            <th class="text-center align-middle" width="15%">VENTAS</th>
+                                            <th class="text-center align-middle" width="15%">% VENTAS</th>
+                                            <th class="text-center align-middle" width="15%">ACCIONES</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -158,7 +158,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="row align-items-center">
@@ -166,14 +166,14 @@
                                 <div class="col-lg-6 col-sm-12 d-flex justify-content-end row">
                                     <a href="#" class="btn btn-primary btn-icon-split ml-1" data-toggle="modal" data-target="#AddPeriodo">
                                         <i class="fa fa-plus"></i>
-                                        <span class="text">Agregar</span>
+                                        <span class="text">Modificar</span>
                                     </a>
-                                    <!-- Agregar Modal-->
+                                    <!-- Modificar Modal-->
                                     <div class="modal fade" id="AddPeriodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content user">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title text-primary" id="exampleModalLabel"><b>Agregar Periodo</b></h5>
+                                                    <h5 class="modal-title text-primary" id="exampleModalLabel"><b>Modificar Periodos</b></h5>
                                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">×</span>
                                                     </button>
@@ -184,13 +184,13 @@
                                                     <div class="form-group">
                                                         <label for="desde"><strong>Desde:</strong></label>
                                                         <input type="number" class="form-control" name="desde" id="desde" 
-                                                            title="Desde" min="{{ date('Y') - 10 }}" max="{{ date('Y') }}">
+                                                            title="Desde" min="{{ date('Y') - 10 }}" max="{{ date('Y') }}" required>
                                                         <small class="text-muted">Año entre {{ date('Y') - 10 }} y {{ date('Y') }}</small>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="hasta"><strong>Hasta:</strong></label>
                                                         <input type="number" class="form-control" name="hasta" id="hasta" 
-                                                            title="Hasta" max="{{ date('Y') }}">
+                                                            title="Hasta" max="{{ date('Y') }}" required>
                                                         <small id="hastaHelp" class="text-muted">Debe ser mayor que "Desde"</small>
                                                     </div>
 
@@ -216,7 +216,7 @@
                                                                 if (!isNaN(desdeVal) && !isNaN(hastaVal)) {
                                                                     if (hastaVal <= desdeVal) {
                                                                         mostrarAyuda('El año "Hasta" debe ser mayor que "' + desdeVal + '"', 'error');
-                                                                        hasta.setCustomValidity('El año Hasta debe ser mayor que Desde');
+                                                                        hasta.setCustomValidity('El año Hasta debe ser mayor que el año Desde');
                                                                     } else if (hastaVal > maxAnio) {
                                                                         mostrarAyuda('El año no puede superar ' + maxAnio, 'warning');
                                                                         hasta.setCustomValidity('Máximo ' + maxAnio);
@@ -231,7 +231,7 @@
                                                                     mostrarAyuda('Ingrese un año "Desde" válido (' + minDesde + ' - ' + maxAnio + ')', 'error');
                                                                     hasta.setCustomValidity('');
                                                                 } else if (desde.value === '') {
-                                                                    mostrarAyuda('Primero complete el año "Desde" o déjelo vacío', 'info');
+                                                                    mostrarAyuda('Primero complete el año "Desde"', 'info');
                                                                     hasta.setCustomValidity('');
                                                                 } else {
                                                                     mostrarAyuda('Debe ser mayor que "Desde"', 'muted');
@@ -261,13 +261,13 @@
                                                     </script>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <input type="submit" class="btn btn-primary btn-block" value="Agregar">
+                                                    <input type="submit" class="btn btn-primary btn-block" value="Modificar">
                                                 </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Agregar Modal-->
+                                    <!-- Modificar Modal-->
                                 </div>
                             </div>
                         </div>
@@ -278,35 +278,12 @@
                                     <thead class="table-light">
                                         <tr>
                                             <th class="text-center align-middle">PERIODO</th>
-                                            <th class="text-center align-middle" width="110px">ACCIONES</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($Periodos as $Item)
                                         <tr>
                                             <td class="text-center align-middle">{{ $Item->Periodo }}</td>
-                                            <td class="text-center align-middle">
-                                                <a href="#" class="btn btn-danger btn-sm text-uppercase" title="Eliminar" data-toggle="modal" data-target="#DeletePeriodo{{ $Item->Id }}"><i class="fa fa-trash" aria-hidden="true" style="margin: 0 auto;"></i></a>
-                                                <!-- Delete Modal-->
-                                                <div class="modal fade" id="DeletePeriodo{{ $Item->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Desea eliminar el registro?</h5>
-                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">Haga clic en "Eliminar" si desea eliminar el periodo seleccionado.</div>
-                                                            <div class="modal-footer">
-                                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                                                <a class="btn btn-primary" href="/analisis/delete_periodo/{{ $Item->Id }}">Eliminar</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Delete Modal-->
-                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

@@ -33,18 +33,6 @@
                         <label class="control-label"><b>Contraseña:</b></label>
                         <input class="form-control" name="Password" type="password" maxlength="50" placeholder="Ingrese una nueva contraseña si desea cambiarla...">
                     </div>
-                    <div class="hiddenradio">
-                        <label class="control-label"><b>Avatar:</b></label><br>
-                        <label>
-                            <input type="radio" name="Avatar" value="1" <?= $Usuario->Avatar == 1 ? 'checked' : '' ?>>
-                            <img width="100px" height="100px" src="../assets/img/avatar-1.jpg">
-                        </label>
-
-                        <label>
-                            <input type="radio" name="Avatar" value="2" <?= $Usuario->Avatar == 2 ? 'checked' : '' ?>>
-                            <img width="100px" height="100px" src="../assets/img/avatar-2.jpg">
-                        </label>
-                    </div>
                 </div>
                 <div class="tile-footer">
                     <div class="form-group">

@@ -88,13 +88,14 @@
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content user">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-primary" id="exampleModalLabel"><b>Agregar Usuario</b></h5>
+                                    <h5 class="modal-title text-primary" id="exampleModalLabel"><b>Editar Usuario</b></h5>
                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
                                 <form class="user" action="/usuario/edit_usuario" method="post">
                                 <div class="modal-body" style="text-align: start;">
+                                    <input type="hidden" name="id" value="{{ $Usuario->Id }}">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="form-group row">
                                       <div class="col-lg-6">
@@ -132,7 +133,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="submit" class="btn btn-primary btn-block" value="Agregar">
+                                    <input type="submit" class="btn btn-primary btn-block" value="Editar">
                                 </div>
                                 </form>
                             </div>
