@@ -121,10 +121,8 @@ Route::prefix('usuario')->group(function () {
 });
 
 //Perfil
-Route::prefix('perfil')->group(function () {
-    Route::get('/{UsuarioId}', 'Auth\LoginController@FrmPerfil');
-    Route::post('/editar', 'Auth\LoginController@ActEditarPerfil');
-});
+Route::get('/perfil/view', 'Auth\LoginController@FrmPerfil');
+Route::post('/perfil/edit', 'Auth\LoginController@ActEditarPerfil');
 
 });
 //end middleware
