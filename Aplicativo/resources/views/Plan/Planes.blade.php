@@ -27,7 +27,7 @@
                             <th width="10%" class="text-center">CODIGO</th>
                             <th width="15%" class="text-center">FECHA</th>
                             <th>CONCLUCIÓN</th>
-                            <th width="15%"><center>ACCIONES</center></th>
+                            <th width="18%"><center>ACCIONES</center></th>
                         </tr>
                     </thead>
                     <tbody>
