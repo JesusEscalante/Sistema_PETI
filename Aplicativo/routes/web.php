@@ -47,7 +47,7 @@ Route::prefix('empresa')->group(function () {
 //Analisis
 Route::prefix('analisis')->group(function () {
     // -- START ANALISIS INTERNO ----------------------------------
-    Route::get('/interno', 'AnalisisController@Interno');
+    Route::get('/interno/{PlanId}', 'AnalisisController@Interno');
     Route::post('/add_fortaleza', 'AnalisisController@AgregarFortaleza');
     Route::post('/edit_fortaleza', 'AnalisisController@EditarFortaleza');
     Route::get('/delete_fortaleza/{FortalezaId}', 'AnalisisController@EliminarFortaleza');
@@ -56,7 +56,7 @@ Route::prefix('analisis')->group(function () {
     Route::get('/delete_debilidad/{DebilidadId}', 'AnalisisController@EliminarDebilidad');
     // -- END ANALISIS INTERNO ----------------------------------
     // -- START ANALISIS EXTERNO ----------------------------------
-    Route::get('/externo', 'AnalisisController@Externo');
+    Route::get('/externo/{PlanId}', 'AnalisisController@Externo');
     Route::post('/add_oportunidad', 'AnalisisController@AgregarOportunidad');
     Route::post('/edit_oportunidad', 'AnalisisController@EditarOportunidad');
     Route::get('/delete_oportunidad/{OportunidadId}', 'AnalisisController@EliminarOportunidad');
@@ -65,26 +65,26 @@ Route::prefix('analisis')->group(function () {
     Route::get('/delete_amenaza/{AmenazaId}', 'AnalisisController@EliminarAmenaza');
     // -- END ANALISIS EXTERNO ----------------------------------
     // -- START ANALISIS - CADENA DE VALOR ----------------------------------
-    Route::get('/cadena', 'AnalisisController@CadenaValor');
+    Route::get('/cadena/{PlanId}', 'AnalisisController@CadenaValor');
     Route::post('/cadena_calcular', 'AnalisisController@CalcularCadenaValor');
     // -- END ANALISIS - CADENA DE VALOR ----------------------------------
     // -- START ANALISIS - PARTICIPACIÓN ----------------------------------
-    Route::get('/participacion', 'AnalisisController@Participacion');
+    Route::get('/participacion/{PlanId}', 'AnalisisController@Participacion');
     Route::post('/add_producto', 'AnalisisController@AgregarProducto');
     Route::post('/edit_producto', 'AnalisisController@EditarProducto');
     Route::get('/delete_producto/{ProductoId}', 'AnalisisController@EliminarProducto');
     Route::post('/add_periodo', 'AnalisisController@AgregarPeriodo');
     Route::post('/save_tcm', 'AnalisisController@GuardarTCM');
     Route::post('/save_edgs', 'AnalisisController@GuardarEDGS');
-    Route::get('/add_competidor', 'AnalisisController@AgregarCompetidor');
+    Route::get('/add_competidor/{PlanId}', 'AnalisisController@AgregarCompetidor');
     Route::post('/save_competidores', 'AnalisisController@GuardarCompetidores');
     // -- END ANALISIS - PARTICIPACIÓN ----------------------------------
     // -- START ANALISIS - PORTER ----------------------------------
-    Route::get('/porter', 'AnalisisController@Porter');
+    Route::get('/porter/{PlanId}', 'AnalisisController@Porter');
     Route::post('/porter_calcular', 'AnalisisController@CalcularPorter');
     // -- END ANALISIS - PORTER ----------------------------------
     // -- START ANALISIS - PEST ----------------------------------
-    Route::get('/pest', 'AnalisisController@PEST');
+    Route::get('/pest/{PlanId}', 'AnalisisController@PEST');
     Route::post('/pest_calcular', 'AnalisisController@CalcularPEST');
     // -- END ANALISIS - PEST ----------------------------------
     // -- START ANALISIS - CAME ----------------------------------
@@ -92,7 +92,7 @@ Route::prefix('analisis')->group(function () {
     Route::post('/save_came', 'AnalisisController@GuardarCAME');
     // -- END ANALISIS - CAME ----------------------------------
 
-    Route::get('/graficos', 'AnalisisController@Graficos');
+    Route::get('/graficos/{PlanId}', 'AnalisisController@Graficos');
 });
 
 //Estrategia
@@ -120,8 +120,10 @@ Route::prefix('usuario')->group(function () {
 });
 
 //Perfil
-Route::get('/perfil/view', 'Auth\LoginController@FrmPerfil');
-Route::post('/perfil/edit', 'Auth\LoginController@ActEditarPerfil');
+Route::prefix('perfil')->group(function () {
+    Route::get('/view', 'Auth\LoginController@FrmPerfil');
+    Route::post('/edit', 'Auth\LoginController@ActEditarPerfil');
+});
 
 });
 //end middleware

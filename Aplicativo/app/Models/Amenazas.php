@@ -17,9 +17,21 @@ class Amenazas extends Model
     // Deshabilitación de los timestamps (created_at y updated_at).
     public $timestamps = false;
 
-    public static function Listar()
+    public static function ObtenerPorPlanId($PlanId)
     {
-        return Amenazas::all();
+        return Amenazas::from('amenazas as a')
+                ->select('a.*', 'u.Nombre', 'u.Apellido')
+                ->join('usuario as u', 'u.Id', '=', 'a.UsuarioId')
+                ->where('a.PlanId', $PlanId)
+                ->get();
+    }
+
+    public static function ObtenerPorUsuarioIdPlanId($UsuarioId, $PlanId)
+    {
+        return Amenazas::from('amenazas as a')
+                ->where('a.UsuarioId', $UsuarioId)
+                ->where('a.PlanId', $PlanId)
+                ->get();
     }
 
     public static function Agregar(Amenazas $ObjAmenazas)

@@ -17,9 +17,21 @@ class Fortalezas extends Model
     // Deshabilitación de los timestamps (created_at y updated_at).
     public $timestamps = false;
 
-    public static function Listar()
+    public static function ObtenerPorPlanId($PlanId)
     {
-        return Fortalezas::all();
+        return Fortalezas::from('fortalezas as f')
+                ->select('f.*', 'u.Nombre', 'u.Apellido')
+                ->join('usuario as u', 'u.Id', '=', 'f.UsuarioId')
+                ->where('f.PlanId', $PlanId)
+                ->get();
+    }
+
+    public static function ObtenerPorUsuarioIdPlanId($UsuarioId, $PlanId)
+    {
+        return Fortalezas::from('fortalezas as f')
+                ->where('f.UsuarioId', $UsuarioId)
+                ->where('f.PlanId', $PlanId)
+                ->get();
     }
 
     public static function Agregar(Fortalezas $ObjFortalezas)

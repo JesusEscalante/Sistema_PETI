@@ -22,6 +22,14 @@ class Edgs extends Model
         return Edgs::all();
     }
 
+    public static function ObtenerPorUsuarioIdPlanId($UsuarioId, $PlanId)
+    {
+        return Edgs::from('edgs as e')
+                ->where('e.UsuarioId', $UsuarioId)
+                ->where('e.PlanId', $PlanId)
+                ->get();
+    }
+
     public static function Agregar(Edgs $ObjEDGS)
     {
         if($ObjEDGS->save())
@@ -50,11 +58,14 @@ class Edgs extends Model
         return Tcm::find($EdgsId);
     }
 
-    public static function ObtenerPorPeriodoProducto($Periodo, $ProductoId)
+    public static function ObtenerPorPeriodoProducto($Periodo, $ProductoId, $UsuarioId, $PlanId)
     {
-        return Edgs::where('Periodo', $Periodo)
-               ->where('ProductoId', $ProductoId)
-               ->first();
+        return Edgs::from('edgs as e')
+                ->where('e.UsuarioId', $UsuarioId)
+                ->where('e.PlanId', $PlanId)
+                ->where('e.Periodo', $Periodo)
+                ->where('e.ProductoId', $ProductoId)
+                ->first();
     }
 }
 

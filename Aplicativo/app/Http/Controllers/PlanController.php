@@ -97,10 +97,10 @@ class PlanController extends Controller
             $ObjUnidadesEstrategicas = UnidadEstrategica::Listar();
             $ObjObjetivosGenerales = ObjetivosGenerales::Listar();
             $ObjObjetivosEspecificos = ObjetivosEspecificos::Listar();
-            $ObjFortalezas = Fortalezas::Listar();
-            $ObjDebilidades = Debilidades::Listar();
-            $ObjOportunidades = Oportunidades::Listar();
-            $ObjAmenazas = Amenazas::Listar();
+            $ObjFortalezas = Fortalezas::ObtenerPorPlanId($PlanId);
+            $ObjDebilidades = Debilidades::ObtenerPorPlanId($PlanId);
+            $ObjOportunidades = Oportunidades::ObtenerPorPlanId($PlanId);
+            $ObjAmenazas = Amenazas::ObtenerPorPlanId($PlanId);
 
             $VALORES = "";
             foreach($ObjValores as $Valor){
@@ -149,36 +149,30 @@ class PlanController extends Controller
                 $FODA .= "<tr><td>" . $Obj->Amenaza . "</td></tr>";
             }
 
-
             $ACCIONES = "";
             $contAcc = 0;
 
+            $ACCIONES .= "<tr><th colspan='2'>CORREGIR DEBILIDADES</th></tr>";
             foreach($ObjDebilidades as $Item){
-                if($C = Came::ObtenerPorTipo($PlanId, "C".$Item->Id)){
-                    $contAcc++;
-                    $ACCIONES .= "<tr><td style='text-align: center;'>" . $contAcc . "</td><td>" . $C->Accion . "</td></tr>";
-                }
+                $contAcc++;
+                $ACCIONES .= "<tr><td style='text-align: center;'>" . $contAcc . "</td><td>" . $Item->Accion . "</td></tr>";
             }
+            $ACCIONES .= "<tr><th colspan='2'>AFRONTAR AMENAZAS</th></tr>";
             foreach($ObjAmenazas as $Item){
-                if($A = Came::ObtenerPorTipo($PlanId, "A".$Item->Id)){
-                    $contAcc++;
-                    $ACCIONES .= "<tr><td style='text-align: center;'>" . $contAcc . "</td><td>" . $A->Accion . "</td></tr>";
-                }
+                $contAcc++;
+                $ACCIONES .= "<tr><td style='text-align: center;'>" . $contAcc . "</td><td>" . $Item->Accion . "</td></tr>";
             }
+            $ACCIONES .= "<tr><th colspan='2'>MANTENER FORTALEZAS</th></tr>";
             foreach($ObjFortalezas as $Item){
-                if($M = Came::ObtenerPorTipo($PlanId, "M".$Item->Id)){
-                    $contAcc++;
-                    $ACCIONES .= "<tr><td style='text-align: center;'>" . $contAcc . "</td><td>" . $M->Accion . "</td></tr>";
-                }
+                $contAcc++;
+                $ACCIONES .= "<tr><td style='text-align: center;'>" . $contAcc . "</td><td>" . $Item->Accion . "</td></tr>";
             }
+            $ACCIONES .= "<tr><th colspan='2'>EXPLORAR OPORTUNIDADES</th></tr>";
             foreach($ObjOportunidades as $Item){
-                if($E = Came::ObtenerPorTipo($PlanId, "E".$Item->Id)){
-                    $contAcc++;
-                    $ACCIONES .= "<tr><td style='text-align: center;'>" . $contAcc . "</td><td>" . $E->Accion . "</td></tr>";
-                }
+                $contAcc++;
+                $ACCIONES .= "<tr><td style='text-align: center;'>" . $contAcc . "</td><td>" . $Item->Accion . "</td></tr>";
             }
 
-            $ObjCame = Came::Listar();
             if(Estrategia::ObtenerPorPlanId($PlanId)) {
                 $ObjEstrategia = Estrategia::ObtenerPorPlanId($PlanId);
             } else {

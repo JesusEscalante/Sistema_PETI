@@ -22,18 +22,32 @@ class Competidores extends Model
         return Competidores::all();
     }
 
-    public static function ListarOrden()
+    public static function ObtenerPorUsuarioIdPlanId($UsuarioId, $PlanId)
     {
-        return Competidores::select('Competidor')
-          ->groupBy('Competidor')
-          ->get();
+        return Competidores::from('competidores as c')
+                ->where('c.UsuarioId', $UsuarioId)
+                ->where('c.PlanId', $PlanId)
+                ->get();
     }
 
-    public static function ListarMAYOR()
+    public static function ListarOrden($UsuarioId, $PlanId)
     {
-        return Competidores::select('ProductoId', \DB::raw('MAX(Venta) as mayor_venta'))
-          ->groupBy('ProductoId')
-          ->get();
+        return Competidores::from('competidores as c')
+                ->select('c.Competidor')
+                ->groupBy('c.Competidor')
+                ->where('c.UsuarioId', $UsuarioId)
+                ->where('c.PlanId', $PlanId)
+                ->get();
+    }
+
+    public static function ListarMAYOR($UsuarioId, $PlanId)
+    {
+        return Competidores::from('competidores as c')
+                ->select('c.ProductoId', \DB::raw('MAX(c.Venta) as mayor_venta'))
+                ->groupBy('c.ProductoId')
+                ->where('c.UsuarioId', $UsuarioId)
+                ->where('c.PlanId', $PlanId)
+                ->get();
     }
 
     public static function Agregar(Competidores $ObjCompetidores)
@@ -64,11 +78,13 @@ class Competidores extends Model
         return Competidores::find($CompetidorId);
     }
 
-    public static function ObtenerPorIdProductoId($CompetidorId, $ProductoId)
+    public static function ObtenerPorIdProductoId($CompetidorId, $ProductoId, $UsuarioId, $PlanId)
     {
-        return Competidores::where('Id', $CompetidorId)
-               ->where('ProductoId', $ProductoId)
-               ->first();
+        return Competidores::where('UsuarioId', $UsuarioId)
+                ->where('PlanId', $PlanId)
+                ->where('Id', $CompetidorId)
+                ->where('ProductoId', $ProductoId)
+                ->first();
     }
 }
 

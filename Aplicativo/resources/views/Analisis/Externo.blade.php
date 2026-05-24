@@ -27,18 +27,20 @@
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th>Oportunidad</th>
-                                            <th class="text-center">Origen</th>
-                                            <th width="20%"><center>Acciones</center></th>
+                                            <th width="20%" class="text-center">Creado Por</th>
+                                            <th width="15%" class="text-center">Origen</th>
+                                            <!--th width="20%"><center>Acciones</center></th-->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($Oportunidades as $Oportunidad)
                                         <tr>
                                             <td>{{ $Oportunidad->Oportunidad }}</td>
-                                            <td width="20%" class="text-center">{{ $Oportunidad->Origen == "porter" ? "Fuerzas de Porter" : "PEST" }}</td>
-                                            <td class="text-center">
+                                            <td class="text-center">{{ $Oportunidad->Nombre }} {{ $Oportunidad->Apellido }}</td>
+                                            <td class="text-center">{{ $Oportunidad->Origen == "porter" ? "Fuerzas de Porter" : "PEST" }}</td>
+                                            <!--td class="text-center">
                                                 <a href="#" class="btn btn-success btn-sm text-uppercase" title="Editar" data-toggle="modal" data-target="#EditOportunidad{{ $Oportunidad->Id }}"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
-                                                <!-- Editar Modal-->
+                                                <!-- Editar Modal->
                                                 <div class="modal fade" id="EditOportunidad{{ $Oportunidad->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content user">
@@ -64,9 +66,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Editar Modal-->
+                                                <!-- Editar Modal->
                                                 <a href="#" class="btn btn-danger btn-sm text-uppercase" title="Eliminar" data-toggle="modal" data-target="#DeleteOportunidad{{ $Oportunidad->Id }}"><i class="fa fa-trash" aria-hidden="true" style="margin: 0 auto;"></i></a>
-                                                <!-- Delete Modal-->
+                                                <!-- Delete Modal->
                                                 <div class="modal fade" id="DeleteOportunidad{{ $Oportunidad->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
@@ -84,8 +86,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Delete Modal-->
-                                            </td>
+                                                <!-- Delete Modal->
+                                            </td-->
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -109,18 +111,20 @@
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th>Amenaza</th>
-                                            <th class="text-center">Origen</th>
-                                            <th width="20%"><center>Acciones</center></th>
+                                            <th width="20%" class="text-center">Creado Por</th>
+                                            <th width="15%" class="text-center">Origen</th>
+                                            <!--th width="20%"><center>Acciones</center></th-->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($Amenazas as $Amenaza)
                                         <tr>
                                             <td>{{ $Amenaza->Amenaza }}</td>
-                                            <td width="20%" class="text-center">{{ $Amenaza->Origen == "porter" ? "Fuerzas de Porter" : "PEST" }}</td>
-                                            <td class="text-center">
+                                            <td class="text-center">{{ $Amenaza->Nombre }} {{ $Amenaza->Apellido }}</td>
+                                            <td class="text-center">{{ $Amenaza->Origen == "porter" ? "Fuerzas de Porter" : "PEST" }}</td>
+                                            <!--td class="text-center">
                                                 <a href="#" class="btn btn-success btn-sm text-uppercase" title="Editar" data-toggle="modal" data-target="#EditAmenaza{{ $Amenaza->Id }}"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
-                                                <!-- Editar Modal-->
+                                                <!-- Editar Modal->
                                                 <div class="modal fade" id="EditAmenaza{{ $Amenaza->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content user">
@@ -146,9 +150,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Editar Modal-->
+                                                <!-- Editar Modal->
                                                 <a href="#" class="btn btn-danger btn-sm text-uppercase" title="Eliminar" data-toggle="modal" data-target="#DeleteAmenaza{{ $Amenaza->Id }}"><i class="fa fa-trash" aria-hidden="true" style="margin: 0 auto;"></i></a>
-                                                <!-- Delete Modal-->
+                                                <!-- Delete Modal->
                                                 <div class="modal fade" id="DeleteAmenaza{{ $Amenaza->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
@@ -166,8 +170,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Delete Modal-->
-                                            </td>
+                                                <!-- Delete Modal->
+                                            </td-->
                                         </tr>
                                         @endforeach
                                     </tbody>

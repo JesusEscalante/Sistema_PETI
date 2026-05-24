@@ -16,21 +16,19 @@ use Illuminate\Support\Facades\Auth;
 class EstrategiaController extends Controller
 {
     public function Identificacion($PlanId){
-        $ObjFortalezas = Fortalezas::Listar();
-        $ObjDebilidades = Debilidades::Listar();
-        $ObjOportunidades = Oportunidades::Listar();
-        $ObjAmenazas = Amenazas::Listar();
+        $ObjFortalezas = Fortalezas::ObtenerPorPlanId($PlanId);
+        $ObjDebilidades = Debilidades::ObtenerPorPlanId($PlanId);
+        $ObjOportunidades = Oportunidades::ObtenerPorPlanId($PlanId);
+        $ObjAmenazas = Amenazas::ObtenerPorPlanId($PlanId);
 
-        $ObjFoda = Foda::Listar();
+        $ObjFoda = Foda::ObtenerPorPlanId($PlanId);
 
         // - FO ---
-        foreach($ObjFortalezas as $Fortaleza)
-        {
-            foreach($ObjOportunidades as $Oportunidad)
-            {
-                if(Foda::ObtenerPorCodigo('F'. $Fortaleza->Id . 'O'. $Oportunidad->Id) == null)
-                {
+        foreach($ObjFortalezas as $Fortaleza){
+            foreach($ObjOportunidades as $Oportunidad){
+                if(Foda::ObtenerPorCodigo('F'. $Fortaleza->Id . 'O'. $Oportunidad->Id, $PlanId) == null){
                     $ObjFoda = new Foda();
+                    $ObjFoda->PlanId = $PlanId;
                     $ObjFoda->Tipo = 'FO';
                     $ObjFoda->Codigo = 'F'. $Fortaleza->Id . 'O'. $Oportunidad->Id;
                     $ObjFoda->Valor = '0';
@@ -44,9 +42,10 @@ class EstrategiaController extends Controller
         {
             foreach($ObjAmenazas as $Amenaza)
             {
-                if(Foda::ObtenerPorCodigo('F'. $Fortaleza->Id . 'A'. $Amenaza->Id) == null)
+                if(Foda::ObtenerPorCodigo('F'. $Fortaleza->Id . 'A'. $Amenaza->Id, $PlanId) == null)
                 {
                     $ObjFoda = new Foda();
+                    $ObjFoda->PlanId = $PlanId;
                     $ObjFoda->Tipo = 'FA';
                     $ObjFoda->Codigo = 'F'. $Fortaleza->Id . 'A'. $Amenaza->Id;
                     $ObjFoda->Valor = '0';
@@ -60,9 +59,10 @@ class EstrategiaController extends Controller
         {
             foreach($ObjOportunidades as $Oportunidad)
             {
-                if(Foda::ObtenerPorCodigo('D'. $Debilidad->Id . 'O'. $Oportunidad->Id) == null)
+                if(Foda::ObtenerPorCodigo('D'. $Debilidad->Id . 'O'. $Oportunidad->Id, $PlanId) == null)
                 {
                     $ObjFoda = new Foda();
+                    $ObjFoda->PlanId = $PlanId;
                     $ObjFoda->Tipo = 'DO';
                     $ObjFoda->Codigo = 'D'. $Debilidad->Id . 'O'. $Oportunidad->Id;
                     $ObjFoda->Valor = '0';
@@ -76,9 +76,10 @@ class EstrategiaController extends Controller
         {
             foreach($ObjAmenazas as $Amenaza)
             {
-                if(Foda::ObtenerPorCodigo('D'. $Debilidad->Id . 'A'. $Amenaza->Id) == null)
+                if(Foda::ObtenerPorCodigo('D'. $Debilidad->Id . 'A'. $Amenaza->Id, $PlanId) == null)
                 {
                     $ObjFoda = new Foda();
+                    $ObjFoda->PlanId = $PlanId;
                     $ObjFoda->Tipo = 'DA';
                     $ObjFoda->Codigo = 'D'. $Debilidad->Id . 'A'. $Amenaza->Id;
                     $ObjFoda->Valor = '0';
@@ -87,7 +88,7 @@ class EstrategiaController extends Controller
             }
         }
 
-        $ObjFoda = Foda::Listar();
+        $ObjFoda = Foda::ObtenerPorPlanId($PlanId);
         if(Estrategia::ObtenerPorPlanId($PlanId)) {
             $ObjEstrategia = Estrategia::ObtenerPorPlanId($PlanId);
         } else {
@@ -110,18 +111,15 @@ class EstrategiaController extends Controller
     public function CalcularIdentificacion(Request $request){
         try
         {
-            $ObjFortalezas = Fortalezas::Listar();
-            $ObjDebilidades = Debilidades::Listar();
-            $ObjOportunidades = Oportunidades::Listar();
-            $ObjAmenazas = Amenazas::Listar();
-
+            $PlanId = $request->input('planid');
+            $ObjFortalezas = Fortalezas::ObtenerPorPlanId($PlanId);
+            $ObjDebilidades = Debilidades::ObtenerPorPlanId($PlanId);
+            $ObjOportunidades = Oportunidades::ObtenerPorPlanId($PlanId);
+            $ObjAmenazas = Amenazas::ObtenerPorPlanId($PlanId);
             // - FO ---
-            foreach($ObjFortalezas as $Fortaleza)
-            {
-                foreach($ObjOportunidades as $Oportunidad)
-                {
-                    if($ObjFoda = Foda::ObtenerPorCodigo('F'. $Fortaleza->Id . 'O'. $Oportunidad->Id))
-                    {
+            foreach($ObjFortalezas as $Fortaleza){
+                foreach($ObjOportunidades as $Oportunidad){
+                    if($ObjFoda = Foda::ObtenerPorCodigo('F'. $Fortaleza->Id . 'O'. $Oportunidad->Id, $PlanId)){
                         $ObjFoda->Valor = $request->input('FO'. $Fortaleza->Id . $Oportunidad->Id);
                         Foda::Editar($ObjFoda);
                     }
@@ -129,12 +127,9 @@ class EstrategiaController extends Controller
             }
 
             // - FA ---
-            foreach($ObjFortalezas as $Fortaleza)
-            {
-                foreach($ObjAmenazas as $Amenaza)
-                {
-                    if($ObjFoda = Foda::ObtenerPorCodigo('F'. $Fortaleza->Id . 'A'. $Amenaza->Id))
-                    {
+            foreach($ObjFortalezas as $Fortaleza){
+                foreach($ObjAmenazas as $Amenaza){
+                    if($ObjFoda = Foda::ObtenerPorCodigo('F'. $Fortaleza->Id . 'A'. $Amenaza->Id, $PlanId)){
                         $ObjFoda->Valor = $request->input('FA'. $Fortaleza->Id . $Amenaza->Id);
                         Foda::Editar($ObjFoda);
                     }
@@ -142,12 +137,9 @@ class EstrategiaController extends Controller
             }
 
             // - DO ---
-            foreach($ObjDebilidades as $Debilidad)
-            {
-                foreach($ObjOportunidades as $Oportunidad)
-                {
-                    if($ObjFoda = Foda::ObtenerPorCodigo('D'. $Debilidad->Id . 'O'. $Oportunidad->Id))
-                    {
+            foreach($ObjDebilidades as $Debilidad){
+                foreach($ObjOportunidades as $Oportunidad){
+                    if($ObjFoda = Foda::ObtenerPorCodigo('D'. $Debilidad->Id . 'O'. $Oportunidad->Id, $PlanId)){
                         $ObjFoda->Valor = $request->input('DO'. $Debilidad->Id . $Oportunidad->Id);
                         Foda::Editar($ObjFoda);
                     }
@@ -155,72 +147,55 @@ class EstrategiaController extends Controller
             }
 
             // - DA ---
-            foreach($ObjDebilidades as $Debilidad)
-            {
-                foreach($ObjAmenazas as $Amenaza)
-                {
-                    if($ObjFoda = Foda::ObtenerPorCodigo('D'. $Debilidad->Id . 'A'. $Amenaza->Id))
-                    {
+            foreach($ObjDebilidades as $Debilidad){
+                foreach($ObjAmenazas as $Amenaza){
+                    if($ObjFoda = Foda::ObtenerPorCodigo('D'. $Debilidad->Id . 'A'. $Amenaza->Id, $PlanId)){
                         $ObjFoda->Valor = $request->input('DA'. $Debilidad->Id . $Amenaza->Id);
                         Foda::Editar($ObjFoda);
                     }
                 }
             }
 
-            $ObjFoda = Foda::Listar();
+            $ObjFoda = Foda::ObtenerPorPlanId($PlanId);
 
             $SumaFO = 0;
             $SumaFA = 0;
             $SumaDO = 0;
             $SumaDA = 0;
 
-            foreach($ObjFoda as $item)
-            {
-                switch($item->Tipo)
-                {
+            foreach($ObjFoda as $item){
+                switch($item->Tipo){
                     case 'FO':
-                        foreach($ObjFortalezas as $Fortaleza)
-                        {
-                            foreach($ObjOportunidades as $Oportunidad)
-                            {
-                                if($item->Codigo == 'F'. $Fortaleza->Id . 'O'. $Oportunidad->Id)
-                                {
+                        foreach($ObjFortalezas as $Fortaleza){
+                            foreach($ObjOportunidades as $Oportunidad){
+                                if($item->Codigo == 'F'. $Fortaleza->Id . 'O'. $Oportunidad->Id){
                                     $SumaFO += $item->Valor;
                                 }
                             }
                         }
                         break;
                     case 'FA':
-                        foreach($ObjFortalezas as $Fortaleza)
-                        {
-                            foreach($ObjAmenazas as $Amenaza)
-                            {
-                                if($item->Codigo == 'F'. $Fortaleza->Id . 'A'. $Amenaza->Id)
-                                {
+                        foreach($ObjFortalezas as $Fortaleza){
+                            foreach($ObjAmenazas as $Amenaza){
+                                if($item->Codigo == 'F'. $Fortaleza->Id . 'A'. $Amenaza->Id){
                                     $SumaFA += $item->Valor;
                                 }
                             }
                         }
                         break;
                     case 'DO':
-                        foreach($ObjDebilidades as $Debilidad)
-                        {
-                            foreach($ObjOportunidades as $Oportunidad)
-                            {
-                                if($item->Codigo == 'D'. $Debilidad->Id . 'O'. $Oportunidad->Id)
-                                {
+                        foreach($ObjDebilidades as $Debilidad){
+                            foreach($ObjOportunidades as $Oportunidad){
+                                if($item->Codigo == 'D'. $Debilidad->Id . 'O'. $Oportunidad->Id){
                                     $SumaDO += $item->Valor;
                                 }
                             }
                         }
                         break;
                     case 'DA':
-                        foreach($ObjDebilidades as $Debilidad)
-                        {
-                            foreach($ObjAmenazas as $Amenaza)
-                            {
-                                if($item->Codigo == 'D'. $Debilidad->Id . 'A'. $Amenaza->Id)
-                                {
+                        foreach($ObjDebilidades as $Debilidad){
+                            foreach($ObjAmenazas as $Amenaza){
+                                if($item->Codigo == 'D'. $Debilidad->Id . 'A'. $Amenaza->Id){
                                     $SumaDA += $item->Valor;
                                 }
                             }
@@ -229,15 +204,12 @@ class EstrategiaController extends Controller
                 }
             }
 
-            if($SumaFO == 0 && $SumaFA == 0 && $SumaDO == 0 && $SumaDA == 0)
-            {
+            if($SumaFO == 0 && $SumaFA == 0 && $SumaDO == 0 && $SumaDA == 0){
                 session_start();
                 $_SESSION["ALERTA"] = "warning";
                 $_SESSION["MENSAJE"] = "Debe ingresar al menos un valor para identificar la estrategia";
                 return redirect()->action('EstrategiaController@Identificacion', ['PlanId' => $request->input('planid')]);
-            }
-            else
-            {
+            } else {
                 $valores = [
                     'FO' => $SumaFO,
                     'FA' => $SumaFA,

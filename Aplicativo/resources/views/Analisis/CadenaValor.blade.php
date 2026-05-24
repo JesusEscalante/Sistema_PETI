@@ -18,19 +18,19 @@
             <div class="table-responsive">
                 <form class="form" action="/analisis/cadena_calcular" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="planid" value="{{ $PlanId }}">
                 <table class="table table-hover table-bordered">
                     <thead class="bg-gray-100">
                         <tr>
-                            <th rowspan="3" width="15px" class="text-center align-middle">N°</th>
                             <th rowspan="3" width="60%" class="align-middle">AUTODIAGNÓSTICO DE LA CADENA DE VALOR INTERNA</th>
                             <th colspan="5" class="text-center p-0">VALORACIÓN</th>
                         </tr>
                         <tr>
-                            <th class="text-center p-0">En total desacuerdo</th>
-                            <th class="text-center p-0">No está de acuerdo</th>
-                            <th class="text-center p-0">Está de acuerdo</th>
-                            <th class="text-center p-0">Está bastante de acuerdo</th>
-                            <th class="text-center p-0">En total acuerdo</th>
+                            <th class="text-center py-0 px-1">En total desacuerdo</th>
+                            <th class="text-center py-0 px-1">No está de acuerdo</th>
+                            <th class="text-center py-0 px-1">Está de acuerdo</th>
+                            <th class="text-center py-0 px-1">Está bastante de acuerdo</th>
+                            <th class="text-center py-0 px-1">En total acuerdo</th>
                         </tr>
                         <tr>
                             <th class="text-center p-0">0</th>
@@ -43,31 +43,30 @@
                     <tbody>
                         @foreach($CadenaValor as $Valor)
                         <tr>
-                            <td class="text-center">{{ $Valor->Id }}</td>
                             <td>{{ $Valor->Pregunta }}</td>
                             <td>
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input ml-0" type="radio" name="valor{{ $Valor->Id }}" value="0" {{ $Valor->Valor == 0 ? 'checked' : '' }}>
+                                    <input class="form-check-input ml-0" type="radio" name="V{{ $Valor->Codigo }}" value="0" {{ $Valor->Valor == 0 ? 'checked' : '' }}>
                                 </div>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input ml-0" type="radio" name="valor{{ $Valor->Id }}" value="1" {{ $Valor->Valor == 1 ? 'checked' : '' }}>
+                                    <input class="form-check-input ml-0" type="radio" name="V{{ $Valor->Codigo }}" value="1" {{ $Valor->Valor == 1 ? 'checked' : '' }}>
                                 </div>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input ml-0" type="radio" name="valor{{ $Valor->Id }}" value="2" {{ $Valor->Valor == 2 ? 'checked' : '' }}>
+                                    <input class="form-check-input ml-0" type="radio" name="V{{ $Valor->Codigo }}" value="2" {{ $Valor->Valor == 2 ? 'checked' : '' }}>
                                 </div>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input ml-0" type="radio" name="valor{{ $Valor->Id }}" value="3" {{ $Valor->Valor == 3 ? 'checked' : '' }}>
+                                    <input class="form-check-input ml-0" type="radio" name="V{{ $Valor->Codigo }}" value="3" {{ $Valor->Valor == 3 ? 'checked' : '' }}>
                                 </div>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input ml-0" type="radio" name="valor{{ $Valor->Id }}" value="4" {{ $Valor->Valor == 4 ? 'checked' : '' }}>
+                                    <input class="form-check-input ml-0" type="radio" name="V{{ $Valor->Codigo }}" value="4" {{ $Valor->Valor == 4 ? 'checked' : '' }}>
                                 </div>
                             </td>
                         </tr>
@@ -95,12 +94,12 @@
             </div>
             <div class="row mt-2 mb-2">
                 <div class="col-lg-6">
-                    <a href="#" class="btn btn-dark btn-icon-split w-100" data-toggle="modal" data-target="#AddUnidad">
+                    <a href="#" class="btn btn-dark btn-icon-split w-100" data-toggle="modal" data-target="#AddFortaleza">
                         <i class="fa fa-plus"></i>
                         <span class="text">Agregar Fortaleza</span>
                     </a>
                     <!-- Agregar Modal-->
-                    <div class="modal fade" id="AddUnidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="AddFortaleza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content user">
                                 <div class="modal-header">
@@ -112,10 +111,15 @@
                                 <form class="user" action="/analisis/add_fortaleza" method="post">
                                 <div class="modal-body" style="text-align: start;">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="planid" value="{{ $PlanId}}">
                                     <input type="hidden" name="modulo" value="cadena">
                                     <div class="form-group">
                                         <label for="fortaleza"><strong>Fortaleza:</strong></label>
                                         <input type="text" class="form-control" name="fortaleza" placeholder="Fortaleza..." title="Fortaleza">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fortaleza"><strong>Como Mantener la Fortaleza?:</strong></label>
+                                        <textarea class="form-control" name="accion" placeholder="Como Mantener la Fortaleza..." title="Como Mantener la Fortaleza?" rows="5"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -161,6 +165,10 @@
                                                         <div class="form-group">
                                                             <label for="fortaleza"><strong>Fortaleza:</strong></label>
                                                             <input type="text" class="form-control" name="fortaleza" placeholder="Fortaleza..." title="Fortaleza" value="{{ $Fortaleza['Fortaleza'] }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="fortaleza"><strong>Como Mantener la Fortaleza?:</strong></label>
+                                                            <textarea class="form-control" name="accion" placeholder="Como Mantener la Fortaleza..." title="Como Mantener la Fortaleza?" rows="5">{{ $Fortaleza['Accion'] }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -219,10 +227,15 @@
                                 <form class="user" action="/analisis/add_debilidad" method="post">
                                 <div class="modal-body" style="text-align: start;">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="planid" value="{{ $PlanId}}">
                                     <input type="hidden" name="modulo" value="cadena">
                                     <div class="form-group">
                                         <label for="debilidad"><strong>Debilidad:</strong></label>
                                         <input type="text" class="form-control" name="debilidad" placeholder="Debilidad..." title="Debilidad">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fortaleza"><strong>Como Corregir la Debilidad?:</strong></label>
+                                        <textarea class="form-control" name="accion" placeholder="Como Corregir la Debilidad..." title="Como Corregir la Debilidad?" rows="5"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -268,6 +281,10 @@
                                                         <div class="form-group">
                                                             <label for="debilidad"><strong>Debilidad:</strong></label>
                                                             <input type="text" class="form-control" name="debilidad" placeholder="Debilidad..." title="Debilidad" value="{{ $Debilidad['Debilidad'] }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="fortaleza"><strong>Como Corregir la Debilidad?:</strong></label>
+                                                            <textarea class="form-control" name="accion" placeholder="Como Corregir la Debilidad..." title="Como Corregir la Debilidad?" rows="5">{{ $Debilidad['Accion'] }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

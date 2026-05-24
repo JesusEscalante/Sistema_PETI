@@ -42,6 +42,7 @@
                                                 <form class="user" action="/analisis/add_producto" method="post">
                                                 <div class="modal-body" style="text-align: start;">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" name="planid" value="{{ $PlanId }}">
                                                     <div class="form-group row">
                                                         <div class="col-lg-8">
                                                             <label for="unidad"><strong>Nombre de Producto:</strong></label>
@@ -181,6 +182,7 @@
                                                 <form class="user" action="/analisis/add_periodo" method="post">
                                                 <div class="modal-body" style="text-align: start;">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" name="planid" value="{{ $PlanId }}">
                                                     <div class="form-group">
                                                         <label for="desde"><strong>Desde:</strong></label>
                                                         <input type="number" class="form-control" name="desde" id="desde" 
@@ -305,6 +307,7 @@
                 <div class="card-body">
                     <form class="form" action="/analisis/save_tcm" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="planid" value="{{ $PlanId }}">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered">
                             <thead class="bg-gray-100">
@@ -401,6 +404,7 @@
                 <div class="card-body">
                     <form class="form" action="/analisis/save_edgs" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="planid" value="{{ $PlanId }}">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered">
                             <thead class="bg-gray-100">
@@ -447,7 +451,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-sm-12"><h5 class="font-weight-bold text-primary m-0">NIVELES DE VENTA DE LOS COMPETIDORES DE CADA PRODUCTO</h5></div>
                         <div class="col-lg-6 col-sm-12 d-flex justify-content-end row">
-                            <a href="/analisis/add_competidor" class="btn btn-primary btn-icon-split ml-1">
+                            <a href="/analisis/add_competidor/{{ $PlanId }}" class="btn btn-primary btn-icon-split ml-1">
                                 <i class="fa fa-plus"></i>
                                 <span class="text">Agregar</span>
                             </a>
@@ -458,6 +462,7 @@
                 <div class="card-body">
                     <form action="/analisis/save_competidores" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="planid" value="{{ $PlanId }}">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered">
                             <thead class="bg-gray-100">
@@ -522,12 +527,12 @@
 
             <div class="row mt-2 mb-2">
                 <div class="col-lg-6">
-                    <a href="#" class="btn btn-dark btn-icon-split w-100" data-toggle="modal" data-target="#AddUnidad">
+                    <a href="#" class="btn btn-dark btn-icon-split w-100" data-toggle="modal" data-target="#AddFortaleza">
                         <i class="fa fa-plus"></i>
                         <span class="text">Agregar Fortaleza</span>
                     </a>
                     <!-- Agregar Modal-->
-                    <div class="modal fade" id="AddUnidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="AddFortaleza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content user">
                                 <div class="modal-header">
@@ -539,10 +544,15 @@
                                 <form class="user" action="/analisis/add_fortaleza" method="post">
                                 <div class="modal-body" style="text-align: start;">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" name="modulo" value="participacion">
+                                    <input type="hidden" name="planid" value="{{ $PlanId}}">
+                                    <input type="hidden" name="modulo" value="cadena">
                                     <div class="form-group">
                                         <label for="fortaleza"><strong>Fortaleza:</strong></label>
                                         <input type="text" class="form-control" name="fortaleza" placeholder="Fortaleza..." title="Fortaleza">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fortaleza"><strong>Como Mantener la Fortaleza?:</strong></label>
+                                        <textarea class="form-control" name="accion" placeholder="Como Mantener la Fortaleza..." title="Como Mantener la Fortaleza?" rows="5"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -589,6 +599,10 @@
                                                             <label for="fortaleza"><strong>Fortaleza:</strong></label>
                                                             <input type="text" class="form-control" name="fortaleza" placeholder="Fortaleza..." title="Fortaleza" value="{{ $Fortaleza['Fortaleza'] }}">
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label for="fortaleza"><strong>Como Mantener la Fortaleza?:</strong></label>
+                                                            <textarea class="form-control" name="accion" placeholder="Como Mantener la Fortaleza..." title="Como Mantener la Fortaleza?" rows="5">{{ $Fortaleza['Accion'] }}</textarea>
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <input type="submit" class="btn btn-primary btn-block" value="Editar Fortaleza">
@@ -632,6 +646,7 @@
                         <i class="fa fa-plus"></i>
                         <span class="text">Agregar Debilidad</span>
                     </a>
+
                     <!-- Agregar Modal-->
                     <div class="modal fade" id="AddDebilidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
@@ -645,10 +660,15 @@
                                 <form class="user" action="/analisis/add_debilidad" method="post">
                                 <div class="modal-body" style="text-align: start;">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" name="modulo" value="participacion">
+                                    <input type="hidden" name="planid" value="{{ $PlanId}}">
+                                    <input type="hidden" name="modulo" value="cadena">
                                     <div class="form-group">
                                         <label for="debilidad"><strong>Debilidad:</strong></label>
                                         <input type="text" class="form-control" name="debilidad" placeholder="Debilidad..." title="Debilidad">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fortaleza"><strong>Como Corregir la Debilidad?:</strong></label>
+                                        <textarea class="form-control" name="accion" placeholder="Como Corregir la Debilidad..." title="Como Corregir la Debilidad?" rows="5"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -659,6 +679,7 @@
                         </div>
                     </div>
                     <!-- Agregar Modal-->
+                    
                     <hr>
 
                     <div class="table-responsive">
@@ -693,6 +714,10 @@
                                                         <div class="form-group">
                                                             <label for="debilidad"><strong>Debilidad:</strong></label>
                                                             <input type="text" class="form-control" name="debilidad" placeholder="Debilidad..." title="Debilidad" value="{{ $Debilidad['Debilidad'] }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="fortaleza"><strong>Como Corregir la Debilidad?:</strong></label>
+                                                            <textarea class="form-control" name="accion" placeholder="Como Corregir la Debilidad..." title="Como Corregir la Debilidad?" rows="5">{{ $Debilidad['Accion'] }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -729,7 +754,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>                
+                    </div>
                 </div>
             </div>
         </div>

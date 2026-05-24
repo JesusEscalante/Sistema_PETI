@@ -22,7 +22,15 @@ class Productos extends Model
         return Productos::all();
     }
 
-    public static function DatosGrafico()
+    public static function ObtenerPorUsuarioIdPlanId($UsuarioId, $PlanId)
+    {
+        return Productos::from('productos as p')
+                ->where('p.UsuarioId', $UsuarioId)
+                ->where('p.PlanId', $PlanId)
+                ->get();
+    }
+
+    public static function DatosGrafico($UsuarioId, $PlanId)
     {
         return DB::table('productos as p')
                 ->select(
@@ -34,6 +42,8 @@ class Productos extends Model
                 )
                 ->join('tcm as t', 't.ProductoId', '=', 'p.Id')
                 ->groupBy('p.Id', 'p.Nombre', 'p.Ventas', 'p.Porcentaje')
+                ->where('p.UsuarioId', $UsuarioId)
+                ->where('p.PlanId', $PlanId)
                 ->get();
     }
 

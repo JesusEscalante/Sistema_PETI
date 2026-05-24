@@ -27,18 +27,20 @@
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th>Fortaleza</th>
-                                            <th width="20%" class="text-center">Origen</th>
-                                            <th width="20%"><center>Acciones</center></th>
+                                            <th width="20%" class="text-center">Creado Por</th>
+                                            <th width="15%" class="text-center">Origen</th>
+                                            <!--th width="8%"><center>Acciones</center></th-->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($Fortalezas as $Fortaleza)
                                         <tr>
                                             <td>{{ $Fortaleza->Fortaleza }}</td>
+                                            <td class="text-center">{{ $Fortaleza->Nombre }} {{ $Fortaleza->Apellido }}</td>
                                             <td class="text-center">{{ $Fortaleza->Origen == "cadena" ? "Cadena de Valor" : "Participacion de Mercado" }}</td>
-                                            <td class="text-center">
+                                            <!--td class="text-center">
                                                 <a href="#" class="btn btn-success btn-sm text-uppercase" title="Editar" data-toggle="modal" data-target="#EditFortaleza{{ $Fortaleza->Id }}"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
-                                                <!-- Editar Modal-->
+                                                <- Editar Modal->
                                                 <div class="modal fade" id="EditFortaleza{{ $Fortaleza->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content user">
@@ -56,6 +58,10 @@
                                                                     <label for="fortaleza"><strong>Fortaleza:</strong></label>
                                                                     <input type="text" class="form-control" name="fortaleza" placeholder="Fortaleza..." title="Fortaleza" value="{{ $Fortaleza['Fortaleza'] }}">
                                                                 </div>
+                                                                <div class="form-group">
+                                                                    <label for="fortaleza"><strong>Como Mantener la Fortaleza?:</strong></label>
+                                                                    <textarea class="form-control" name="accion" placeholder="Como Mantener la Fortaleza..." title="Como Mantener la Fortaleza?" rows="5">{{ $Fortaleza['Accion'] }}</textarea>
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <input type="submit" class="btn btn-primary btn-block" value="Editar Fortaleza">
@@ -64,9 +70,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Editar Modal-->
+                                                <- Editar Modal->
                                                 <a href="#" class="btn btn-danger btn-sm text-uppercase" title="Eliminar" data-toggle="modal" data-target="#DeleteFortaleza{{ $Fortaleza->Id }}"><i class="fa fa-trash" aria-hidden="true" style="margin: 0 auto;"></i></a>
-                                                <!-- Delete Modal-->
+                                                <- Delete Modal->
                                                 <div class="modal fade" id="DeleteFortaleza{{ $Fortaleza->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
@@ -84,8 +90,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Delete Modal-->
-                                            </td>
+                                                <- Delete Modal->
+                                            </td-->
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -109,18 +115,20 @@
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th>Debilidad</th>
-                                            <th class="text-center">Origen</th>
-                                            <th width="20%"><center>Acciones</center></th>
+                                            <th width="20%" class="text-center">Creado Por</th>
+                                            <th width="15%" class="text-center">Origen</th>
+                                            <!--th width="8%"><center>Acciones</center></th-->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($Debilidades as $Debilidad)
                                         <tr>
                                             <td>{{ $Debilidad->Debilidad }}</td>
-                                            <td width="20%" class="text-center">{{ $Debilidad->Origen == "cadena" ? "Cadena de Valor" : "Participacion de Mercado" }}</td>
-                                            <td class="text-center">
+                                            <td class="text-center">{{ $Debilidad->Nombre }} {{ $Debilidad->Apellido }}</td>
+                                            <td class="text-center">{{ $Debilidad->Origen == "cadena" ? "Cadena de Valor" : "Participacion de Mercado" }}</td>
+                                            <!--td class="text-center">
                                                 <a href="#" class="btn btn-success btn-sm text-uppercase" title="Editar" data-toggle="modal" data-target="#EditDebilidad{{ $Debilidad->Id }}"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
-                                                <!-- Editar Modal-->
+                                                <- Editar Modal->
                                                 <div class="modal fade" id="EditDebilidad{{ $Debilidad->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content user">
@@ -138,6 +146,10 @@
                                                                     <label for="debilidad"><strong>Debilidad:</strong></label>
                                                                     <input type="text" class="form-control" name="debilidad" placeholder="Debilidad..." title="Debilidad" value="{{ $Debilidad['Debilidad'] }}">
                                                                 </div>
+                                                                <div class="form-group">
+                                                                    <label for="fortaleza"><strong>Como Corregir la Debilidad?:</strong></label>
+                                                                    <textarea class="form-control" name="accion" placeholder="Como Corregir la Debilidad..." title="Como Corregir la Debilidad?" rows="5">{{ $Debilidad['Accion'] }}</textarea>
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <input type="submit" class="btn btn-primary btn-block" value="Editar Debilidad">
@@ -146,9 +158,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Editar Modal-->
+                                                <- Editar Modal->
                                                 <a href="#" class="btn btn-danger btn-sm text-uppercase" title="Eliminar" data-toggle="modal" data-target="#DeleteDebilidad{{ $Debilidad->Id }}"><i class="fa fa-trash" aria-hidden="true" style="margin: 0 auto;"></i></a>
-                                                <!-- Delete Modal-->
+                                                <- Delete Modal->
                                                 <div class="modal fade" id="DeleteDebilidad{{ $Debilidad->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
@@ -166,8 +178,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Delete Modal-->
-                                            </td>
+                                                <- Delete Modal->
+                                            </td-->
                                         </tr>
                                         @endforeach
                                     </tbody>

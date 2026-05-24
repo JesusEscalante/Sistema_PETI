@@ -22,11 +22,22 @@ class Tcm extends Model
         return Tcm::all();
     }
 
-    public static function ListarSUMA()
+    public static function ObtenerPorUsuarioIdPlanId($UsuarioId, $PlanId)
     {
-        return Tcm::select('ProductoId', \DB::raw('SUM(Valor) as total_valor'))
-              ->groupBy('ProductoId')
-              ->get();
+        return Tcm::from('tcm as t')
+                ->where('t.UsuarioId', $UsuarioId)
+                ->where('t.PlanId', $PlanId)
+                ->get();
+    }
+
+    public static function ListarSUMA($UsuarioId, $PlanId)
+    {
+        return Tcm::from('Tcm as t')
+                ->select('ProductoId', \DB::raw('SUM(Valor) as total_valor'))
+                ->groupBy('ProductoId')
+                ->where('t.UsuarioId', $UsuarioId)
+                ->where('t.PlanId', $PlanId)
+                ->get();
     }
 
     public static function Agregar(Tcm $ObjTCM)
@@ -57,11 +68,14 @@ class Tcm extends Model
         return Tcm::find($TcmId);
     }
 
-    public static function ObtenerPorPeriodoProducto($Periodo, $ProductoId)
+    public static function ObtenerPorPeriodoProducto($Periodo, $ProductoId, $UsuarioId, $PlanId)
     {
-        return Tcm::where('Periodo', $Periodo)
-               ->where('ProductoId', $ProductoId)
-               ->first();
+        return Tcm::from('tcm as t')
+                ->where('t.UsuarioId', $UsuarioId)
+                ->where('t.PlanId', $PlanId)
+                ->where('t.Periodo', $Periodo)
+                ->where('t.ProductoId', $ProductoId)
+                ->first();
     }
 }
 

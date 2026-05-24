@@ -18,6 +18,7 @@
 
             <form action="/analisis/porter_calcular" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="planid" value="{{ $PlanId }}">
 
             <div class="row">
 
@@ -47,27 +48,27 @@
                                     <td class="text-center">{{ $Fuerza01->Hostil }}</td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F1_ID{{ $Fuerza01->Id }}" value="1" {{ $Fuerza01->Valor == 1 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza01->Codigo }}_ID{{ $Fuerza01->Id }}" value="1" {{ $Fuerza01->Valor == 1 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F1_ID{{ $Fuerza01->Id }}" value="2" {{ $Fuerza01->Valor == 2 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza01->Codigo }}_ID{{ $Fuerza01->Id }}" value="2" {{ $Fuerza01->Valor == 2 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F1_ID{{ $Fuerza01->Id }}" value="3" {{ $Fuerza01->Valor == 3 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza01->Codigo }}_ID{{ $Fuerza01->Id }}" value="3" {{ $Fuerza01->Valor == 3 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F1_ID{{ $Fuerza01->Id }}" value="4" {{ $Fuerza01->Valor == 4 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza01->Codigo }}_ID{{ $Fuerza01->Id }}" value="4" {{ $Fuerza01->Valor == 4 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F1_ID{{ $Fuerza01->Id }}" value="5" {{ $Fuerza01->Valor == 5 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza01->Codigo }}_ID{{ $Fuerza01->Id }}" value="5" {{ $Fuerza01->Valor == 5 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td class="text-center">{{ $Fuerza01->Favorable }}</td>
@@ -105,27 +106,27 @@
 
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F2_ID{{ $Fuerza02->Id }}" value="1" {{ $Fuerza02->Valor == 1 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza02->Codigo }}_ID{{ $Fuerza02->Id }}" value="1" {{ $Fuerza02->Valor == 1 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F2_ID{{ $Fuerza02->Id }}" value="2" {{ $Fuerza02->Valor == 2 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza02->Codigo }}_ID{{ $Fuerza02->Id }}" value="2" {{ $Fuerza02->Valor == 2 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F2_ID{{ $Fuerza02->Id }}" value="3" {{ $Fuerza02->Valor == 3 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza02->Codigo }}_ID{{ $Fuerza02->Id }}" value="3" {{ $Fuerza02->Valor == 3 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F2_ID{{ $Fuerza02->Id }}" value="4" {{ $Fuerza02->Valor == 4 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza02->Codigo }}_ID{{ $Fuerza02->Id }}" value="4" {{ $Fuerza02->Valor == 4 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F2_ID{{ $Fuerza02->Id }}" value="5" {{ $Fuerza02->Valor == 5 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza02->Codigo }}_ID{{ $Fuerza02->Id }}" value="5" {{ $Fuerza02->Valor == 5 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td class="text-center">{{ $Fuerza02->Favorable }}</td>
@@ -163,27 +164,27 @@
 
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F3_ID{{ $Fuerza03->Id }}" value="1" {{ $Fuerza03->Valor == 1 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza03->Codigo }}_ID{{ $Fuerza03->Id }}" value="1" {{ $Fuerza03->Valor == 1 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F3_ID{{ $Fuerza03->Id }}" value="2" {{ $Fuerza03->Valor == 2 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza03->Codigo }}_ID{{ $Fuerza03->Id }}" value="2" {{ $Fuerza03->Valor == 2 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F3_ID{{ $Fuerza03->Id }}" value="3" {{ $Fuerza03->Valor == 3 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza03->Codigo }}_ID{{ $Fuerza03->Id }}" value="3" {{ $Fuerza03->Valor == 3 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F3_ID{{ $Fuerza03->Id }}" value="4" {{ $Fuerza03->Valor == 4 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza03->Codigo }}_ID{{ $Fuerza03->Id }}" value="4" {{ $Fuerza03->Valor == 4 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F3_ID{{ $Fuerza03->Id }}" value="5" {{ $Fuerza03->Valor == 5 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza03->Codigo }}_ID{{ $Fuerza03->Id }}" value="5" {{ $Fuerza03->Valor == 5 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td class="text-center">{{ $Fuerza03->Favorable }}</td>
@@ -221,27 +222,27 @@
 
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F4_ID{{ $Fuerza04->Id }}" value="1" {{ $Fuerza04->Valor == 1 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza04->Codigo }}_ID{{ $Fuerza04->Id }}" value="1" {{ $Fuerza04->Valor == 1 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F4_ID{{ $Fuerza04->Id }}" value="2" {{ $Fuerza04->Valor == 2 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza04->Codigo }}_ID{{ $Fuerza04->Id }}" value="2" {{ $Fuerza04->Valor == 2 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F4_ID{{ $Fuerza04->Id }}" value="3" {{ $Fuerza04->Valor == 3 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza04->Codigo }}_ID{{ $Fuerza04->Id }}" value="3" {{ $Fuerza04->Valor == 3 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F4_ID{{ $Fuerza04->Id }}" value="4" {{ $Fuerza04->Valor == 4 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza04->Codigo }}_ID{{ $Fuerza04->Id }}" value="4" {{ $Fuerza04->Valor == 4 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input ml-0" type="radio" name="F4_ID{{ $Fuerza04->Id }}" value="5" {{ $Fuerza04->Valor == 5 ? 'checked' : '' }}>
+                                            <input class="form-check-input ml-0" type="radio" name="{{ $Fuerza04->Codigo }}_ID{{ $Fuerza04->Id }}" value="5" {{ $Fuerza04->Valor == 5 ? 'checked' : '' }}>
                                         </div>
                                     </td>
                                     <td class="text-center">{{ $Fuerza04->Favorable }}</td>
@@ -295,9 +296,14 @@
                                 <div class="modal-body" style="text-align: start;">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="modulo" value="porter">
+                                    <input type="hidden" name="planid" value="{{ $PlanId}}">
                                     <div class="form-group">
                                         <label for="oportunidad"><strong>Oportunidad:</strong></label>
                                         <input type="text" class="form-control" name="oportunidad" placeholder="Oportunidad..." title="Oportunidad">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fortaleza"><strong>Como Explotar la Oportunidad?:</strong></label>
+                                        <textarea class="form-control" name="accion" placeholder="Como Explotar la Oportunidad..." title="Como Explotar la Oportunidad?" rows="5"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -343,6 +349,10 @@
                                                         <div class="form-group">
                                                             <label for="oportunidad"><strong>Oportunidad:</strong></label>
                                                             <input type="text" class="form-control" name="oportunidad" placeholder="Oportunidad..." title="Oportunidad" value="{{ $Oportunidad['Oportunidad'] }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="fortaleza"><strong>Como Explotar la Oportunidad?:</strong></label>
+                                                            <textarea class="form-control" name="accion" placeholder="Como Explotar la Oportunidad..." title="Como Explotar la Oportunidad?" rows="5">{{ $Oportunidad['Accion'] }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -401,9 +411,14 @@
                                 <div class="modal-body" style="text-align: start;">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="modulo" value="porter">
+                                    <input type="hidden" name="planid" value="{{ $PlanId}}">
                                     <div class="form-group">
                                         <label for="amenaza"><strong>Amenaza:</strong></label>
                                         <input type="text" class="form-control" name="amenaza" placeholder="Amenaza..." title="Amenaza">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fortaleza"><strong>Como Afrontar la Amenaza?:</strong></label>
+                                        <textarea class="form-control" name="accion" placeholder="Como Afrontar la Amenaza..." title="Como Afrontar la Amenaza?" rows="5"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -449,6 +464,10 @@
                                                         <div class="form-group">
                                                             <label for="amenaza"><strong>Amenaza:</strong></label>
                                                             <input type="text" class="form-control" name="amenaza" placeholder="Amenaza..." title="Amenaza" value="{{ $Amenaza['Amenaza'] }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="fortaleza"><strong>Como Afrontar la Amenaza?:</strong></label>
+                                                            <textarea class="form-control" name="accion" placeholder="Como Afrontar la Amenaza..." title="Como Afrontar la Amenaza?" rows="5">{{ $Amenaza['Accion'] }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

@@ -22,11 +22,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AnalisisController extends Controller
 {
-    // -- START ANALISIS INTERNO ----------------------------------
+    // -- START ANALISIS INTERNO ------------------------------------------------------------------------------
 
-    public function Interno(){
-        $objFortalezas = Fortalezas::Listar();
-        $objDebilidades = Debilidades::Listar();
+    public function Interno($PlanId){
+        $objFortalezas = Fortalezas::ObtenerPorPlanId($PlanId);
+        $objDebilidades = Debilidades::ObtenerPorPlanId($PlanId);
         return view('Analisis.Interno',[
             'Fortalezas' => $objFortalezas,
             'Debilidades' => $objDebilidades
@@ -38,7 +38,10 @@ class AnalisisController extends Controller
         try
         {
             $ObjFortaleza = new Fortalezas();
+            $ObjFortaleza->UsuarioId = auth()->user()->Id;
+            $ObjFortaleza->PlanId = $request->input('planid');
             $ObjFortaleza->Fortaleza = $request->input('fortaleza');
+            $ObjFortaleza->Accion = $request->input('accion');
             $ObjFortaleza->Origen = $request->input('modulo');
             
             if(Fortalezas::Agregar($ObjFortaleza))
@@ -46,21 +49,11 @@ class AnalisisController extends Controller
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se agregó correctamente la fortaleza";
-                if($request->input('modulo') == "cadena"){
-                    return redirect()->action('AnalisisController@CadenaValor');
+                if($ObjFortaleza->Origen == "cadena"){
+                    return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $ObjFortaleza->PlanId]);
                 }
-                if($request->input('modulo') == "participacion"){
-                    return redirect()->action('AnalisisController@Participacion');
-                }
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo agregar la fortaleza";
-                if($request->input('modulo') == "cadena"){
-                    return redirect()->action('AnalisisController@CadenaValor');
-                }
-                if($request->input('modulo') == "participacion"){
-                    return redirect()->action('AnalisisController@Participacion');
+                if($ObjFortaleza->Origen == "participacion"){
+                    return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjFortaleza->PlanId]);
                 }
             }
         }
@@ -70,10 +63,10 @@ class AnalisisController extends Controller
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo agregar la fortaleza";
             if($request->input('modulo') == "cadena"){
-                return redirect()->action('AnalisisController@CadenaValor');
+                return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $ObjFortaleza->PlanId]);
             }
             if($request->input('modulo') == "participacion"){
-                return redirect()->action('AnalisisController@Participacion');
+                return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjFortaleza->PlanId]);
             }
         }
     }
@@ -84,18 +77,19 @@ class AnalisisController extends Controller
         {
             $ObjFortaleza = Fortalezas::ObtenerPorId($request->input('id'));
             $ObjFortaleza->Fortaleza = $request->input('fortaleza');
+            $ObjFortaleza->Accion = $request->input('accion');
             
             if(Fortalezas::Editar($ObjFortaleza))
             {
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se modifico correctamente la fortaleza";
-                return redirect()->action('AnalisisController@Interno');
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo modificar la fortaleza";
-                return redirect()->action('AnalisisController@Interno');
+                if($ObjFortaleza->Origen == "cadena"){
+                    return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $ObjFortaleza->PlanId]);
+                }
+                if($ObjFortaleza->Origen == "participacion"){
+                    return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjFortaleza->PlanId]);
+                }
             }
         }
         catch (\Illuminate\Database\QueryException $e)
@@ -103,7 +97,12 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo modificar la fortaleza";
-            return redirect()->action('AnalisisController@Interno');
+            if($ObjFortaleza->Origen == "cadena"){
+                return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $ObjFortaleza->PlanId]);
+            }
+            if($ObjFortaleza->Origen == "participacion"){
+                return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjFortaleza->PlanId]);
+            }
         }
     }
 
@@ -118,21 +117,26 @@ class AnalisisController extends Controller
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se eliminó correctamente la fortaleza";
-                return redirect()->action('AnalisisController@Interno');
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo eliminar la fortaleza";
-                return redirect()->action('AnalisisController@Interno');
+                if($ObjFortaleza->Origen == "cadena"){
+                    return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $ObjFortaleza->PlanId]);
+                }
+                if($ObjFortaleza->Origen == "participacion"){
+                    return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjFortaleza->PlanId]);
+                }
             }
-         }
-         catch (\Illuminate\Database\QueryException $e)
-         {
-             session_start();
-             $_SESSION["ALERTA"] = "error";
-             $_SESSION["MENSAJE"] = "No se pudo eliminar la fortaleza";
-             return redirect()->action('AnalisisController@Interno');
-         }
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo eliminar la fortaleza";
+            if($ObjFortaleza->Origen == "cadena"){
+                return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $ObjFortaleza->PlanId]);
+            }
+            if($ObjFortaleza->Origen == "participacion"){
+                return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjFortaleza->PlanId]);
+            }
+        }
     }
 
     public function AgregarDebilidad(Request $request)
@@ -140,29 +144,22 @@ class AnalisisController extends Controller
         try
         {
             $ObjDebilidad = new Debilidades();
+            $ObjDebilidad->UsuarioId = auth()->user()->Id;
+            $ObjDebilidad->PlanId = $request->input('planid');
             $ObjDebilidad->Debilidad = $request->input('debilidad');
-            $ObjFortaleza->Origen = $request->input('modulo');
+            $ObjDebilidad->Accion = $request->input('accion');
+            $ObjDebilidad->Origen = $request->input('modulo');
             
             if(Debilidades::Agregar($ObjDebilidad))
             {
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se agregó correctamente la debilidad";
-                if($request->input('modulo') == "cadena"){
-                    return redirect()->action('AnalisisController@CadenaValor');
+                if($ObjDebilidad->Origen == "cadena"){
+                    return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $ObjDebilidad->PlanId]);
                 }
-                if($request->input('modulo') == "participacion"){
-                    return redirect()->action('AnalisisController@Participacion');
-                }
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo agregar la debilidad";
-                if($request->input('modulo') == "cadena"){
-                    return redirect()->action('AnalisisController@CadenaValor');
-                }
-                if($request->input('modulo') == "participacion"){
-                    return redirect()->action('AnalisisController@Participacion');
+                if($ObjDebilidad->Origen == "participacion"){
+                    return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjDebilidad->PlanId]);
                 }
             }
         }
@@ -171,11 +168,11 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo agregar la debilidad";
-            if($request->input('modulo') == "cadena"){
-                return redirect()->action('AnalisisController@CadenaValor');
+            if($ObjDebilidad->Origen == "cadena"){
+                return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $ObjDebilidad->PlanId]);
             }
-            if($request->input('modulo') == "participacion"){
-                return redirect()->action('AnalisisController@Participacion');
+            if($ObjDebilidad->Origen == "participacion"){
+                return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjDebilidad->PlanId]);
             }
         }
     }
@@ -186,18 +183,19 @@ class AnalisisController extends Controller
         {
             $ObjDebilidad = Debilidades::ObtenerPorId($request->input('id'));
             $ObjDebilidad->Debilidad = $request->input('debilidad');
+            $ObjDebilidad->Accion = $request->input('accion');
             
             if(Debilidades::Editar($ObjDebilidad))
             {
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se modifico correctamente la debilidad";
-                return redirect()->action('AnalisisController@Interno');
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo modificar la debilidad";
-                return redirect()->action('AnalisisController@Interno');
+                if($ObjDebilidad->Origen == "cadena"){
+                    return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $ObjDebilidad->PlanId]);
+                }
+                if($ObjDebilidad->Origen == "participacion"){
+                    return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjDebilidad->PlanId]);
+                }
             }
         }
         catch (\Illuminate\Database\QueryException $e)
@@ -205,7 +203,12 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo modificar la debilidad";
-            return redirect()->action('AnalisisController@Interno');
+            if($ObjDebilidad->Origen == "cadena"){
+                return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $ObjDebilidad->PlanId]);
+            }
+            if($ObjDebilidad->Origen == "participacion"){
+                return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjDebilidad->PlanId]);
+            }
         }
     }
 
@@ -220,30 +223,35 @@ class AnalisisController extends Controller
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se eliminó correctamente la debilidad";
-                return redirect()->action('AnalisisController@Interno');
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo eliminar la debilidad";
-                return redirect()->action('AnalisisController@Interno');
+                if($ObjDebilidad->Origen == "cadena"){
+                    return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $ObjDebilidad->PlanId]);
+                }
+                if($ObjDebilidad->Origen == "participacion"){
+                    return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjDebilidad->PlanId]);
+                }
             }
-         }
-         catch (\Illuminate\Database\QueryException $e)
-         {
-             session_start();
-             $_SESSION["ALERTA"] = "error";
-             $_SESSION["MENSAJE"] = "No se pudo eliminar la debilidad";
-             return redirect()->action('AnalisisController@Interno');
-         }
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo eliminar la debilidad";
+            if($ObjDebilidad->Origen == "cadena"){
+                return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $ObjDebilidad->PlanId]);
+            }
+            if($ObjDebilidad->Origen == "participacion"){
+                return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjDebilidad->PlanId]);
+            }
+        }
     }
 
-    // -- END ANALISIS INTERNO ----------------------------------
+    // -- END ANALISIS INTERNO ----------------------------------------------------------------------------------
 
-    // -- START ANALISIS EXTERNO ----------------------------------
+    // -- START ANALISIS EXTERNO --------------------------------------------------------------------------------
 
-    public function Externo(){
-        $objOportunidades = Oportunidades::Listar();
-        $objAmenazas = Amenazas::Listar();
+    public function Externo($PlanId){
+        $objOportunidades = Oportunidades::ObtenerPorPlanId($PlanId);
+        $objAmenazas = Amenazas::ObtenerPorPlanId($PlanId);
         return view('Analisis.Externo',[
             'Oportunidades' => $objOportunidades,
             'Amenazas' => $objAmenazas
@@ -255,29 +263,22 @@ class AnalisisController extends Controller
         try
         {
             $ObjOportunidad = new Oportunidades();
+            $ObjOportunidad->UsuarioId = auth()->user()->Id;
+            $ObjOportunidad->PlanId = $request->input('planid');
             $ObjOportunidad->Oportunidad = $request->input('oportunidad');
-            $ObjFortaleza->Origen = $request->input('modulo');
+            $ObjOportunidad->Origen = $request->input('modulo');
+            $ObjOportunidad->Accion = $request->input('accion');
             
             if(Oportunidades::Agregar($ObjOportunidad))
             {
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se agregó correctamente la oportunidad";
-                if($request->input('modulo') == "porter"){
-                    return redirect()->action('AnalisisController@Porter');
+                if($ObjOportunidad->Origen == "porter"){
+                    return redirect()->action('AnalisisController@Porter', ['PlanId' => $ObjOportunidad->PlanId]);
                 }
-                if($request->input('modulo') == "pest"){
-                    return redirect()->action('AnalisisController@PEST');
-                }
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo agregar la oportunidad";
-                if($request->input('modulo') == "porter"){
-                    return redirect()->action('AnalisisController@Porter');
-                }
-                if($request->input('modulo') == "pest"){
-                    return redirect()->action('AnalisisController@PEST');
+                if($ObjOportunidad->Origen == "pest"){
+                    return redirect()->action('AnalisisController@PEST', ['PlanId' => $ObjOportunidad->PlanId]);
                 }
             }
         }
@@ -286,11 +287,11 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo agregar la oportunidad";
-            if($request->input('modulo') == "porter"){
-                return redirect()->action('AnalisisController@Porter');
+            if($ObjOportunidad->Origen == "porter"){
+                return redirect()->action('AnalisisController@Porter', ['PlanId' => $ObjOportunidad->PlanId]);
             }
-            if($request->input('modulo') == "pest"){
-                return redirect()->action('AnalisisController@PEST');
+            if($ObjOportunidad->Origen == "pest"){
+                return redirect()->action('AnalisisController@PEST', ['PlanId' => $ObjOportunidad->PlanId]);
             }
         }
     }
@@ -301,18 +302,19 @@ class AnalisisController extends Controller
         {
             $ObjOportunidad = Oportunidades::ObtenerPorId($request->input('id'));
             $ObjOportunidad->Oportunidad = $request->input('oportunidad');
+            $ObjOportunidad->Accion = $request->input('accion');
             
             if(Oportunidades::Editar($ObjOportunidad))
             {
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se modifico correctamente la oportunidad";
-                return redirect()->action('AnalisisController@Externo');
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo modificar la oportunidad";
-                return redirect()->action('AnalisisController@Externo');
+                if($ObjOportunidad->Origen == "porter"){
+                    return redirect()->action('AnalisisController@Porter', ['PlanId' => $ObjOportunidad->PlanId]);
+                }
+                if($ObjOportunidad->Origen == "pest"){
+                    return redirect()->action('AnalisisController@PEST', ['PlanId' => $ObjOportunidad->PlanId]);
+                }
             }
         }
         catch (\Illuminate\Database\QueryException $e)
@@ -320,7 +322,12 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo modificar la oportunidad";
-            return redirect()->action('AnalisisController@Externo');
+            if($ObjOportunidad->Origen == "porter"){
+                return redirect()->action('AnalisisController@Porter', ['PlanId' => $ObjOportunidad->PlanId]);
+            }
+            if($ObjOportunidad->Origen == "pest"){
+                return redirect()->action('AnalisisController@PEST', ['PlanId' => $ObjOportunidad->PlanId]);
+            }
         }
     }
 
@@ -335,21 +342,26 @@ class AnalisisController extends Controller
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se eliminó correctamente la oportunidad";
-                return redirect()->action('AnalisisController@Externo');
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo eliminar la oportunidad";
-                return redirect()->action('AnalisisController@Externo');
+                if($request->input('modulo') == "porter"){
+                    return redirect()->action('AnalisisController@Porter', ['PlanId' => $ObjOportunidad->PlanId]);
+                }
+                if($request->input('modulo') == "pest"){
+                    return redirect()->action('AnalisisController@PEST', ['PlanId' => $ObjOportunidad->PlanId]);
+                }
             }
-         }
-         catch (\Illuminate\Database\QueryException $e)
-         {
-             session_start();
-             $_SESSION["ALERTA"] = "error";
-             $_SESSION["MENSAJE"] = "No se pudo eliminar la oportunidad";
-             return redirect()->action('AnalisisController@Externo');
-         }
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo eliminar la oportunidad";
+            if($ObjOportunidad->Origen == "porter"){
+                return redirect()->action('AnalisisController@Porter', ['PlanId' => $ObjOportunidad->PlanId]);
+            }
+            if($ObjOportunidad->Origen == "pest"){
+                return redirect()->action('AnalisisController@PEST', ['PlanId' => $ObjOportunidad->PlanId]);
+            }
+        }
     }
 
     public function AgregarAmenaza(Request $request)
@@ -357,29 +369,22 @@ class AnalisisController extends Controller
         try
         {
             $ObjAmenaza = new Amenazas();
+            $ObjAmenaza->UsuarioId = auth()->user()->Id;
+            $ObjAmenaza->PlanId = $request->input('planid');
             $ObjAmenaza->Amenaza = $request->input('amenaza');
-            $ObjFortaleza->Origen = $request->input('modulo');
+            $ObjAmenaza->Origen = $request->input('modulo');
+            $ObjAmenaza->Accion = $request->input('accion');
             
             if(Amenazas::Agregar($ObjAmenaza))
             {
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se agregó correctamente la amenaza";
-                if($request->input('modulo') == "porter"){
-                    return redirect()->action('AnalisisController@Porter');
+                if($ObjAmenaza->Origen == "porter"){
+                    return redirect()->action('AnalisisController@Porter', ['PlanId' => $ObjAmenaza->PlanId]);
                 }
-                if($request->input('modulo') == "pest"){
-                    return redirect()->action('AnalisisController@PEST');
-                }
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo agregar la amenaza";
-                if($request->input('modulo') == "porter"){
-                    return redirect()->action('AnalisisController@Porter');
-                }
-                if($request->input('modulo') == "pest"){
-                    return redirect()->action('AnalisisController@PEST');
+                if($ObjAmenaza->Origen == "pest"){
+                    return redirect()->action('AnalisisController@PEST', ['PlanId' => $ObjAmenaza->PlanId]);
                 }
             }
         }
@@ -388,11 +393,11 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo agregar la amenaza";
-            if($request->input('modulo') == "porter"){
-                return redirect()->action('AnalisisController@Porter');
+            if($ObjAmenaza->Origen == "porter"){
+                return redirect()->action('AnalisisController@Porter', ['PlanId' => $ObjAmenaza->PlanId]);
             }
-            if($request->input('modulo') == "pest"){
-                return redirect()->action('AnalisisController@PEST');
+            if($ObjAmenaza->Origen == "pest"){
+                return redirect()->action('AnalisisController@PEST', ['PlanId' => $ObjAmenaza->PlanId]);
             }
         }
     }
@@ -403,18 +408,19 @@ class AnalisisController extends Controller
         {
             $ObjAmenaza = Amenazas::ObtenerPorId($request->input('id'));
             $ObjAmenaza->Amenaza = $request->input('amenaza');
+            $ObjAmenaza->Accion = $request->input('accion');
             
             if(Amenazas::Editar($ObjAmenaza))
             {
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se modifico correctamente la amenaza";
-                return redirect()->action('AnalisisController@Externo');
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo modificar la amenaza";
-                return redirect()->action('AnalisisController@Externo');
+                if($ObjAmenaza->Origen == "porter"){
+                    return redirect()->action('AnalisisController@Porter', ['PlanId' => $ObjAmenaza->PlanId]);
+                }
+                if($ObjAmenaza->Origen == "pest"){
+                    return redirect()->action('AnalisisController@PEST', ['PlanId' => $ObjAmenaza->PlanId]);
+                }
             }
         }
         catch (\Illuminate\Database\QueryException $e)
@@ -422,7 +428,12 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo modificar la amenaza";
-            return redirect()->action('AnalisisController@Externo');
+            if($ObjAmenaza->Origen == "porter"){
+                return redirect()->action('AnalisisController@Porter', ['PlanId' => $ObjAmenaza->PlanId]);
+            }
+            if($ObjAmenaza->Origen == "pest"){
+                return redirect()->action('AnalisisController@PEST', ['PlanId' => $ObjAmenaza->PlanId]);
+            }
         }
     }
 
@@ -437,12 +448,12 @@ class AnalisisController extends Controller
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se eliminó correctamente la amenaza";
-                return redirect()->action('AnalisisController@Externo');
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo eliminar la amenaza";
-                return redirect()->action('AnalisisController@Externo');
+                if($ObjAmenaza->Origen == "porter"){
+                    return redirect()->action('AnalisisController@Porter', ['PlanId' => $ObjAmenaza->PlanId]);
+                }
+                if($ObjAmenaza->Origen == "pest"){
+                    return redirect()->action('AnalisisController@PEST', ['PlanId' => $ObjAmenaza->PlanId]);
+                }
             }
         }
         catch (\Illuminate\Database\QueryException $e)
@@ -450,18 +461,33 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo eliminar la amenaza";
-            return redirect()->action('AnalisisController@Externo');
+            if($request->input('modulo') == "porter"){
+                return redirect()->action('AnalisisController@Porter', ['PlanId' => $ObjAmenaza->PlanId]);
+            }
+            if($request->input('modulo') == "pest"){
+                return redirect()->action('AnalisisController@PEST', ['PlanId' => $ObjAmenaza->PlanId]);
+            }
         }
     }
 
-    // -- END ANALISIS EXTERNO ----------------------------------
+    // -- END ANALISIS EXTERNO -----------------------------------------------------------------------------------
 
-    // -- START ANALISIS - CADENA DE VALOR ----------------------------------
+    // -- START ANALISIS - CADENA DE VALOR -----------------------------------------------------------------------
 
-    public function CadenaValor(){
-        $objCadenaValor = CadenaValor::Listar();
-        $objFortalezas = Fortalezas::Listar();
-        $objDebilidades = Debilidades::Listar();
+    public function CadenaValor($PlanId){
+        $registrosExistentes = CadenaValor::ObtenerPorPlanId($PlanId);
+
+        if($registrosExistentes != null && count($registrosExistentes) > 0){
+            $objCadenaValor = $registrosExistentes;
+        } else {
+            for ($i=1; $i <= 25; $i++) { 
+                $objCadenaValor = new CadenaValor();
+                $objCadenaValor->PlanId = $PlanId;
+                $objCadenaValor->Pregunta = 'P'.$i;
+                CadenaValor::Agregar($objCadenaValor);
+            }
+            $objCadenaValor = CadenaValor::ObtenerPorPlanId($PlanId);
+        }
 
         $SUMA = 0;
         foreach($objCadenaValor as $Valor){
@@ -469,48 +495,56 @@ class AnalisisController extends Controller
         }
         $Potencial = 1 - ($SUMA / 100);
 
+        $objFortalezas = Fortalezas::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        $objDebilidades = Debilidades::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+
         return view('Analisis.CadenaValor',[
             'CadenaValor' => $objCadenaValor,
             'Fortalezas' => $objFortalezas,
             'Debilidades' => $objDebilidades,
             'SUMA' => $SUMA,
-            'Potencial' => ($Potencial * 100)
+            'Potencial' => ($Potencial * 100),
+            'PlanId' => $PlanId
         ]);
     }
 
     public function CalcularCadenaValor(Request $request){
         try
         {
-            $objCadenaValor = CadenaValor::Listar();
+            $objCadenaValor = CadenaValor::ObtenerPorPlanId($request->input('planid'));
 
-            foreach($objCadenaValor as $Valor){
-                $Valor->Valor = $request->input('valor' . $Valor->Id);
-                CadenaValor::Editar($Valor);
+            foreach($objCadenaValor as $row){
+                $inputName = 'V' . $row->Codigo;
+                
+                if($request->has($inputName)){
+                    $row->Valor = $request->input($inputName);
+                    CadenaValor::Editar($row);
+                }
             }
 
             session_start();
             $_SESSION["ALERTA"] = "success";
             $_SESSION["MENSAJE"] = "Se calculó correctamente el potencial de mejora de la cadena de valor interna";
-            return redirect()->action('AnalisisController@CadenaValor');
+            return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $request->input('planid')]);
         }
         catch (\Illuminate\Database\QueryException $e)
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo calcular el potencial de mejora de la cadena de valor interna";
-            return redirect()->action('AnalisisController@CadenaValor');
+            return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $request->input('planid')]);
         }
     }
 
-    // -- END ANALISIS - CADENA DE VALOR ----------------------------------
+    // -- END ANALISIS - CADENA DE VALOR -------------------------------------------------------------------------
 
-    // -- START ANALISIS - PARTICIPACIÓN ----------------------------------
+    // -- START ANALISIS - PARTICIPACIÓN -------------------------------------------------------------------------
 
-    public function Participacion(){
-        $ObjProductos = Productos::Listar();
-        $ObjPeriodos = Periodos::Listar();
-        $ObjFortalezas = Fortalezas::Listar();
-        $ObjDebilidades = Debilidades::Listar();
+    public function Participacion($PlanId){
+        $ObjProductos = Productos::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        $ObjPeriodos = Periodos::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        $ObjFortalezas = Fortalezas::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        $ObjDebilidades = Debilidades::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
 
         $SUMA = 0;
 
@@ -524,9 +558,11 @@ class AnalisisController extends Controller
         {
             foreach($ObjProductos as $ItemP)
             {
-                if(Tcm::ObtenerPorPeriodoProducto($Item->Periodo, $ItemP->Id) == null)
+                if(Tcm::ObtenerPorPeriodoProducto($Item->Periodo, $ItemP->Id, auth()->user()->Id, $PlanId) == null)
                 {
                     $ObjTCM = new Tcm();
+                    $ObjTCM->UsuarioId = auth()->user()->Id;
+                    $ObjTCM->PlanId = $PlanId;
                     $ObjTCM->Periodo = $Item->Periodo;
                     $ObjTCM->ProductoId = $ItemP->Id;
                     Tcm::Agregar($ObjTCM);
@@ -539,9 +575,11 @@ class AnalisisController extends Controller
         {
             foreach($ObjProductos as $ItemP)
             {
-                if(Edgs::ObtenerPorPeriodoProducto($Item->Periodo, $ItemP->Id) == null)
+                if(Edgs::ObtenerPorPeriodoProducto($Item->Periodo, $ItemP->Id, auth()->user()->Id, $PlanId) == null)
                 {
                     $ObjEDGS = new Edgs();
+                    $ObjEDGS->UsuarioId = auth()->user()->Id;
+                    $ObjEDGS->PlanId = $PlanId;
                     $ObjEDGS->Periodo = $Item->Periodo;
                     $ObjEDGS->ProductoId = $ItemP->Id;
                     Edgs::Agregar($ObjEDGS);
@@ -549,14 +587,14 @@ class AnalisisController extends Controller
             } 
         }
 
-        $ObjTCM = Tcm::Listar();
-        $ObjTCMSuma = Tcm::ListarSUMA();
-        $ObjEDGS = Edgs::Listar();
-        $ObjOrdenCompetidores = Competidores::ListarOrden();
-        $ObjCompetidores = Competidores::Listar();
-        $ObjCompetidoresMAYOR = Competidores::ListarMAYOR();
+        $ObjTCM = Tcm::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        $ObjTCMSuma = Tcm::ListarSUMA(auth()->user()->Id, $PlanId);
+        $ObjEDGS = Edgs::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        $ObjOrdenCompetidores = Competidores::ListarOrden(auth()->user()->Id, $PlanId);
+        $ObjCompetidores = Competidores::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        $ObjCompetidoresMAYOR = Competidores::ListarMAYOR(auth()->user()->Id, $PlanId);
 
-        $PRM = Competidores::ListarMAYOR();
+        $PRM = Competidores::ListarMAYOR(auth()->user()->Id, $PlanId);
 
         foreach($PRM as $prm){
             if($prm->mayor_venta == 0){
@@ -583,60 +621,14 @@ class AnalisisController extends Controller
             'TotalProductos' => $SUMA,
             'OrdenCompetidores' => $ObjOrdenCompetidores,
             'Competidores' => $ObjCompetidores,
-            'CompetidoresMAYOR' => $ObjCompetidoresMAYOR
+            'CompetidoresMAYOR' => $ObjCompetidoresMAYOR,
+            'PlanId' => $PlanId
         ]);
     }
 
-    public function AgregarProducto(Request $request)
+    public function ActualizarPorcentajes($PlanId)
     {
-        try
-        {
-            $ObjProductos = Productos::Listar();
-            $SUMA = 0;
-            foreach($ObjProductos as $Item)
-            {
-                $SUMA += $Item->Ventas;
-            }
-
-            $ObjProducto = new Productos();
-            $ObjProducto->Nombre = $request->input('nombre');
-            $ObjProducto->Ventas = $request->input('ventas');
-            $porcent = ($ObjProducto->Ventas * 100) / $SUMA;
-            $ObjProducto->Porcentaje = number_format((float)$porcent, 2, '.', '');
-            
-            if($ProductoId = Productos::Agregar($ObjProducto))
-            {
-                $ObjCompetidores = Competidores::ListarOrden();
-                foreach($ObjCompetidores as $Item){
-                    $ObjCompetidor = new Competidores();
-                    $ObjCompetidor->Competidor = $Item->Competidor;
-                    $ObjCompetidor->ProductoId = $ProductoId;
-                    Competidores::Agregar($ObjCompetidor);
-                }
-
-                session_start();
-                $_SESSION["ALERTA"] = "success";
-                $_SESSION["MENSAJE"] = "Se agrego correctamente el producto";
-                return redirect()->action('AnalisisController@Participacion');
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo agregar el producto";
-                return redirect()->action('AnalisisController@Participacion');
-            }
-        }
-        catch (\Illuminate\Database\QueryException $e)
-        {
-            session_start();
-            $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo agregar el producto";
-            return redirect()->action('AnalisisController@Participacion');
-        }
-    }
-
-    public function ActualizarPorcentajes()
-    {
-        $ObjProductos = Productos::Listar();
+        $ObjProductos = Productos::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
         $SUMA = 0;
         foreach($ObjProductos as $Item)
         {
@@ -651,6 +643,45 @@ class AnalisisController extends Controller
         }
     }
 
+    public function AgregarProducto(Request $request)
+    {
+        try
+        {
+            $ObjProducto = new Productos();
+            $ObjProducto->UsuarioId = auth()->user()->Id;
+            $ObjProducto->PlanId = $request->input('planid');
+            $ObjProducto->Nombre = $request->input('nombre');
+            $ObjProducto->Ventas = $request->input('ventas');
+            
+            if($ProductoId = Productos::Agregar($ObjProducto))
+            {
+                $ObjCompetidores = Competidores::ListarOrden(auth()->user()->Id, $request->input('planid'));
+                foreach($ObjCompetidores as $Item){
+                    $ObjCompetidor = new Competidores();
+                    $ObjCompetidor->UsuarioId = auth()->user()->Id;
+                    $ObjCompetidor->PlanId = $request->input('planid');
+                    $ObjCompetidor->Competidor = $Item->Competidor;
+                    $ObjCompetidor->ProductoId = $ProductoId;
+                    Competidores::Agregar($ObjCompetidor);
+                }
+
+                $this->ActualizarPorcentajes($request->input('planid'));
+
+                session_start();
+                $_SESSION["ALERTA"] = "success";
+                $_SESSION["MENSAJE"] = "Se agrego correctamente el producto";
+                return redirect()->action('AnalisisController@Participacion', ['PlanId' => $request->input('planid')]);
+            }
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            session_start();
+            $_SESSION["ALERTA"] = "error";
+            $_SESSION["MENSAJE"] = "No se pudo agregar el producto";
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $request->input('planid')]);
+        }
+    }
+
     public function EditarProducto(Request $request)
     {
         try
@@ -660,12 +691,12 @@ class AnalisisController extends Controller
             $ObjProducto->Ventas = $request->input('ventas');
             Productos::Editar($ObjProducto);
 
-            $this->ActualizarPorcentajes();
+            $this->ActualizarPorcentajes($ObjProducto->PlanId);
 
             session_start();
             $_SESSION["ALERTA"] = "success";
             $_SESSION["MENSAJE"] = "Se modifico correctamente el producto";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjProducto->PlanId]);
 
         }
         catch (\Illuminate\Database\QueryException $e)
@@ -673,7 +704,7 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo modificar el producto";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjProducto->PlanId]);
         }        
     }
 
@@ -689,7 +720,7 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "success";
             $_SESSION["MENSAJE"] = "Se eliminó correctamente el producto";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjProducto->PlanId]);
 
         }
         catch (\Illuminate\Database\QueryException $e)
@@ -697,7 +728,7 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo eliminar el producto";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $ObjProducto->PlanId]);
         }
     }
 
@@ -707,20 +738,21 @@ class AnalisisController extends Controller
         {
             $desde = $request->input('desde');
             $hasta = $request->input('hasta');
+            $PlanId = $request->input('planid');
 
-            if(Periodos::Modificar($desde, $hasta) == 1){
+            if($result = Periodos::Modificar($desde, $hasta, auth()->user()->Id, $PlanId)){
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se modifico correctamente los periodos";
-                return redirect()->action('AnalisisController@Participacion');
-            }            
+                return redirect()->action('AnalisisController@Participacion', ['PlanId' => $PlanId]);
+            }
         }
         catch (\Illuminate\Database\QueryException $e)
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo modificar los periodos";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $PlanId]);
         }
     }
 
@@ -728,13 +760,13 @@ class AnalisisController extends Controller
     {
         try
         {
-            $ObjPeriodos = Periodos::Listar();
-            $ObjProductos = Productos::Listar();
-            $ObjTcm = Tcm::Listar();
+            $PlanId = $request->input('planid');
+            $ObjProductos = Productos::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+            $ObjPeriodos = Periodos::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
 
             foreach($ObjPeriodos as $Periodo){
                 foreach($ObjProductos as $Producto){
-                    if($ObjTcm = Tcm::ObtenerPorPeriodoProducto($Periodo->Periodo, $Producto->Id)){
+                    if($ObjTcm = Tcm::ObtenerPorPeriodoProducto($Periodo->Periodo, $Producto->Id, auth()->user()->Id, $PlanId)){
                         $ObjTcm->Valor = $request->input("PE".$Periodo->Periodo."PR".$Producto->Id);
                         Tcm::Editar($ObjTcm);
                     }
@@ -744,14 +776,14 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "success";
             $_SESSION["MENSAJE"] = "Se guardo correctamente los valores del TCM";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $PlanId]);
         }
         catch (\Illuminate\Database\QueryException $e)
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo guardar los valores del TCM";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $PlanId]);
         }
     }
 
@@ -759,12 +791,13 @@ class AnalisisController extends Controller
     {
         try
         {
-            $ObjPeriodos = Periodos::Listar();
-            $ObjProductos = Productos::Listar();
+            $PlanId = $request->input('planid');
+            $ObjProductos = Productos::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+            $ObjPeriodos = Periodos::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
 
             foreach($ObjPeriodos as $Periodo){
                 foreach($ObjProductos as $Producto){
-                    if($ObjEdgs = Edgs::ObtenerPorPeriodoProducto($Periodo->Periodo, $Producto->Id)){
+                    if($ObjEdgs = Edgs::ObtenerPorPeriodoProducto($Periodo->Periodo, $Producto->Id, auth()->user()->Id, $PlanId)){
                         $ObjEdgs->Valor = $request->input("PE".$Periodo->Periodo."PR".$Producto->Id);
                         Edgs::Editar($ObjEdgs);
                     }
@@ -774,26 +807,28 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "success";
             $_SESSION["MENSAJE"] = "Se guardo correctamente los valores del EDGS";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $PlanId]);
         }
         catch (\Illuminate\Database\QueryException $e)
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo guardar los valores del EDGS";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $PlanId]);
         }
     }
 
-    public function AgregarCompetidor()
+    public function AgregarCompetidor($PlanId)
     {
         try
         {
-            $ObjProductos = Productos::Listar();
-            $ObjCompetidores = Competidores::ListarOrden();
+            $ObjProductos = Productos::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+            $ObjCompetidores = Competidores::ListarOrden(auth()->user()->Id, $PlanId);
 
             foreach ($ObjProductos as $Item) {
                 $ObjCompetidor = new Competidores();
+                $ObjCompetidor->UsuarioId = auth()->user()->Id;
+                $ObjCompetidor->PlanId = $PlanId;
                 $ObjCompetidor->Competidor = count($ObjCompetidores) + 1;
                 $ObjCompetidor->ProductoId = $Item->Id;
                 Competidores::Agregar($ObjCompetidor);
@@ -801,14 +836,14 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "success";
             $_SESSION["MENSAJE"] = "Se agrego correctamente al competidor";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $PlanId]);
         }
         catch (\Illuminate\Database\QueryException $e)
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo agregar al conpetidor";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $PlanId]);
         }
     }
 
@@ -816,10 +851,11 @@ class AnalisisController extends Controller
     {
         try
         {
-            $ObjCompetidores = Competidores::Listar();
+            $PlanId = $request->input('planid');
+            $ObjCompetidores = Competidores::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
 
             foreach($ObjCompetidores as $Item){
-                if($ObjCompetidor = Competidores::ObtenerPorIdProductoId($Item->Id, $Item->ProductoId)){
+                if($ObjCompetidor = Competidores::ObtenerPorIdProductoId($Item->Id, $Item->ProductoId, auth()->user()->Id, $PlanId)){
                     $inputName = "C" . $Item->Id . "P" . $Item->ProductoId;
                     if ($request->exists($inputName)) {
                         $ObjCompetidor->Venta = $request->input($inputName);
@@ -831,25 +867,37 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "success";
             $_SESSION["MENSAJE"] = "Se agrego correctamente al competidor";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $PlanId]);
         }
         catch (\Illuminate\Database\QueryException $e)
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo agregar al conpetidor";
-            return redirect()->action('AnalisisController@Participacion');
+            return redirect()->action('AnalisisController@Participacion', ['PlanId' => $PlanId]);
         }
     }
 
-    // -- END ANALISIS - PARTICIPACIÓN ----------------------------------
+    // -- END ANALISIS - PARTICIPACIÓN ----------------------------------------------------------------------------
 
-    // -- START ANALISIS - PORTER ----------------------------------
+    // -- START ANALISIS - PORTER ---------------------------------------------------------------------------------
 
-    public function Porter(){
-        $objFuerzasPorter = FuerzasPorter::Listar();
-        $objOportunidades = Oportunidades::Listar();
-        $objAmenazas = Amenazas::Listar();
+    public function Porter($PlanId){
+        $objFuerzasPorter = FuerzasPorter::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        $objOportunidades = Oportunidades::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        $objAmenazas = Amenazas::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+
+        if(count($objFuerzasPorter) < 1){
+            $ObjPreguntasPorter = FuerzasPorter::ListarPreguntas();
+            foreach($ObjPreguntasPorter as $Item){
+                $ObjPorter = new FuerzasPorter();
+                $ObjPorter->UsuarioId = auth()->user()->Id;
+                $ObjPorter->PlanId = $PlanId;
+                $ObjPorter->Fuerza = $Item->Codigo;
+                FuerzasPorter::Agregar($ObjPorter);
+            }
+            $objFuerzasPorter = FuerzasPorter::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        }
 
         $objFuerza01 = [];
         $objFuerza02 = [];
@@ -860,16 +908,16 @@ class AnalisisController extends Controller
         $Conclusion = "";
 
         foreach($objFuerzasPorter as $Fuerza){
-            if($Fuerza->Fuerza == 1){
+            if($Fuerza->Codigo[1] == 1){
                 $objFuerza01[] = $Fuerza;
             }
-            if($Fuerza->Fuerza == 2){
+            if($Fuerza->Codigo[1] == 2){
                 $objFuerza02[] = $Fuerza;
             }
-            if($Fuerza->Fuerza == 3){
+            if($Fuerza->Codigo[1] == 3){
                 $objFuerza03[] = $Fuerza;
             }
-            if($Fuerza->Fuerza == 4){
+            if($Fuerza->Codigo[1] == 4){
                 $objFuerza04[] = $Fuerza;
             }
             $SUMA += $Fuerza->Valor;
@@ -899,7 +947,8 @@ class AnalisisController extends Controller
             'Fuerza03' => $objFuerza03,
             'Fuerza04' => $objFuerza04,
             'SUMA' => $SUMA,
-            'Conclusion' => $Conclusion
+            'Conclusion' => $Conclusion,
+            'PlanId' => $PlanId
         ]);
     }
 
@@ -907,35 +956,47 @@ class AnalisisController extends Controller
     {
         try
         {
-            $ObjFuerzasPorter = FuerzasPorter::Listar();
+            $PlanId = $request->input('planid');
+            $ObjFuerzasPorter = FuerzasPorter::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
             
             foreach($ObjFuerzasPorter as $FuerzaPorter){
-                $FuerzaPorter->Valor = $request->input('F' . $FuerzaPorter->Fuerza . '_ID' . $FuerzaPorter->Id);
+                $FuerzaPorter->Valor = $request->input($FuerzaPorter->Codigo . '_ID' . $FuerzaPorter->Id);
                 FuerzasPorter::Editar($FuerzaPorter);
             }
 
             session_start();
             $_SESSION["ALERTA"] = "success";
             $_SESSION["MENSAJE"] = "Se modifico correctamente la fuerza de porter";
-            return redirect()->action('AnalisisController@Porter');
+            return redirect()->action('AnalisisController@Porter', ['PlanId' => $PlanId]);
         }
         catch (\Illuminate\Database\QueryException $e)
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo agregar el objetivo específico";
-            return redirect()->action('AnalisisController@Porter');
+            return redirect()->action('AnalisisController@Porter', ['PlanId' => $PlanId]);
         }
     }
 
-    // -- END ANALISIS - PORTER ----------------------------------
+    // -- END ANALISIS - PORTER ----------------------------------------------------------------------------------
 
-    // -- START ANALISIS - PEST ----------------------------------
+    // -- START ANALISIS - PEST ----------------------------------------------------------------------------------
 
-    public function PEST(){
-        $objPest = Pest::Listar();
-        $objOportunidades = Oportunidades::Listar();
-        $objAmenazas = Amenazas::Listar();
+    public function PEST($PlanId){
+        $objPest = Pest::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        $objOportunidades = Oportunidades::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        $objAmenazas = Amenazas::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+
+        if(count($objPest) < 1){
+            for ($i=1; $i <= 25 ; $i++) {
+                $ObjPestNew = new Pest();
+                $ObjPestNew->UsuarioId = auth()->user()->Id;
+                $ObjPestNew->PlanId = $PlanId;
+                $ObjPestNew->Codigo = 'P' . $i;
+                Pest::Agregar($ObjPestNew);
+            }
+            $objPest = Pest::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        }
 
         $SUMA01 = 0;
         $SUMA02 = 0;
@@ -1007,14 +1068,16 @@ class AnalisisController extends Controller
             'Conclusion02' => $Conclusion02,
             'Conclusion03' => $Conclusion03,
             'Conclusion04' => $Conclusion04,
-            'Conclusion05' => $Conclusion05
+            'Conclusion05' => $Conclusion05,
+            'PlanId' => $PlanId
         ]);
     }
 
     public function CalcularPEST(Request $request){
         try
         {
-            $objPest = Pest::Listar();
+            $PlanId = $request->input('planid');
+            $objPest = Pest::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
 
             foreach($objPest as $Pest){
                 $Pest->Valor = $request->input('valor' . $Pest->Id);
@@ -1024,220 +1087,134 @@ class AnalisisController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "success";
             $_SESSION["MENSAJE"] = "Se calculó correctamente el impacto de los factores PEST en el funcionamiento de la empresa";
-            return redirect()->action('AnalisisController@PEST');
+            return redirect()->action('AnalisisController@PEST', ['PlanId' => $PlanId]);
         }
         catch (\Illuminate\Database\QueryException $e)
         {
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo calcular el impacto de los factores PEST en el funcionamiento de la empresa";
-            return redirect()->action('AnalisisController@PEST');
+            return redirect()->action('AnalisisController@PEST', ['PlanId' => $PlanId]);
         }
     }
 
-    // -- END ANALISIS - PEST ----------------------------------
+    // -- END ANALISIS - PEST ------------------------------------------------------------------------------------
 
-    // -- START ANALISIS - CAME ----------------------------------
+    // -- START ANALISIS - CAME ----------------------------------------------------------------------------------
 
     public function CAME($PlanId){
-        $ObjFortalezas = Fortalezas::Listar();
-        $ObjDebilidades = Debilidades::Listar();
-        $ObjOportunidades = Oportunidades::Listar();
-        $ObjAmenazas = Amenazas::Listar();
-
-        // - Fortalezas / M ------------
-        foreach($ObjFortalezas as $Item)
-        {
-            if(Came::ObtenerPorTipo($PlanId, 'M' . $Item->Id) == null)
-            {
-                $ObjCame = new Came();
-                $ObjCame->PlanId = $PlanId;
-                $ObjCame->Tipo = "M" . $Item->Id;
-                Came::Agregar($ObjCame);
-            }
-        }
-
-        // - Debilidades / C ------------
-        foreach($ObjDebilidades as $Item)
-        {
-            if(Came::ObtenerPorTipo($PlanId, 'C' . $Item->Id) == null)
-            {
-                $ObjCame = new Came();
-                $ObjCame->PlanId = $PlanId;
-                $ObjCame->Tipo = "C" . $Item->Id;
-                Came::Agregar($ObjCame);
-            }
-        }
-
-        // - Oportunidades / E ------------
-        foreach($ObjOportunidades as $Item)
-        {
-            if(Came::ObtenerPorTipo($PlanId, 'E' . $Item->Id) == null)
-            {
-                $ObjCame = new Came();
-                $ObjCame->PlanId = $PlanId;
-                $ObjCame->Tipo = "E" . $Item->Id;
-                Came::Agregar($ObjCame);
-            }
-        }
-
-        // - Amenazas / A ------------
-        foreach($ObjAmenazas as $Item)
-        {
-            if(Came::ObtenerPorTipo($PlanId, 'A' . $Item->Id) == null)
-            {
-                $ObjCame = new Came();
-                $ObjCame->PlanId = $PlanId;
-                $ObjCame->Tipo = "A" . $Item->Id;
-                Came::Agregar($ObjCame);
-            }
-        }
-
-        $ObjCame = Came::ObtenerPorPlanId($PlanId);
+        $ObjFortalezas = Fortalezas::ObtenerPorPlanId($PlanId);
+        $ObjDebilidades = Debilidades::ObtenerPorPlanId($PlanId);
+        $ObjOportunidades = Oportunidades::ObtenerPorPlanId($PlanId);
+        $ObjAmenazas = Amenazas::ObtenerPorPlanId($PlanId);
 
         return view('Analisis.CAME',[
             'Fortalezas' => $ObjFortalezas,
             'Debilidades' => $ObjDebilidades,
             'Oportunidades' => $ObjOportunidades,
             'Amenazas' => $ObjAmenazas,
-            'Came' => $ObjCame,
             'PlanId' => $PlanId
         ]);
     }
 
-    public function GuardarCAME(Request $request)
+    // -- END ANALISIS - CAME -------------------------------------------------------------------------------------
+
+    // -- START GRAFICOS ------------------------------------------------------------------------------------------
+
+    public function Graficos($PlanId)
     {
         try
         {
-            $ObjCame = Came::ObtenerPorPlanId($request->input('planid'));
+            $objPest = Pest::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+            $ObjProductos = Productos::DatosGrafico(auth()->user()->Id, $PlanId);
+            $ObjPeriodos = Periodos::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+            $ObjCompetidores = Competidores::ListarMAYOR(auth()->user()->Id, $PlanId);
 
-            foreach($ObjCame as $C)
-            {
-                if(Debilidades::ObtenerPorId(substr($C->Tipo, 1)))
-                {
-                    if($request->input($C->Tipo) != null) { $C->Accion = $request->input($C->Tipo); }
-                    else { $C->Accion = null; }
-                    Came::Editar($C);
+            foreach($ObjProductos as $Item){
+                $tcm = $Item->TCM / count($ObjPeriodos);
+                if($tcm > (100 / count($ObjProductos))){
+                    $Item->TCM = 20;
+                }else{
+                    $Item->TCM = $tcm;
                 }
-            }
-            foreach($ObjCame as $A)
-            {
-                if(Amenazas::ObtenerPorId(substr($A->Tipo, 1)))
-                {
-                    if($request->input($A->Tipo) != null) { $A->Accion = $request->input($A->Tipo); }
-                    else { $A->Accion = null; }
-                    Came::Editar($A);
-                }
-            }
-            foreach($ObjCame as $M)
-            {
-                if(Fortalezas::ObtenerPorId(substr($M->Tipo, 1)))
-                {
-                    if($request->input($M->Tipo) != null) { $M->Accion = $request->input($M->Tipo); }
-                    else { $M->Accion = null; }
-                    Came::Editar($M);
-                }
-            }
-            foreach($ObjCame as $E)
-            {
-                if(Oportunidades::ObtenerPorId(substr($E->Tipo, 1)))
-                {
-                    if($request->input($E->Tipo) != null) { $E->Accion = $request->input($E->Tipo); }
-                    else { $M->Accion = null; }
-                    Came::Editar($E);
+                foreach($ObjCompetidores as $Comp){
+                    if($Item->Id == $Comp->ProductoId){    
+                        if($Comp->mayor_venta == 0){
+                            $Item->PRM = 0;
+                        }else {
+                            if(($Item->Ventas / $Comp->mayor_venta) > 2){
+                                $Item->PRM = 2;
+                            } else {
+                                $Item->PRM = $Item->Ventas / $Comp->mayor_venta;
+                            }
+                        }
+                    }
                 }
             }
 
-            session_start();
-            $_SESSION["ALERTA"] = "success";
-            $_SESSION["MENSAJE"] = "Se guardo correctamente los datos de la matriz CAME";
-            return redirect()->action('AnalisisController@CAME', ['PlanId' => $request->input('planid')]);
+            $SumTCM = 0;
+            $SumPRM = 0;
+            $SumPorcentajes = 0;
+            foreach($ObjProductos as $Item){
+                $SumTCM += $Item->TCM;
+                $SumPRM += $Item->PRM;
+                $SumPorcentajes += $Item->Porcentaje;
+            }
+
+            $PromTCM = $SumTCM / count($ObjProductos);
+            $PromPRM = $SumPRM / count($ObjProductos);
+            $PromPorcentaje = $SumPorcentajes / count($ObjProductos);
+
+            $SUMA01 = 0;
+            $SUMA02 = 0;
+            $SUMA03 = 0;
+            $SUMA04 = 0;
+            $SUMA05 = 0;
+
+            foreach($objPest as $Pest){
+                if($Pest->Id >= 1 && $Pest->Id <= 5){
+                    $SUMA01 += $Pest->Valor;
+                }
+                if($Pest->Id >= 6 && $Pest->Id <= 10){
+                    $SUMA02 += $Pest->Valor;
+                }
+                if($Pest->Id >= 11 && $Pest->Id <= 15){
+                    $SUMA03 += $Pest->Valor;
+                }
+                if($Pest->Id >= 16 && $Pest->Id <= 20){
+                    $SUMA04 += $Pest->Valor;
+                }
+                if($Pest->Id >= 21 && $Pest->Id <= 25){
+                    $SUMA05 += $Pest->Valor;
+                }
+            }
+
+            $Impacto01 = ($SUMA01 / 20) * 100;
+            $Impacto02 = ($SUMA02 / 20) * 100;
+            $Impacto03 = ($SUMA03 / 20) * 100;
+            $Impacto04 = ($SUMA04 / 20) * 100;
+            $Impacto05 = ($SUMA05 / 20) * 100;
+
+            return view('Analisis.Graficos',[
+                'Impacto1' => $Impacto01,
+                'Impacto2' => $Impacto02,
+                'Impacto3' => $Impacto03,
+                'Impacto4' => $Impacto04,
+                'Impacto5' => $Impacto05,
+                'Productos' => $ObjProductos,
+                'PromTCM' => $PromTCM,
+                'PromPRM' => $PromPRM,
+                'PromPorcentaje' => $PromPorcentaje
+            ]);
         }
-        catch (\Illuminate\Database\QueryException $e)
-        {
+        catch (\Throwable $th) {
             session_start();
-            $_SESSION["ALERTA"] = "error";
-            $_SESSION["MENSAJE"] = "No se pudo guardar los datos de la matriz CAME";
-            return redirect()->action('AnalisisController@CAME', ['PlanId' => $request->input('planid')]);
+            $_SESSION["ALERTA"] = "warning";
+            $_SESSION["MENSAJE"] = "Primero realiza el Analisi de Participacion y Analsisi PEST";
+            return redirect()->action('PlanController@PlanesEstrategicos');
         }
     }
-    // -- END ANALISIS - CAME ----------------------------------
 
-    public function Graficos()
-    {
-        $objPest = Pest::Listar();
-        $objPeriodos = Periodos::Listar();
-        $objProductos = Productos::DatosGrafico();
-        $ObjCompetidores = Competidores::ListarMAYOR();
-
-        foreach($objProductos as $Item){
-            $tcm = $Item->TCM / count($objPeriodos);
-            if($tcm > (100 / count($objProductos))){
-                $Item->TCM = 20;
-            }else{
-                $Item->TCM = $tcm;
-            }
-            foreach($ObjCompetidores as $Comp){
-                if($Item->Id == $Comp->ProductoId){
-                    $Item->PRM = $Item->Ventas / $Comp->mayor_venta;
-                }
-            }
-        }
-
-        $SumTCM = 0;
-        $SumPRM = 0;
-        $SumPorcentajes = 0;
-        foreach($objProductos as $Item){
-            $SumTCM += $Item->TCM;
-            $SumPRM += $Item->PRM;
-            $SumPorcentajes += $Item->Porcentaje;
-        }
-
-        $PromTCM = $SumTCM / count($objProductos);
-        $PromPRM = $SumPRM / count($objProductos);
-        $PromPorcentaje = $SumPorcentajes / count($objProductos);
-
-        $SUMA01 = 0;
-        $SUMA02 = 0;
-        $SUMA03 = 0;
-        $SUMA04 = 0;
-        $SUMA05 = 0;
-
-        foreach($objPest as $Pest){
-            if($Pest->Id >= 1 && $Pest->Id <= 5){
-                $SUMA01 += $Pest->Valor;
-            }
-            if($Pest->Id >= 6 && $Pest->Id <= 10){
-                $SUMA02 += $Pest->Valor;
-            }
-            if($Pest->Id >= 11 && $Pest->Id <= 15){
-                $SUMA03 += $Pest->Valor;
-            }
-            if($Pest->Id >= 16 && $Pest->Id <= 20){
-                $SUMA04 += $Pest->Valor;
-            }
-            if($Pest->Id >= 21 && $Pest->Id <= 25){
-                $SUMA05 += $Pest->Valor;
-            }
-        }
-
-        $Impacto01 = ($SUMA01 / 20) * 100;
-        $Impacto02 = ($SUMA02 / 20) * 100;
-        $Impacto03 = ($SUMA03 / 20) * 100;
-        $Impacto04 = ($SUMA04 / 20) * 100;
-        $Impacto05 = ($SUMA05 / 20) * 100;
-
-        return view('Analisis.Graficos',[
-            'Impacto1' => $Impacto01,
-            'Impacto2' => $Impacto02,
-            'Impacto3' => $Impacto03,
-            'Impacto4' => $Impacto04,
-            'Impacto5' => $Impacto05,
-            'Productos' => $objProductos,
-            'PromTCM' => $PromTCM,
-            'PromPRM' => $PromPRM,
-            'PromPorcentaje' => $PromPorcentaje
-        ]);
-    }
+    // -- END GRAFICOS --------------------------------------------------------------------------------------------
 }
 ?>

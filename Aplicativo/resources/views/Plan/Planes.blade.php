@@ -37,11 +37,41 @@
                             <td class="text-center">{{ date('d/m/Y h:i:s', strtotime($Plan->Fecha)) }}</td>
                             <td>{{ $Plan->Conclucion }}</td>
                             <td class="text-center">
-                                @if(auth()->user()->Rol == "Administrador" || auth()->user()->Rol == "Editor")
-                                <a href="/estrategia/identificacion/{{ $Plan->Id }}" class="btn btn-secondary btn-sm text-uppercase" title="Identificación de Estrategia"><i class="fa fa-lightbulb-o" aria-hidden="true" style="margin: 0 auto;"></i></a>
+                                <a href="#" class="btn btn-secondary btn-sm text-uppercase" title="Menú de Opciones" data-toggle="modal" data-target="#Menu{{ $Plan->Id }}"><i class="fa fa-bars" aria-hidden="true" style="margin: 0 auto;"></i></a>
 
-                                <a href="/analisis/came/{{ $Plan->Id }}" class="btn btn-secondary btn-sm text-uppercase" title="Matriz CAME"><i class="fa fa-check" aria-hidden="true" style="margin: 0 auto;"></i></a>
-                                @endif
+                                <!-- Menu Modal-->
+                                <div class="modal fade" id="Menu{{ $Plan->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Menú de Opciones</h5>
+                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Analisis Interno</h6>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/cadena/{{ $Plan->Id }}"><i class="fa fa-check"></i><span class="app-menu__label">Analisis de Cadena de Valor</span></a>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/participacion/{{ $Plan->Id }}"><i class="fa fa-check"></i><span class="app-menu__label">Analisis de Participacion</span></a>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/interno/{{ $Plan->Id }}"><i class="fa fa-angle-double-right"></i><span class="app-menu__label">Analisis Completo</span></a>
+                                                <hr>
+                                                <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Analisis Externo</h6>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/porter/{{ $Plan->Id }}"><i class="fa fa-check"></i><span class="app-menu__label">Analisis de Fuerzas de Porter</span></a>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/pest/{{ $Plan->Id }}"><i class="fa fa-check"></i><span class="app-menu__label">Analisis PEST</span></a>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/externo/{{ $Plan->Id }}"><i class="fa fa-angle-double-right"></i><span class="app-menu__label">Analisis Completo</span></a>
+                                                <hr>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/graficos/{{ $Plan->Id }}"><i class="fa fa-line-chart"></i><span class="app-menu__label">Graficos del Analisis</span></a>
+                                                @if(auth()->user()->Rol == "Administrador" || auth()->user()->Rol == "Editor")
+                                                <hr>
+                                                <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Definición de Estrategias TI y Plan de Acción</h6>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/estrategia/identificacion/{{ $Plan->Id }}"><i class="fa fa-lightbulb-o"></i><span class="app-menu__label">Identificación de Estrategia</span></a>
+                                                <a class="btn btn-outline-primary w-100" href="/analisis/came/{{ $Plan->Id }}"><i class="fa fa-chart"></i><span class="app-menu__label">Matriz CAME</span></a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Menu Modal-->
 
                                 @if(auth()->user()->Id == $Plan->UsuarioId)
                                 <a href="#" class="btn btn-success btn-sm text-uppercase" title="Colaboradores" data-toggle="modal" data-target="#Colaboradores{{ $Plan->Id }}"><i class="fa fa-user" aria-hidden="true" style="margin: 0 auto;"></i></a>
@@ -194,9 +224,41 @@
                             <td>{{ $Plan->Conclucion }}</td>
                             <td class="text-center">
                                 @if(auth()->user()->Rol == "Administrador" || auth()->user()->Rol == "Editor")
-                                <a href="/estrategia/identificacion/{{ $Plan->PlanId }}" class="btn btn-secondary btn-sm text-uppercase" title="Identificación de Estrategia"><i class="fa fa-lightbulb-o" aria-hidden="true" style="margin: 0 auto;"></i></a>
+                                <a href="#" class="btn btn-secondary btn-sm text-uppercase" title="Menú de Opciones" data-toggle="modal" data-target="#Menu{{ $Plan->Id }}"><i class="fa fa-bars" aria-hidden="true" style="margin: 0 auto;"></i></a>
 
-                                <a href="/analisis/came/{{ $Plan->PlanId }}" class="btn btn-secondary btn-sm text-uppercase" title="Matriz CAME"><i class="fa fa-check" aria-hidden="true" style="margin: 0 auto;"></i></a>
+                                <!-- Menu Modal-->
+                                <div class="modal fade" id="Menu{{ $Plan->Id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Menú de Opciones</h5>
+                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Analisis Interno</h6>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/cadena/{{ $Plan->PlanId }}"><i class="fa fa-check"></i><span class="app-menu__label">Analisis de Cadena de Valor</span></a>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/participacion/{{ $Plan->PlanId }}"><i class="fa fa-check"></i><span class="app-menu__label">Analisis de Participacion</span></a>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/interno/{{ $Plan->PlanId }}"><i class="fa fa-angle-double-right"></i><span class="app-menu__label">Analisis Completo</span></a>
+                                                <hr>
+                                                <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Analisis Externo</h6>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/porter/{{ $Plan->PlanId }}"><i class="fa fa-check"></i><span class="app-menu__label">Analisis de Fuerzas de Porter</span></a>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/pest/{{ $Plan->PlanId }}"><i class="fa fa-check"></i><span class="app-menu__label">Analisis PEST</span></a>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/externo/{{ $Plan->PlanId }}"><i class="fa fa-angle-double-right"></i><span class="app-menu__label">Analisis Completo</span></a>
+                                                <hr>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/graficos/{{ $Plan->PlanId }}"><i class="fa fa-line-chart"></i><span class="app-menu__label">Graficos del Analisis</span></a>
+                                                @if(auth()->user()->Rol == "Administrador" || auth()->user()->Rol == "Editor")
+                                                <hr>
+                                                <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Definición de Estrategias TI y Plan de Acción</h6>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/estrategia/identificacion/{{ $Plan->PlanId }}"><i class="fa fa-lightbulb-o"></i><span class="app-menu__label">Identificación de Estrategia</span></a>
+                                                <a class="btn btn-outline-primary w-100" href="/analisis/came/{{ $Plan->PlanId }}"><i class="fa fa-chart"></i><span class="app-menu__label">Matriz CAME</span></a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Menu Modal-->
                                 @endif
 
                                 <a href="/plan/detalle/{{ $Plan->PlanId }}" class="btn btn-info btn-sm text-uppercase" title="Resumen de Plan Estratégico"><i class="fa fa-file-text-o" aria-hidden="true" style="margin: 0 auto;"></i></a>

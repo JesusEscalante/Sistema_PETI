@@ -17,9 +17,21 @@ class Debilidades extends Model
     // Deshabilitación de los timestamps (created_at y updated_at).
     public $timestamps = false;
 
-    public static function Listar()
+    public static function ObtenerPorPlanId($PlanId)
     {
-        return Debilidades::all();
+        return Debilidades::from('debilidades as d')
+                ->select('d.*', 'u.Nombre', 'u.Apellido')
+                ->join('usuario as u', 'u.Id', '=', 'd.UsuarioId')
+                ->where('d.PlanId', $PlanId)
+                ->get();
+    }
+
+    public static function ObtenerPorUsuarioIdPlanId($UsuarioId, $PlanId)
+    {
+        return Debilidades::from('debilidades as d')
+                ->where('d.UsuarioId', $UsuarioId)
+                ->where('d.PlanId', $PlanId)
+                ->get();
     }
 
     public static function Agregar(Debilidades $ObjDebilidades)

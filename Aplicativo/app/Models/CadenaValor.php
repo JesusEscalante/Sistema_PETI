@@ -17,9 +17,22 @@ class CadenaValor extends Model
     // Deshabilitación de los timestamps (created_at y updated_at).
     public $timestamps = false;
 
-    public static function Listar()
+    public static function ObtenerPorPlanId($PlanId)
     {
-        return CadenaValor::all();
+        return CadenaValor::from('cadena_valor as cv')
+                ->select('cv.Id', 'cv.PlanId', 'pcv.Codigo', 'pcv.Pregunta', 'cv.Valor')
+                ->join('preguntas_cv as pcv', 'pcv.Codigo', '=', 'cv.Pregunta')
+                ->where('cv.PlanId', $PlanId)
+                ->get();
+    }
+
+    public static function Agregar(CadenaValor $ObjCadenaValor)
+    {
+        if($ObjCadenaValor->save())
+        {
+            return $ObjCadenaValor->Id;
+        }
+        return 0;
     }
 
     public static function Editar(CadenaValor $ObjCadenaValor)

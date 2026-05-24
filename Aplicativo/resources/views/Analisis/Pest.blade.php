@@ -1,6 +1,8 @@
 @extends('layouts.default')
 @section('content')
 
+<?php $count = 1; ?>
+
 <!-- content -->
 <div class="container-fluid">
 
@@ -18,6 +20,7 @@
             <div class="table-responsive">
                 <form class="form" action="/analisis/pest_calcular" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="planid" value="{{ $PlanId }}">
                 <table class="table table-hover table-bordered">
                     <thead class="bg-gray-100">
                         <tr>
@@ -43,7 +46,7 @@
                     <tbody>
                         @foreach($Pest as $Pest)
                         <tr>
-                            <td class="text-center">{{ $Pest->Id }}</td>
+                            <td class="text-center">{{ $count++ }}</td>
                             <td>{{ $Pest->Pregunta }}</td>
                             <td>
                                 <div class="d-flex justify-content-center align-items-center">
@@ -133,9 +136,14 @@
                                 <div class="modal-body" style="text-align: start;">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="modulo" value="pest">
+                                    <input type="hidden" name="planid" value="{{ $PlanId}}">
                                     <div class="form-group">
                                         <label for="oportunidad"><strong>Oportunidad:</strong></label>
                                         <input type="text" class="form-control" name="oportunidad" placeholder="Oportunidad..." title="Oportunidad">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fortaleza"><strong>Como Explotar la Oportunidad?:</strong></label>
+                                        <textarea class="form-control" name="accion" placeholder="Como Explotar la Oportunidad..." title="Como Explotar la Oportunidad?" rows="5"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -181,6 +189,10 @@
                                                         <div class="form-group">
                                                             <label for="oportunidad"><strong>Oportunidad:</strong></label>
                                                             <input type="text" class="form-control" name="oportunidad" placeholder="Oportunidad..." title="Oportunidad" value="{{ $Oportunidad['Oportunidad'] }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="fortaleza"><strong>Como Explotar la Oportunidad?:</strong></label>
+                                                            <textarea class="form-control" name="accion" placeholder="Como Explotar la Oportunidad..." title="Como Explotar la Oportunidad?" rows="5">{{ $Oportunidad['Accion'] }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -239,9 +251,14 @@
                                 <div class="modal-body" style="text-align: start;">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="modulo" value="pest">
+                                    <input type="hidden" name="planid" value="{{ $PlanId}}">
                                     <div class="form-group">
                                         <label for="amenaza"><strong>Amenaza:</strong></label>
                                         <input type="text" class="form-control" name="amenaza" placeholder="Amenaza..." title="Amenaza">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fortaleza"><strong>Como Afrontar la Amenaza?:</strong></label>
+                                        <textarea class="form-control" name="accion" placeholder="Como Afrontar la Amenaza..." title="Como Afrontar la Amenaza?" rows="5"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -287,6 +304,10 @@
                                                         <div class="form-group">
                                                             <label for="amenaza"><strong>Amenaza:</strong></label>
                                                             <input type="text" class="form-control" name="amenaza" placeholder="Amenaza..." title="Amenaza" value="{{ $Amenaza['Amenaza'] }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="fortaleza"><strong>Como Afrontar la Amenaza?:</strong></label>
+                                                            <textarea class="form-control" name="accion" placeholder="Como Afrontar la Amenaza..." title="Como Afrontar la Amenaza?" rows="5">{{ $Amenaza['Accion'] }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

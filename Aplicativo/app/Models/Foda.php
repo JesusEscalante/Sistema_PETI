@@ -22,6 +22,13 @@ class Foda extends Model
         return Foda::all();
     }
 
+    public static function ObtenerPorPlanId($PlanId)
+    {
+        return Foda::from('foda as f')
+                ->where('f.PlanId', $PlanId)
+                ->get();
+    }
+
     public static function Agregar(Foda $ObjFoda)
     {
         if($ObjFoda->save())
@@ -50,9 +57,11 @@ class Foda extends Model
         return Foda::find($FodaId);
     }
 
-    public static function ObtenerPorCodigo($Codigo)
+    public static function ObtenerPorCodigo($Codigo, $PlanId)
     {
-        return Foda::where('Codigo', $Codigo)->first();
+        return Foda::where('Codigo', $Codigo)
+                ->where('PlanId', $PlanId)
+                ->first();
     }
 }
 

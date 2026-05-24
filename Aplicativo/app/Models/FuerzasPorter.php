@@ -22,6 +22,30 @@ class FuerzasPorter extends Model
         return FuerzasPorter::all();
     }
 
+    public static function ListarPreguntas()
+    {
+        return DB::table('preguntas_fp')->get();
+    }
+
+    public static function ObtenerPorPlanId($PlanId)
+    {
+        return Fortalezas::from('fuerzas_porter as fp')
+                ->select('f.*', 'u.Nombre', 'u.Apellido')
+                ->join('usuario as u', 'u.Id', '=', 'f.UsuarioId')
+                ->where('f.PlanId', $PlanId)
+                ->get();
+    }
+
+    public static function ObtenerPorUsuarioIdPlanId($UsuarioId, $PlanId)
+    {
+        return FuerzasPorter::from('fuerzas_porter as fp')
+                ->select('fp.Id', 'fp.UsuarioId', 'fp.PlanId', 'pf.Codigo', 'pf.Perfil', 'pf.Hostil', 'fp.Valor', 'pf.Favorable')
+                ->join('preguntas_fp as pf', 'pf.Codigo', '=', 'fp.Fuerza')
+                ->where('fp.UsuarioId', $UsuarioId)
+                ->where('fp.PlanId', $PlanId)
+                ->get();
+    }
+
     public static function Agregar(FuerzasPorter $ObjFuerzasPorter)
     {
         if($ObjFuerzasPorter->save())

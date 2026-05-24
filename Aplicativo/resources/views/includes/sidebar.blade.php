@@ -10,30 +10,12 @@ $modulo = explode("/", $actual_link);
 
         <hr>
 
-        @if(auth()->user()->Rol == "Administrador" || auth()->user()->Rol == "Editor")
-
-        <li><a class="app-menu__item <?= $modulo[2] == "cadena" ? "active" : "" ?>" href="/analisis/cadena"><i class="app-menu__icon fa fa-check"></i><span class="app-menu__label">Analisis de Cadena de Valor</span></a></li>
-
-        <li><a class="app-menu__item <?= $modulo[2] == "participacion" ? "active" : "" ?>" href="/analisis/participacion"><i class="app-menu__icon fa fa-check"></i><span class="app-menu__label">Analisis de Participación</span></a></li>
-
-        <li><a class="app-menu__item <?= $modulo[2] == "interno" ? "active" : "" ?>" href="/analisis/interno"><i class="app-menu__icon fa fa-search"></i><span class="app-menu__label">Analisis Interno</span></a></li>
-        
-        <hr>
-
-        <li><a class="app-menu__item <?= $modulo[2] == "porter" ? "active" : "" ?>" href="/analisis/porter"><i class="app-menu__icon fa fa-check"></i><span class="app-menu__label">Analisis de Porter</span></a></li>
-
-        <li><a class="app-menu__item <?= $modulo[2] == "pest" ? "active" : "" ?>" href="/analisis/pest"><i class="app-menu__icon fa fa-check"></i><span class="app-menu__label">Analisis PEST</span></a></li>
-
-        <li><a class="app-menu__item <?= $modulo[2] == "externo" ? "active" : "" ?>" href="/analisis/externo"><i class="app-menu__icon fa fa-search"></i><span class="app-menu__label">Analisis Externo</span></a></li>
-
-        <hr>
-        @endif
-
-        <li><a class="app-menu__item <?= $modulo[2] == "graficos" ? "active" : "" ?>" href="/analisis/graficos"><i class="app-menu__icon fa fa-line-chart"></i><span class="app-menu__label">Graficos</span></a></li>
-
-        <hr>
-
-        <li><a class="app-menu__item <?= $modulo[1] == "plan" ? "active" : "" ?>" href="/plan/list"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Planes Estratégicos</span></a></li>
+        <li>
+                <a class="app-menu__item <?= $modulo[1] == "plan" || $modulo[2] == "cadena" || $modulo[2] == "participacion" || $modulo[2] == "interno" || $modulo[2] == "porter" || $modulo[2] == "pest" || $modulo[2] == "externo" || $modulo[2] == "grafico" || $modulo[2] == "identificacion" || $modulo[2] == "came" ? "active" : "" ?>" href="/plan/list">
+                        <i class="app-menu__icon fa fa-pie-chart"></i>
+                        <span class="app-menu__label">Planes Estratégicos</span>
+                </a>
+        </li>
 
         <hr>
 
