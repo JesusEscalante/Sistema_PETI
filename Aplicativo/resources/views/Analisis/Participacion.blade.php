@@ -545,7 +545,7 @@
                                 <div class="modal-body" style="text-align: start;">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="planid" value="{{ $PlanId}}">
-                                    <input type="hidden" name="modulo" value="cadena">
+                                    <input type="hidden" name="modulo" value="participacion">
                                     <div class="form-group">
                                         <label for="fortaleza"><strong>Fortaleza:</strong></label>
                                         <input type="text" class="form-control" name="fortaleza" placeholder="Fortaleza..." title="Fortaleza">
@@ -661,7 +661,7 @@
                                 <div class="modal-body" style="text-align: start;">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="planid" value="{{ $PlanId}}">
-                                    <input type="hidden" name="modulo" value="cadena">
+                                    <input type="hidden" name="modulo" value="participacion">
                                     <div class="form-group">
                                         <label for="debilidad"><strong>Debilidad:</strong></label>
                                         <input type="text" class="form-control" name="debilidad" placeholder="Debilidad..." title="Debilidad">
