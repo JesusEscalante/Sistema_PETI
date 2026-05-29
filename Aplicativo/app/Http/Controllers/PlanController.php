@@ -96,7 +96,7 @@ class PlanController extends Controller
             $ObjValores = Valores::Listar();
             $ObjUnidadesEstrategicas = UnidadEstrategica::Listar();
             $ObjObjetivosGenerales = ObjetivosGenerales::Listar();
-            $ObjObjetivosEspecificos = ObjetivosEspecificos::Listar();
+            $ObjObjetivosEspecificos = ObjetivosEspecificos::ObtenerPorPlanId($PlanId);
             $ObjFortalezas = Fortalezas::ObtenerPorPlanId($PlanId);
             $ObjDebilidades = Debilidades::ObtenerPorPlanId($PlanId);
             $ObjOportunidades = Oportunidades::ObtenerPorPlanId($PlanId);

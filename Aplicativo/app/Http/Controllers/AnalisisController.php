@@ -29,7 +29,8 @@ class AnalisisController extends Controller
         $objDebilidades = Debilidades::ObtenerPorPlanId($PlanId);
         return view('Analisis.Interno',[
             'Fortalezas' => $objFortalezas,
-            'Debilidades' => $objDebilidades
+            'Debilidades' => $objDebilidades,
+            'PlanId' => $PlanId
         ]);
     }
 
@@ -254,7 +255,8 @@ class AnalisisController extends Controller
         $objAmenazas = Amenazas::ObtenerPorPlanId($PlanId);
         return view('Analisis.Externo',[
             'Oportunidades' => $objOportunidades,
-            'Amenazas' => $objAmenazas
+            'Amenazas' => $objAmenazas,
+            'PlanId' => $PlanId
         ]);
     }
 
@@ -526,6 +528,8 @@ class AnalisisController extends Controller
             $_SESSION["ALERTA"] = "success";
             $_SESSION["MENSAJE"] = "Se calculó correctamente el potencial de mejora de la cadena de valor interna";
             return redirect()->action('AnalisisController@CadenaValor', ['PlanId' => $request->input('planid')]);
+
+
         }
         catch (\Illuminate\Database\QueryException $e)
         {
@@ -1204,7 +1208,8 @@ class AnalisisController extends Controller
                 'Productos' => $ObjProductos,
                 'PromTCM' => $PromTCM,
                 'PromPRM' => $PromPRM,
-                'PromPorcentaje' => $PromPorcentaje
+                'PromPorcentaje' => $PromPorcentaje,
+                'PlanId' => $PlanId
             ]);
         }
         catch (\Throwable $th) {

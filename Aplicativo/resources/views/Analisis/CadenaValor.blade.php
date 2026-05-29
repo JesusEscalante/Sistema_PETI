@@ -92,7 +92,7 @@
                 </table>
                 
             </div>
-            <div class="row mt-2 mb-2">
+            <div class="row mt-2">
                 <div class="col-lg-6">
                     <a href="#" class="btn btn-dark btn-icon-split w-100" data-toggle="modal" data-target="#AddFortaleza">
                         <i class="fa fa-plus"></i>
@@ -324,6 +324,19 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <br><br>
+
+    <!-- Botones de navegación flotantes (solo 2 botones) -->
+    <div class="floating-nav-container">
+        <div class="nav-buttons">
+            <a href="/empresa/objetivos/{{ $PlanId }}" class="btn-nav btn-nav-prev" id="prevBtn">
+                <i class="fas fa-arrow-left"></i> Anterior
+            </a>
+            <a href="/analisis/participacion/{{ $PlanId }}" class="btn-nav btn-nav-next" id="nextBtn">
+                Siguiente <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
     </div>
 

@@ -7,7 +7,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="align-items-center">
-                <h5 class="font-weight-bold text-primary m-0">ANALISIS INTERNO</h5>
+                <h5 class="font-weight-bold text-primary m-0">RESUMEN DE ANALISIS INTERNO</h5>
             </div>
         </div>
 
@@ -190,6 +190,21 @@
                 </div>
             </div>
         </div>
+    </div>
+    <br><br>
+
+    <!-- Botones de navegación flotantes (solo 2 botones) -->
+    <div class="floating-nav-container">
+        <div class="nav-buttons">
+            <a href="/analisis/participacion/{{ $PlanId }}" class="btn-nav btn-nav-prev" id="prevBtn">
+                <i class="fas fa-arrow-left"></i> Anterior
+            </a>
+            <a href="/analisis/porter/{{ $PlanId }}" class="btn-nav btn-nav-next" id="nextBtn">
+                Siguiente <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
 </div>
 
 </div>

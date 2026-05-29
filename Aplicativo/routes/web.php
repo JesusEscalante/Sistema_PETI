@@ -25,7 +25,7 @@ Route::get('logout', 'Auth\LoginController@Logout');
 //Empresa
 Route::prefix('empresa')->group(function () {
     Route::get('/home', 'EmpresaController@Home');
-    Route::get('/objetivo/{ObjetivoId}', 'EmpresaController@ObjetivoEspecifico');
+    Route::get('/objetivos/{PlanId}', 'EmpresaController@ObjetivoEspecifico');
     Route::post('/edit_nombre', 'EmpresaController@EditarNombre');
     Route::post('/edit_descripcion', 'EmpresaController@EditarDescripcion');
     Route::post('/edit_mision', 'EmpresaController@EditarMision');

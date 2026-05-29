@@ -22,11 +22,20 @@ class ObjetivosEspecificos extends Model
         return ObjetivosEspecificos::all();
     }
 
-    public static function ListarPorObjetivoGeneralId($ObjetivoId)
+    public static function ObtenerPorPlanId($PlanId)
     {
         return DB::table('objetivo_especifico')
                 ->select('objetivo_especifico.*')
-                ->where('objetivo_especifico.ObjGeneral_Id', $ObjetivoId)
+                ->where('objetivo_especifico.PlanId', $PlanId)
+                ->get();
+    }
+
+    public static function ListarPorUsuarioIdPlanId($UsuarioId, $PlanId)
+    {
+        return DB::table('objetivo_especifico')
+                ->select('objetivo_especifico.*')
+                ->where('objetivo_especifico.UsuarioId', $UsuarioId)
+                ->where('objetivo_especifico.PlanId', $PlanId)
                 ->get();
     }
 

@@ -37,6 +37,7 @@
                             <td class="text-center">{{ date('d/m/Y h:i:s', strtotime($Plan->Fecha)) }}</td>
                             <td>{{ $Plan->Conclucion }}</td>
                             <td class="text-center">
+                                <a href="/empresa/objetivos/{{ $Plan->Id }}" class="btn btn-primary btn-sm text-uppercase" title="Comenzar Analisis"><i class="fa fa-angle-double-right" aria-hidden="true" style="margin: 0 auto;"></i></a>
                                 <a href="#" class="btn btn-secondary btn-sm text-uppercase" title="Menú de Opciones" data-toggle="modal" data-target="#Menu{{ $Plan->Id }}"><i class="fa fa-bars" aria-hidden="true" style="margin: 0 auto;"></i></a>
 
                                 <!-- Menu Modal-->
@@ -50,6 +51,9 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
+                                                <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Formulacion de Objetivos Especificos</h6>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/plan/objetivos/{{ $Plan->Id }}"><i class="fa fa-check"></i><span class="app-menu__label">Objetivos Especificos</span></a>
+                                                <hr>
                                                 <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Analisis Interno</h6>
                                                 <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/cadena/{{ $Plan->Id }}"><i class="fa fa-check"></i><span class="app-menu__label">Analisis de Cadena de Valor</span></a>
                                                 <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/participacion/{{ $Plan->Id }}"><i class="fa fa-check"></i><span class="app-menu__label">Analisis de Participacion</span></a>
@@ -63,9 +67,9 @@
                                                 <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/graficos/{{ $Plan->Id }}"><i class="fa fa-line-chart"></i><span class="app-menu__label">Graficos del Analisis</span></a>
                                                 @if(auth()->user()->Rol == "Administrador" || auth()->user()->Rol == "Editor")
                                                 <hr>
-                                                <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Definición de Estrategias TI y Plan de Acción</h6>
-                                                <a class="btn btn-outline-primary w-100 mb-2" href="/estrategia/identificacion/{{ $Plan->Id }}"><i class="fa fa-lightbulb-o"></i><span class="app-menu__label">Identificación de Estrategia</span></a>
-                                                <a class="btn btn-outline-primary w-100" href="/analisis/came/{{ $Plan->Id }}"><i class="fa fa-chart"></i><span class="app-menu__label">Matriz CAME</span></a>
+                                                <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Plan de Acción y Estrategia de TI</h6>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/came/{{ $Plan->Id }}"><i class="fa fa-chart"></i><span class="app-menu__label">Matriz CAME</span></a>
+                                                <a class="btn btn-outline-primary w-100" href="/estrategia/identificacion/{{ $Plan->Id }}"><i class="fa fa-lightbulb-o"></i><span class="app-menu__label">Identificación de Estrategia</span></a>
                                                 @endif
                                             </div>
                                         </div>
@@ -237,6 +241,9 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
+                                                <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Formulacion de Objetivos Especificos</h6>
+                                                <a class="btn btn-outline-primary w-100 mb-2" href="/plan/objetivos/{{ $Plan->Id }}"><i class="fa fa-check"></i><span class="app-menu__label">Objetivos Especificos</span></a>
+                                                <hr>
                                                 <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Analisis Interno</h6>
                                                 <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/cadena/{{ $Plan->PlanId }}"><i class="fa fa-check"></i><span class="app-menu__label">Analisis de Cadena de Valor</span></a>
                                                 <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/participacion/{{ $Plan->PlanId }}"><i class="fa fa-check"></i><span class="app-menu__label">Analisis de Participacion</span></a>
@@ -250,7 +257,7 @@
                                                 <a class="btn btn-outline-primary w-100 mb-2" href="/analisis/graficos/{{ $Plan->PlanId }}"><i class="fa fa-line-chart"></i><span class="app-menu__label">Graficos del Analisis</span></a>
                                                 @if(auth()->user()->Rol == "Administrador" || auth()->user()->Rol == "Editor")
                                                 <hr>
-                                                <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Definición de Estrategias TI y Plan de Acción</h6>
+                                                <h6 class="text-muted" id="exampleModalLabel"><i class="fa fa-search"></i> Plan de Acción y Estrategia de TI</h6>
                                                 <a class="btn btn-outline-primary w-100 mb-2" href="/estrategia/identificacion/{{ $Plan->PlanId }}"><i class="fa fa-lightbulb-o"></i><span class="app-menu__label">Identificación de Estrategia</span></a>
                                                 <a class="btn btn-outline-primary w-100" href="/analisis/came/{{ $Plan->PlanId }}"><i class="fa fa-chart"></i><span class="app-menu__label">Matriz CAME</span></a>
                                                 @endif

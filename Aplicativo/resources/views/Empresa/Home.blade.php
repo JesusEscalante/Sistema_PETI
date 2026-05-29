@@ -492,7 +492,6 @@
                                         <tr>
                                             <td>{{ $Objetivo->Objetivo }}</td>
                                             <td class="text-center">
-                                                <a href="/empresa/objetivo/{{ $Objetivo->Id }}" class="btn btn-info btn-sm text-uppercase" title="Objetivos Especificos"><i class="fa fa-list" aria-hidden="true" style="margin: 0 auto;"></i></a>
                                                 @if(auth()->user()->Rol == "Administrador")
                                                 <a href="#" class="btn btn-success btn-sm text-uppercase" title="Editar" data-toggle="modal" data-target="#EditObjetivo{{ $Objetivo->Id }}"><i class="fa fa-pencil" aria-hidden="true" style="margin: 0 auto;"></i></a>
                                                 <!-- Editar Modal-->

@@ -67,10 +67,20 @@
                 function obtenerContenidoCompleto() {
                     let div = document.getElementById('Contenido');
                     let clone = div.cloneNode(true); // Clona el div
-                    let textarea = clone.querySelector('textarea');
-                    if (textarea) {
-                        textarea.textContent = textarea.value;
-                    }
+                    
+                    // Reemplazar cada textarea por un elemento que solo muestre el texto
+                    clone.querySelectorAll('textarea').forEach(textarea => {
+                        let span = document.createElement('span');
+                        span.textContent = textarea.value;
+                        span.style.whiteSpace = 'pre-wrap'; // Preserva saltos de línea y espacios
+                        span.style.display = 'block'; // Para que ocupe el ancho completo
+                        span.style.margin = '0';
+                        span.style.padding = '40px';
+                        // No agregues bordes ni fondos
+                        
+                        textarea.parentNode.replaceChild(span, textarea);
+                    });
+                    
                     return clone.innerHTML;
                 }
                 let content = obtenerContenidoCompleto();

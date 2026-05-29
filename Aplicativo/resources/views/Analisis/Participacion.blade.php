@@ -760,7 +760,19 @@
         </div>
 
     </div>
+    <br><br>
 
+    <!-- Botones de navegación flotantes (solo 2 botones) -->
+    <div class="floating-nav-container">
+        <div class="nav-buttons">
+            <a href="/analisis/cadena/{{ $PlanId }}" class="btn-nav btn-nav-prev" id="prevBtn">
+                <i class="fas fa-arrow-left"></i> Anterior
+            </a>
+            <a href="/analisis/interno/{{ $PlanId }}" class="btn-nav btn-nav-next" id="nextBtn">
+                Siguiente <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
 
 </div>
 

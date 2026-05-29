@@ -27,13 +27,13 @@ class EmpresaController extends Controller
         ]);
     }
 
-    public function ObjetivoEspecifico($ObjetivoId){
-        $ObjObjetivosGenerales = ObjetivosGenerales::ObtenerPorId($ObjetivoId);
-        $ObjObjetivoEspecifico = ObjetivosEspecificos::ListarPorObjetivoGeneralId($ObjetivoId);
-        return view('Empresa.ObjetivosEsp',[
-            'ObjetivoId' => $ObjObjetivosGenerales->Id,
-            'ObjetivosEspecificos' => $ObjObjetivoEspecifico,
-            'ObjetivoGeneral' => $ObjObjetivosGenerales
+    public function ObjetivoEspecifico($PlanId){
+        $ObjObjetivosGenerales = ObjetivosGenerales::Listar();
+        $ObjObjetivosEspecificos = ObjetivosEspecificos::ListarPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
+        return view('Plan.ObjetivosEsp',[
+            'ObjetivosEspecificos' => $ObjObjetivosEspecificos,
+            'ObjetivosGenerales' => $ObjObjetivosGenerales,
+            'PlanId' => $PlanId
         ]);
     }
 
@@ -416,6 +416,8 @@ class EmpresaController extends Controller
         try
         {
             $ObjObjetivoEspecifico = new ObjetivosEspecificos();
+            $ObjObjetivoEspecifico->UsuarioId = auth()->user()->Id;
+            $ObjObjetivoEspecifico->PlanId = $request->input('planid');
             $ObjObjetivoEspecifico->ObjGeneral_Id = $request->input('objgeneral_id');
             $ObjObjetivoEspecifico->Tipo = $request->input('tipo');
             $ObjObjetivoEspecifico->Objetivo = $request->input('objetivo');
@@ -425,12 +427,7 @@ class EmpresaController extends Controller
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se agregó correctamente el objetivo específico";
-                return redirect()->action('EmpresaController@ObjetivoEspecifico', ['ObjetivoId' => $request->input('objgeneral_id')]);
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo agregar el objetivo específico";
-                return redirect()->action('EmpresaController@ObjetivoEspecifico', ['ObjetivoId' => $request->input('objgeneral_id')]);
+                return redirect()->action('EmpresaController@ObjetivoEspecifico', ['PlanId' => $ObjObjetivoEspecifico->PlanId]);
             }
         }
         catch (\Illuminate\Database\QueryException $e)
@@ -438,7 +435,7 @@ class EmpresaController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo agregar el objetivo específico";
-            return redirect()->action('EmpresaController@ObjetivoEspecifico', ['ObjetivoId' => $request->input('objgeneral_id')]); 
+            return redirect()->action('EmpresaController@ObjetivoEspecifico', ['PlanId' => $ObjObjetivoEspecifico->PlanId]); 
         }
     }
 
@@ -447,6 +444,7 @@ class EmpresaController extends Controller
         try
         {
             $ObjObjetivoEspecifico = ObjetivosEspecificos::ObtenerPorId($request->input('id'));
+            $ObjObjetivoEspecifico->ObjGeneral_Id = $request->input('objgeneral_id');
             $ObjObjetivoEspecifico->Tipo = $request->input('tipo');
             $ObjObjetivoEspecifico->Objetivo = $request->input('objetivo');
 
@@ -455,12 +453,7 @@ class EmpresaController extends Controller
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se modificó correctamente el objetivo específico";
-                return redirect()->action('EmpresaController@ObjetivoEspecifico', ['ObjetivoId' => $ObjObjetivoEspecifico->ObjGeneral_Id]);
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo modificar el objetivo específico";
-                return redirect()->action('EmpresaController@ObjetivoEspecifico', ['ObjetivoId' => $ObjObjetivoEspecifico->ObjGeneral_Id]);
+                return redirect()->action('EmpresaController@ObjetivoEspecifico', ['PlanId' => $ObjObjetivoEspecifico->PlanId]); 
             }
         }
         catch (\Illuminate\Database\QueryException $e)
@@ -468,7 +461,7 @@ class EmpresaController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo modificar el objetivo específico";
-            return redirect()->action('EmpresaController@ObjetivoEspecifico', ['ObjetivoId' => $ObjObjetivoEspecifico->ObjGeneral_Id]);
+            return redirect()->action('EmpresaController@ObjetivoEspecifico', ['PlanId' => $ObjObjetivoEspecifico->PlanId]); 
         }
     }
 
@@ -483,12 +476,7 @@ class EmpresaController extends Controller
                 session_start();
                 $_SESSION["ALERTA"] = "success";
                 $_SESSION["MENSAJE"] = "Se eliminó correctamente el objetivo específico";
-                return redirect()->action('EmpresaController@ObjetivoEspecifico', ['ObjetivoId' => $ObjObjetivoEspecifico->ObjGeneral_Id]);
-            }else{
-                session_start();
-                $_SESSION["ALERTA"] = "error";
-                $_SESSION["MENSAJE"] = "No se pudo eliminar el objetivo específico";
-                return redirect()->action('EmpresaController@ObjetivoEspecifico', ['ObjetivoId' => $ObjObjetivoEspecifico->ObjGeneral_Id]);
+                return redirect()->action('EmpresaController@ObjetivoEspecifico', ['PlanId' => $ObjObjetivoEspecifico->PlanId]); 
             }
         }
         catch (\Illuminate\Database\QueryException $e)
@@ -496,7 +484,7 @@ class EmpresaController extends Controller
             session_start();
             $_SESSION["ALERTA"] = "error";
             $_SESSION["MENSAJE"] = "No se pudo eliminar el objetivo específico";
-            return redirect()->action('EmpresaController@ObjetivoEspecifico', ['ObjetivoId' => $ObjObjetivoEspecifico->ObjGeneral_Id]);
+            return redirect()->action('EmpresaController@ObjetivoEspecifico', ['PlanId' => $ObjObjetivoEspecifico->PlanId]); 
         }
     }
 }

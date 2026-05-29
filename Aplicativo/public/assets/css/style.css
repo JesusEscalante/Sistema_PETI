@@ -637,3 +637,69 @@ hr {
         background: #888;
         border-radius: 3px;
     }
+
+/* Botones de navegación flotantes */
+.floating-nav-container {
+    position: fixed;
+    bottom: 25px;
+    left: +240px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-nav {
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-nav-prev {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-nav-prev:hover:not(:disabled) {
+    background: #5a6268;
+    transform: translateX(-3px);
+    box-shadow: 0 5px 15px rgba(108,117,125,0.3);
+}
+
+.btn-nav-next {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+}
+
+.btn-nav-next:hover:not(:disabled) {
+    transform: translateX(3px);
+    box-shadow: 0 5px 15px rgba(52,152,219,0.4);
+}
+
+.btn-nav-submit {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+    color: white;
+}
+
+.btn-nav-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(39,174,96,0.4);
+}
+
+.btn-nav:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
