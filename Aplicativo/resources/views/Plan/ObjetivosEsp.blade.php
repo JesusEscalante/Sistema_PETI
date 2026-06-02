@@ -6,7 +6,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row align-items-center">
-                <div class="col-lg-10 col-sm-12"><h5 class="font-weight-bold text-primary">OBJETIVOS ESPECÍFICOS</h5></div>
+                <div class="col-lg-10 col-sm-12"><h5 class="font-weight-bold text-primary">OBJETIVOS ESPECÍFICOS PARA EL PLAN ESTRATEGICO</h5></div>
                 <div class="col-lg-2 col-sm-12 d-flex justify-content-end row">
                     <a href="#" class="btn btn-primary btn-icon-split ml-1" data-toggle="modal" data-target="#AddObjetivo">
                         <i class="fa fa-plus"></i>
