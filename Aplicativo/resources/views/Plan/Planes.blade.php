@@ -282,6 +282,38 @@
 </div>
 
 <script>
+$(document).ready(function() {
+    // Inicializar DataTable con el orden por fecha descendente
+    var tabla;
+    
+    // Verificar si ya existe y destruir (opcional, si quieres recargar config)
+    if ($.fn.DataTable.isDataTable('#TableData')) {
+        tabla = $('#TableData').DataTable();
+        // Si solo quieres cambiar el orden, no necesitas destruir
+        tabla.order([1, 'desc']).draw();
+    } else {
+        // Primera inicialización
+        tabla = $('#TableData').DataTable({
+            "order": [[1, 'desc']],  // Orden por fecha descendente
+            "language": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sLast": ">>",
+                    "sNext": ">",
+                    "sPrevious": "<"
+                }
+            }
+        });
+    }
+});
 // Array de usuarios desde PHP (una sola vez, fuera del foreach)
 const users = [
     <?php foreach($Usuarios as $Item): ?>{
