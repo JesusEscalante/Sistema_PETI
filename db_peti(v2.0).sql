@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.1.38-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.27-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             12.10.0.7000
+-- HeidiSQL Versión:             12.4.0.6659
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,7 +16,7 @@
 
 
 -- Volcando estructura de base de datos para homestead
-CREATE DATABASE IF NOT EXISTS `homestead` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE IF NOT EXISTS `homestead` /*!40100 DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci */;
 USE `homestead`;
 
 -- Volcando estructura para tabla homestead.amenazas
@@ -25,13 +25,12 @@ CREATE TABLE IF NOT EXISTS `amenazas` (
   `UsuarioId` int(11) NOT NULL,
   `PlanId` int(11) NOT NULL,
   `Amenaza` varchar(255) NOT NULL,
-  `Accion` text,
+  `Accion` text DEFAULT NULL,
   `Origen` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.amenazas: ~4 rows (aproximadamente)
-DELETE FROM `amenazas`;
 INSERT INTO `amenazas` (`Id`, `UsuarioId`, `PlanId`, `Amenaza`, `Accion`, `Origen`) VALUES
 	(1, 5, 15, 'Volatilidad en precios de materias primas para sensores', 'Negociar contratos fijos con proveedores por volumen.\r\nInvestigar materiales alternativos más estables.\r\nIncorporar cláusulas de ajuste en contratos con clientes.', 'pest'),
 	(2, 5, 15, 'Entrada de grandes tecnológicas globales al mercado sostenible', 'Diferenciarse por conocimiento local y atención personalizada.\r\nOfrecer precios competitivos.\r\nFidelizar clientes con contratos de largo plazo.\r\nCrear barreras de cambio (integración a medida).', 'porter'),
@@ -43,12 +42,11 @@ CREATE TABLE IF NOT EXISTS `cadena_valor` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `PlanId` int(11) NOT NULL,
   `Pregunta` varchar(10) NOT NULL,
-  `Valor` int(11) NOT NULL DEFAULT '0',
+  `Valor` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla homestead.cadena_valor: ~50 rows (aproximadamente)
-DELETE FROM `cadena_valor`;
+-- Volcando datos para la tabla homestead.cadena_valor: ~75 rows (aproximadamente)
 INSERT INTO `cadena_valor` (`Id`, `PlanId`, `Pregunta`, `Valor`) VALUES
 	(1, 15, 'P1', 4),
 	(2, 15, 'P2', 3),
@@ -99,19 +97,43 @@ INSERT INTO `cadena_valor` (`Id`, `PlanId`, `Pregunta`, `Valor`) VALUES
 	(48, 14, 'P22', 0),
 	(49, 14, 'P23', 0),
 	(50, 14, 'P24', 0),
-	(51, 14, 'P25', 0);
+	(51, 14, 'P25', 0),
+	(52, 19, 'P1', 0),
+	(53, 19, 'P2', 0),
+	(54, 19, 'P3', 0),
+	(55, 19, 'P4', 0),
+	(56, 19, 'P5', 0),
+	(57, 19, 'P6', 0),
+	(58, 19, 'P7', 0),
+	(59, 19, 'P8', 0),
+	(60, 19, 'P9', 0),
+	(61, 19, 'P10', 0),
+	(62, 19, 'P11', 0),
+	(63, 19, 'P12', 0),
+	(64, 19, 'P13', 0),
+	(65, 19, 'P14', 0),
+	(66, 19, 'P15', 0),
+	(67, 19, 'P16', 0),
+	(68, 19, 'P17', 0),
+	(69, 19, 'P18', 0),
+	(70, 19, 'P19', 0),
+	(71, 19, 'P20', 0),
+	(72, 19, 'P21', 0),
+	(73, 19, 'P22', 0),
+	(74, 19, 'P23', 0),
+	(75, 19, 'P24', 0),
+	(76, 19, 'P25', 0);
 
 -- Volcando estructura para tabla homestead.came
 CREATE TABLE IF NOT EXISTS `came` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `PlanId` int(11) NOT NULL,
   `Tipo` varchar(50) NOT NULL DEFAULT '',
-  `Accion` text,
+  `Accion` text DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.came: ~50 rows (aproximadamente)
-DELETE FROM `came`;
 INSERT INTO `came` (`Id`, `PlanId`, `Tipo`, `Accion`) VALUES
 	(5, 15, 'C1', 'Implementar software de gestión de proyectos. Automatizar flujos de aprobación y reportes. Capacitar al personal en metodologías ágiles.'),
 	(6, 15, 'C2', 'Desarrollar alianzas con 2 proveedores alternativos locales. Crear un stock de seguridad para componentes críticos. Diseñar sensores modulares que permitan sustituir partes fácilmente.'),
@@ -170,10 +192,9 @@ CREATE TABLE IF NOT EXISTS `colaboradores` (
   `PlanId` int(11) NOT NULL,
   `UsuarioId` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla homestead.colaboradores: ~1 rows (aproximadamente)
-DELETE FROM `colaboradores`;
+-- Volcando datos para la tabla homestead.colaboradores: ~2 rows (aproximadamente)
 INSERT INTO `colaboradores` (`Id`, `PlanId`, `UsuarioId`) VALUES
 	(1, 15, 6),
 	(2, 15, 7);
@@ -185,12 +206,11 @@ CREATE TABLE IF NOT EXISTS `competidores` (
   `PlanId` int(11) NOT NULL,
   `Competidor` int(11) NOT NULL,
   `ProductoId` int(11) NOT NULL,
-  `Venta` int(11) NOT NULL DEFAULT '0',
+  `Venta` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla homestead.competidores: ~31 rows (aproximadamente)
-DELETE FROM `competidores`;
+-- Volcando datos para la tabla homestead.competidores: ~35 rows (aproximadamente)
 INSERT INTO `competidores` (`Id`, `UsuarioId`, `PlanId`, `Competidor`, `ProductoId`, `Venta`) VALUES
 	(1, 5, 15, 1, 1, 9),
 	(2, 5, 15, 1, 2, 19),
@@ -234,13 +254,12 @@ CREATE TABLE IF NOT EXISTS `debilidades` (
   `UsuarioId` int(11) NOT NULL,
   `PlanId` int(11) NOT NULL,
   `Debilidad` varchar(255) NOT NULL,
-  `Accion` text,
+  `Accion` text DEFAULT NULL,
   `Origen` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.debilidades: ~4 rows (aproximadamente)
-DELETE FROM `debilidades`;
 INSERT INTO `debilidades` (`Id`, `UsuarioId`, `PlanId`, `Debilidad`, `Accion`, `Origen`) VALUES
 	(1, 5, 15, 'Baja presencia en marketing digital comparado con competidores', 'Contratar especialista en marketing digital B2B.\r\nLanzar campañas en LinkedIn y Google Ads.\r\nCrear contenido técnico (webinars, casos de éxito, whitepapers).\r\nOptimizar SEO.', 'participacion'),
 	(2, 5, 15, 'Procesos internos manuales en gestión de proyectos', 'Implementar software de gestión de proyectos.\r\nAutomatizar flujos de aprobación y reportes.\r\nCapacitar al personal en metodologías ágiles.', 'cadena'),
@@ -254,10 +273,9 @@ CREATE TABLE IF NOT EXISTS `detalle_estrategia` (
   `Tipo` varchar(100) NOT NULL,
   `Descripcion` text NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.detalle_estrategia: ~4 rows (aproximadamente)
-DELETE FROM `detalle_estrategia`;
 INSERT INTO `detalle_estrategia` (`Id`, `Relacion`, `Tipo`, `Descripcion`) VALUES
 	(1, 'FO', 'OFENSIVA', 'Deberá adoptar estrategias de crecimiento.'),
 	(2, 'FA', 'DEFENSIVA', 'La empresa está preparada para enfrentarse a las amenazas.'),
@@ -269,14 +287,13 @@ CREATE TABLE IF NOT EXISTS `edgs` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `UsuarioId` int(11) NOT NULL,
   `PlanId` int(11) NOT NULL,
-  `Periodo` int(11) NOT NULL DEFAULT '0',
-  `ProductoId` int(11) NOT NULL DEFAULT '0',
-  `Valor` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `Periodo` int(11) NOT NULL DEFAULT 0,
+  `ProductoId` int(11) NOT NULL DEFAULT 0,
+  `Valor` decimal(10,2) NOT NULL DEFAULT 0.00,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla homestead.edgs: ~67 rows (aproximadamente)
-DELETE FROM `edgs`;
+-- Volcando datos para la tabla homestead.edgs: ~75 rows (aproximadamente)
 INSERT INTO `edgs` (`Id`, `UsuarioId`, `PlanId`, `Periodo`, `ProductoId`, `Valor`) VALUES
 	(1, 5, 15, 2016, 1, 10.00),
 	(2, 5, 15, 2016, 2, 0.00),
@@ -358,14 +375,13 @@ INSERT INTO `edgs` (`Id`, `UsuarioId`, `PlanId`, `Periodo`, `ProductoId`, `Valor
 CREATE TABLE IF NOT EXISTS `empresa` (
   `Id` int(10) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(255) NOT NULL,
-  `Descripcion` text,
+  `Descripcion` text DEFAULT NULL,
   `Mision` text NOT NULL,
   `Vision` text NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla homestead.empresa: ~0 rows (aproximadamente)
-DELETE FROM `empresa`;
+-- Volcando datos para la tabla homestead.empresa: ~1 rows (aproximadamente)
 INSERT INTO `empresa` (`Id`, `Nombre`, `Descripcion`, `Mision`, `Vision`) VALUES
 	(1, 'EcoSoluciones S.A.', 'Empresa dedicada a la consultoría y desarrollo de soluciones tecnológicas sostenibles para la gestión eficiente de recursos naturales en industrias como agricultura, manufactura y logística. Con 10 años de experiencia, combina IoT, inteligencia artificial y energías renovables para reducir la huella ecológica de sus clientes.', 'Proporcionar tecnologías innovadoras y sostenibles que optimicen el uso de recursos naturales, ayudando a las empresas a ser más productivas y responsables con el medio ambiente.', 'Ser líder regional en soluciones tecnológicas ecológicas para 2030, transformando la industria hacia un modelo de cero emisiones netas.');
 
@@ -375,10 +391,9 @@ CREATE TABLE IF NOT EXISTS `estrategia_plan` (
   `PlanId` int(11) NOT NULL,
   `RelacionEstrategia` enum('FO','FA','DO','DA') NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla homestead.estrategia_plan: ~0 rows (aproximadamente)
-DELETE FROM `estrategia_plan`;
+-- Volcando datos para la tabla homestead.estrategia_plan: ~2 rows (aproximadamente)
 INSERT INTO `estrategia_plan` (`Id`, `PlanId`, `RelacionEstrategia`) VALUES
 	(1, 10, 'FO'),
 	(2, 15, 'FA');
@@ -391,10 +406,9 @@ CREATE TABLE IF NOT EXISTS `foda` (
   `Codigo` varchar(50) NOT NULL,
   `Valor` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=217 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=217 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.foda: ~80 rows (aproximadamente)
-DELETE FROM `foda`;
 INSERT INTO `foda` (`Id`, `PlanId`, `Tipo`, `Codigo`, `Valor`) VALUES
 	(137, 15, 'FO', 'F1O1', 4),
 	(138, 15, 'FO', 'F1O2', 3),
@@ -483,13 +497,12 @@ CREATE TABLE IF NOT EXISTS `fortalezas` (
   `UsuarioId` int(11) NOT NULL,
   `PlanId` int(11) NOT NULL,
   `Fortaleza` varchar(255) NOT NULL,
-  `Accion` text,
+  `Accion` text DEFAULT NULL,
   `Origen` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.fortalezas: ~5 rows (aproximadamente)
-DELETE FROM `fortalezas`;
 INSERT INTO `fortalezas` (`Id`, `UsuarioId`, `PlanId`, `Fortaleza`, `Accion`, `Origen`) VALUES
 	(1, 5, 15, 'Patentes propias en sensores de bajo consumo energético', 'Renovar y ampliar patentes.\r\nInvertir anualmente en I+D (5% de ingresos).\r\nRegistrar nuevas funcionalidades.\r\nMonitorear posibles infracciones de competidores.', 'cadena'),
 	(2, 5, 15, 'Alto nivel de retención de clientes (85% anual)', 'Implementar programa de fidelización con descuentos por antigüedad.\r\nRealizar encuestas NPS trimestrales.\r\nAsignar account managers dedicados a clientes clave.', 'participacion'),
@@ -503,12 +516,11 @@ CREATE TABLE IF NOT EXISTS `fuerzas_porter` (
   `UsuarioId` int(11) NOT NULL,
   `PlanId` int(11) NOT NULL,
   `Fuerza` varchar(50) NOT NULL,
-  `Valor` int(11) NOT NULL DEFAULT '1',
+  `Valor` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.fuerzas_porter: ~51 rows (aproximadamente)
-DELETE FROM `fuerzas_porter`;
 INSERT INTO `fuerzas_porter` (`Id`, `UsuarioId`, `PlanId`, `Fuerza`, `Valor`) VALUES
 	(1, 5, 15, 'F1S1', 5),
 	(2, 5, 15, 'F1S2', 4),
@@ -570,13 +582,10 @@ CREATE TABLE IF NOT EXISTS `objetivo_especifico` (
   `ObjGeneral_Id` int(11) NOT NULL,
   `Tipo` enum('Funcional','Operativo') NOT NULL,
   `Objetivo` varchar(255) NOT NULL,
-  PRIMARY KEY (`Id`),
-  KEY `FK_objetivo_especifico_objetivo_general` (`ObjGeneral_Id`),
-  CONSTRAINT `FK_objetivo_especifico_objetivo_general` FOREIGN KEY (`ObjGeneral_Id`) REFERENCES `objetivo_general` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.objetivo_especifico: ~9 rows (aproximadamente)
-DELETE FROM `objetivo_especifico`;
 INSERT INTO `objetivo_especifico` (`Id`, `UsuarioId`, `PlanId`, `ObjGeneral_Id`, `Tipo`, `Objetivo`) VALUES
 	(1, 5, 15, 1, 'Funcional', 'Lanzar 2 nuevas funcionalidades de IA predictiva en la plataforma AgroTec por año'),
 	(2, 5, 15, 1, 'Funcional', 'Capacitar a 100 ingenieros de cliente en prácticas sostenibles mediante talleres semestrales'),
@@ -591,16 +600,17 @@ INSERT INTO `objetivo_especifico` (`Id`, `UsuarioId`, `PlanId`, `ObjGeneral_Id`,
 -- Volcando estructura para tabla homestead.objetivo_general
 CREATE TABLE IF NOT EXISTS `objetivo_general` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `UnidadId` int(11) NOT NULL,
   `Objetivo` varchar(255) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla homestead.objetivo_general: ~3 rows (aproximadamente)
-DELETE FROM `objetivo_general`;
-INSERT INTO `objetivo_general` (`Id`, `Objetivo`) VALUES
-	(1, 'Incrementar la adopción de tecnologías sostenibles en clientes industriales en un 40% en 2 años.'),
-	(2, 'Reducir la huella de carbono operativa de la propia empresa en un 50% para 2026.'),
-	(4, 'Expandir la participación de mercado en el sector logístico centroamericano en un 25% en 18 meses.');
+-- Volcando datos para la tabla homestead.objetivo_general: ~4 rows (aproximadamente)
+INSERT INTO `objetivo_general` (`Id`, `UnidadId`, `Objetivo`) VALUES
+	(1, 1, 'Incrementar la adopción de tecnologías sostenibles en clientes industriales en un 40% en 2 años.'),
+	(2, 2, 'Reducir la huella de carbono operativa de la propia empresa en un 50% para 2026.'),
+	(4, 5, 'Expandir la participación de mercado en el sector logístico centroamericano en un 25% en 18 meses.'),
+	(5, 5, 'Objetivo general 004');
 
 -- Volcando estructura para tabla homestead.oportunidades
 CREATE TABLE IF NOT EXISTS `oportunidades` (
@@ -608,13 +618,12 @@ CREATE TABLE IF NOT EXISTS `oportunidades` (
   `UsuarioId` int(11) NOT NULL,
   `PlanId` int(11) NOT NULL,
   `Oportunidad` varchar(255) NOT NULL,
-  `Accion` text,
+  `Accion` text DEFAULT NULL,
   `Origen` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.oportunidades: ~4 rows (aproximadamente)
-DELETE FROM `oportunidades`;
 INSERT INTO `oportunidades` (`Id`, `UsuarioId`, `PlanId`, `Oportunidad`, `Accion`, `Origen`) VALUES
 	(1, 5, 15, 'Escasez de competidores locales especializados en tecnología ecológica', 'Crear un sello propio "EcoSoluciones Verified".\r\nOfrecer consultoría en reportes ESG.\r\nDesarrollar dashboard de impacto ambiental para clientes.', 'porter'),
 	(2, 5, 15, 'Incentivos fiscales gubernamentales para empresas verdes', 'Contratar asesor fiscal para maximizar beneficios.\r\nIncluir en propuestas comerciales el ahorro fiscal para el cliente.\r\nDestinar los ahorros a I+D.', 'pest'),
@@ -626,12 +635,11 @@ CREATE TABLE IF NOT EXISTS `periodos` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `UsuarioId` int(11) NOT NULL,
   `PlanId` int(11) NOT NULL,
-  `Periodo` int(11) NOT NULL DEFAULT '0',
+  `Periodo` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla homestead.periodos: ~7 rows (aproximadamente)
-DELETE FROM `periodos`;
+-- Volcando datos para la tabla homestead.periodos: ~8 rows (aproximadamente)
 INSERT INTO `periodos` (`Id`, `UsuarioId`, `PlanId`, `Periodo`) VALUES
 	(9, 5, 15, 2020),
 	(11, 5, 15, 2017),
@@ -648,12 +656,11 @@ CREATE TABLE IF NOT EXISTS `pest` (
   `UsuarioId` int(11) NOT NULL,
   `PlanId` int(11) NOT NULL,
   `Codigo` varchar(50) NOT NULL,
-  `Valor` int(11) NOT NULL DEFAULT '0',
+  `Valor` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.pest: ~75 rows (aproximadamente)
-DELETE FROM `pest`;
 INSERT INTO `pest` (`Id`, `UsuarioId`, `PlanId`, `Codigo`, `Valor`) VALUES
 	(1, 5, 15, 'P1', 0),
 	(2, 5, 15, 'P2', 1),
@@ -734,15 +741,14 @@ INSERT INTO `pest` (`Id`, `UsuarioId`, `PlanId`, `Codigo`, `Valor`) VALUES
 -- Volcando estructura para tabla homestead.plan_estrategico
 CREATE TABLE IF NOT EXISTS `plan_estrategico` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Fecha` timestamp NOT NULL DEFAULT current_timestamp(),
   `UsuarioId` int(11) NOT NULL,
-  `Contenido` text,
-  `Conclucion` text,
+  `Contenido` text DEFAULT NULL,
+  `Conclucion` text DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.plan_estrategico: ~10 rows (aproximadamente)
-DELETE FROM `plan_estrategico`;
 INSERT INTO `plan_estrategico` (`Id`, `Fecha`, `UsuarioId`, `Contenido`, `Conclucion`) VALUES
 	(10, '2026-05-14 14:25:38', 1, '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Nombre de la Empresa: EcoSoluciones S.A.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 14/05/2026 09:25:38</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores: Jose Luis SAIRA NINA</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px;\'>Proporcionar tecnologías innovadoras y sostenibles que optimicen el uso de recursos naturales, ayudando a las empresas a ser más productivas y responsables con el medio ambiente.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px;\'>Ser líder regional en soluciones tecnológicas ecológicas para 2030, transformando la industria hacia un modelo de cero emisiones netas.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Sostenibilidad</li><li style=\'margin-left: 80px;\'>Innovación responsable</li><li style=\'margin-left: 80px;\'>Transparencia</li><li style=\'margin-left: 80px;\'>Compromiso con el cliente</li><li style=\'margin-left: 80px;\'>Mejora continua</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>AgroTec Sostenible</li><li style=\'margin-left: 80px;\'>LogiVerde</li><li style=\'margin-left: 80px;\'>EnerGea</li><li style=\'margin-left: 80px;\'>DataGreen Analytics</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'margin-left: 40px; width: calc(100% - 40px); border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'13\'>Proporcionar tecnologías innovadoras y sostenibles que optimicen el uso de recursos naturales, ayudando a las empresas a ser más productivas y responsables con el medio ambiente.</th></tr><tr><th rowspan=\'4\'>Incrementar la adopción de tecnologías sostenibles en clientes industriales en un 40% en 2 años.</th></tr><tr><td>Lanzar 2 nuevas funcionalidades de IA predictiva en la plataforma AgroTec por año</td></tr><tr><td>Capacitar a 100 ingenieros de cliente en prácticas sostenibles mediante talleres semestrales</td></tr><tr><td>Reducir el costo de entrada de las soluciones en un 15% mediante economías de escala</td></tr><tr><th rowspan=\'4\'>Reducir la huella de carbono operativa de la propia empresa en un 50% para 2026.</th></tr><tr><td>Migrar el 100% de los servidores a energía renovable en 12 meses</td></tr><tr><td>Implementar una política de teletrabajo híbrido que reduzca viajes en un 30%</td></tr><tr><td>Medir y reportar la huella de carbono corporativa trimestralmente</td></tr><tr><th rowspan=\'4\'>Expandir la participación de mercado en el sector logístico centroamericano en un 25% en 18 meses.</th></tr><tr><td>Establecer alianzas con 5 empresas de logística regional en el primer año</td></tr><tr><td>Desarrollar una versión localizada de LogiVerde para mercados de Centroamérica</td></tr><tr><td>Participar en 4 ferias internacionales de logística sostenible por año</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'margin-left: 40px; width: calc(100% - 40px); border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><td>Patentes propias en sensores de bajo consumo energético</td></tr><tr><td>Alto nivel de retención de clientes (85% anual)</td></tr><tr><td>Infraestructura cloud escalable y segura</td></tr><tr><td>Liderazgo en costo-beneficio versus competidores locales</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><td>Baja presencia en marketing digital comparado con competidores</td></tr><tr><td>Procesos internos manuales en gestión de proyectos</td></tr><tr><td>Falta de certificaciones ambientales internacionales (ISO 14001)</td></tr><tr><td>Dependencia de proveedores externos para componentes electrónicos</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><td>Escasez de competidores locales especializados en tecnología ecológica</td></tr><tr><td>Incentivos fiscales gubernamentales para empresas verdes</td></tr><tr><td>Alta exigencia de clientes por soluciones sostenibles, lo que favorece a empresas especializadas</td></tr><tr><td>Avances en inteligencia artificial aplicada a eficiencia energética</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr><tr><td>Volatilidad en precios de materias primas para sensores</td></tr><tr><td>Entrada de grandes tecnológicas globales al mercado sostenible</td></tr><tr><td>Ciberseguridad: riesgos de ataques a infraestructura IoT</td></tr><tr><td>Posibles cambios en regulaciones ambientales internacionales que exijan nuevas inversiones</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> FO</li><li><strong>Tipo:</strong> OFENSIVA</li><li><strong>Descripción:</strong> Deberá adoptar estrategias de crecimiento.</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><table style=\'margin-left: 40px; width: calc(100% - 40px); border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center; width: 80px;\'>N°</th><th style=\'text-align: center;\'>ACCION</th></tr></thead><tbody><tr><td style=\'text-align: center;\'>1</td><td></td></tr><tr><td style=\'text-align: center;\'>2</td><td></td></tr><tr><td style=\'text-align: center;\'>3</td><td></td></tr><tr><td style=\'text-align: center;\'>4</td><td></td></tr><tr><td style=\'text-align: center;\'>5</td><td></td></tr><tr><td style=\'text-align: center;\'>6</td><td></td></tr><tr><td style=\'text-align: center;\'>7</td><td></td></tr><tr><td style=\'text-align: center;\'>8</td><td></td></tr><tr><td style=\'text-align: center;\'>9</td><td></td></tr><tr><td style=\'text-align: center;\'>10</td><td></td></tr><tr><td style=\'text-align: center;\'>11</td><td></td></tr><tr><td style=\'text-align: center;\'>12</td><td></td></tr><tr><td style=\'text-align: center;\'>13</td><td></td></tr><tr><td style=\'text-align: center;\'>14</td><td></td></tr><tr><td style=\'text-align: center;\'>15</td><td></td></tr><tr><td style=\'text-align: center;\'>16</td><td></td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', NULL),
 	(11, '2026-05-16 13:50:26', 1, NULL, NULL),
@@ -751,7 +757,7 @@ INSERT INTO `plan_estrategico` (`Id`, `Fecha`, `UsuarioId`, `Contenido`, `Conclu
 	(14, '2026-05-16 13:51:16', 5, '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Empresa:  EcoSoluciones S.A.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 16/05/2026 08:51:16</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores:</h6><ul><li style=\'margin-left: 80px;\'>Jesus Humberto Escalante Alanoca</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px; width: calc(100% - 40px);\'>Proporcionar tecnologías innovadoras y sostenibles que optimicen el uso de recursos naturales, ayudando a las empresas a ser más productivas y responsables con el medio ambiente.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px; width: calc(100% - 40px);\'>Ser líder regional en soluciones tecnológicas ecológicas para 2030, transformando la industria hacia un modelo de cero emisiones netas.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Sostenibilidad</li><li style=\'margin-left: 80px;\'>Innovación responsable</li><li style=\'margin-left: 80px;\'>Transparencia</li><li style=\'margin-left: 80px;\'>Compromiso con el cliente</li><li style=\'margin-left: 80px;\'>Mejora continua</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>AgroTec Sostenible</li><li style=\'margin-left: 80px;\'>LogiVerde</li><li style=\'margin-left: 80px;\'>EnerGea</li><li style=\'margin-left: 80px;\'>DataGreen Analytics</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'13\'>Proporcionar tecnologías innovadoras y sostenibles que optimicen el uso de recursos naturales, ayudando a las empresas a ser más productivas y responsables con el medio ambiente.</th></tr><tr><th rowspan=\'4\'>Incrementar la adopción de tecnologías sostenibles en clientes industriales en un 40% en 2 años.</th></tr><tr><td>Lanzar 2 nuevas funcionalidades de IA predictiva en la plataforma AgroTec por año</td></tr><tr><td>Capacitar a 100 ingenieros de cliente en prácticas sostenibles mediante talleres semestrales</td></tr><tr><td>Reducir el costo de entrada de las soluciones en un 15% mediante economías de escala</td></tr><tr><th rowspan=\'4\'>Reducir la huella de carbono operativa de la propia empresa en un 50% para 2026.</th></tr><tr><td>Migrar el 100% de los servidores a energía renovable en 12 meses</td></tr><tr><td>Implementar una política de teletrabajo híbrido que reduzca viajes en un 30%</td></tr><tr><td>Medir y reportar la huella de carbono corporativa trimestralmente</td></tr><tr><th rowspan=\'4\'>Expandir la participación de mercado en el sector logístico centroamericano en un 25% en 18 meses.</th></tr><tr><td>Establecer alianzas con 5 empresas de logística regional en el primer año</td></tr><tr><td>Desarrollar una versión localizada de LogiVerde para mercados de Centroamérica</td></tr><tr><td>Participar en 4 ferias internacionales de logística sostenible por año</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'1\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><th rowspan=\'1\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><th rowspan=\'1\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><th rowspan=\'1\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> Estrategia NO Identificada</li><li><strong>Tipo:</strong> Estrategia NO Identificada</li><li><strong>Descripción:</strong> Estrategia NO Identificada</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><table style=\'margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center; width: 80px;\'>N°</th><th style=\'text-align: center;\'>ACCION</th></tr></thead><tbody><tr><th colspan=\'2\'>CORREGIR DEBILIDADES</th></tr><tr><th colspan=\'2\'>AFRONTAR AMENAZAS</th></tr><tr><th colspan=\'2\'>MANTENER FORTALEZAS</th></tr><tr><th colspan=\'2\'>EXPLORAR OPORTUNIDADES</th></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', NULL),
 	(15, '2026-05-16 13:58:31', 5, '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Empresa:  EcoSoluciones S.A.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 16/05/2026 08:58:31</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores:</h6><ul><li style=\'margin-left: 80px;\'>Jesus Humberto Escalante Alanoca</li><li style=\'margin-left: 80px;\'>Usuario 2 Apellido Usuario2</li><li style=\'margin-left: 80px;\'>Jose Luis SAIRA NINA</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px; width: calc(100% - 40px);\'>Proporcionar tecnologías innovadoras y sostenibles que optimicen el uso de recursos naturales, ayudando a las empresas a ser más productivas y responsables con el medio ambiente.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px; width: calc(100% - 40px);\'>Ser líder regional en soluciones tecnológicas ecológicas para 2030, transformando la industria hacia un modelo de cero emisiones netas.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Sostenibilidad</li><li style=\'margin-left: 80px;\'>Innovación responsable</li><li style=\'margin-left: 80px;\'>Transparencia</li><li style=\'margin-left: 80px;\'>Compromiso con el cliente</li><li style=\'margin-left: 80px;\'>Mejora continua</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>AgroTec Sostenible</li><li style=\'margin-left: 80px;\'>LogiVerde</li><li style=\'margin-left: 80px;\'>EnerGea</li><li style=\'margin-left: 80px;\'>DataGreen Analytics</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'13\'>Proporcionar tecnologías innovadoras y sostenibles que optimicen el uso de recursos naturales, ayudando a las empresas a ser más productivas y responsables con el medio ambiente.</th></tr><tr><th rowspan=\'4\'>Incrementar la adopción de tecnologías sostenibles en clientes industriales en un 40% en 2 años.</th></tr><tr><td>Lanzar 2 nuevas funcionalidades de IA predictiva en la plataforma AgroTec por año</td></tr><tr><td>Capacitar a 100 ingenieros de cliente en prácticas sostenibles mediante talleres semestrales</td></tr><tr><td>Reducir el costo de entrada de las soluciones en un 15% mediante economías de escala</td></tr><tr><th rowspan=\'4\'>Reducir la huella de carbono operativa de la propia empresa en un 50% para 2026.</th></tr><tr><td>Migrar el 100% de los servidores a energía renovable en 12 meses</td></tr><tr><td>Implementar una política de teletrabajo híbrido que reduzca viajes en un 30%</td></tr><tr><td>Medir y reportar la huella de carbono corporativa trimestralmente</td></tr><tr><th rowspan=\'4\'>Expandir la participación de mercado en el sector logístico centroamericano en un 25% en 18 meses.</th></tr><tr><td>Establecer alianzas con 5 empresas de logística regional en el primer año</td></tr><tr><td>Desarrollar una versión localizada de LogiVerde para mercados de Centroamérica</td></tr><tr><td>Participar en 4 ferias internacionales de logística sostenible por año</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'6\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><td>Patentes propias en sensores de bajo consumo energético</td></tr><tr><td>Alto nivel de retención de clientes (85% anual)</td></tr><tr><td>Infraestructura cloud escalable y segura</td></tr><tr><td>Liderazgo en costo-beneficio versus competidores locales</td></tr><tr><td>F0111</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><td>Baja presencia en marketing digital comparado con competidores</td></tr><tr><td>Procesos internos manuales en gestión de proyectos</td></tr><tr><td>Falta de certificaciones ambientales internacionales (ISO 14001)</td></tr><tr><td>Dependencia de proveedores externos para componentes electrónicos</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><td>Escasez de competidores locales especializados en tecnología ecológica</td></tr><tr><td>Incentivos fiscales gubernamentales para empresas verdes</td></tr><tr><td>Alta exigencia de clientes por soluciones sostenibles, lo que favorece a empresas especializadas</td></tr><tr><td>Avances en inteligencia artificial aplicada a eficiencia energética</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr><tr><td>Volatilidad en precios de materias primas para sensores</td></tr><tr><td>Entrada de grandes tecnológicas globales al mercado sostenible</td></tr><tr><td>Ciberseguridad: riesgos de ataques a infraestructura IoT</td></tr><tr><td>Posibles cambios en regulaciones ambientales internacionales que exijan nuevas inversiones</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> FA</li><li><strong>Tipo:</strong> DEFENSIVA</li><li><strong>Descripción:</strong> La empresa está preparada para enfrentarse a las amenazas.</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><table style=\'margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center; width: 80px;\'>N°</th><th style=\'text-align: center;\'>ACCION</th></tr></thead><tbody><tr><th colspan=\'2\'>CORREGIR DEBILIDADES</th></tr><tr><td style=\'text-align: center;\'>1</td><td>Contratar especialista en marketing digital B2B.\r\nLanzar campañas en LinkedIn y Google Ads.\r\nCrear contenido técnico (webinars, casos de éxito, whitepapers).\r\nOptimizar SEO.</td></tr><tr><td style=\'text-align: center;\'>2</td><td>Implementar software de gestión de proyectos.\r\nAutomatizar flujos de aprobación y reportes.\r\nCapacitar al personal en metodologías ágiles.</td></tr><tr><td style=\'text-align: center;\'>3</td><td>Contratar consultoría especializada.\r\nAsignar responsable interno de calidad ambiental.\r\nPresupuestar la certificación en 18 meses.\r\nAprovechar incentivos fiscales para financiarla.</td></tr><tr><td style=\'text-align: center;\'>4</td><td>Desarrollar alianzas con 2 proveedores alternativos locales.\r\nCrear un stock de seguridad para componentes críticos.\r\nDiseñar sensores modulares que permitan sustituir partes fácilmente.</td></tr><tr><th colspan=\'2\'>AFRONTAR AMENAZAS</th></tr><tr><td style=\'text-align: center;\'>5</td><td>Negociar contratos fijos con proveedores por volumen.\r\nInvestigar materiales alternativos más estables.\r\nIncorporar cláusulas de ajuste en contratos con clientes.</td></tr><tr><td style=\'text-align: center;\'>6</td><td>Diferenciarse por conocimiento local y atención personalizada.\r\nOfrecer precios competitivos.\r\nFidelizar clientes con contratos de largo plazo.\r\nCrear barreras de cambio (integración a medida).</td></tr><tr><td style=\'text-align: center;\'>7</td><td>Implementar auditorías de seguridad trimestrales.\r\nContratar seguro de ciberseguridad.\r\nCapacitar al personal en buenas prácticas.\r\nCertificarse en ISO 27001.</td></tr><tr><td style=\'text-align: center;\'>8</td><td>Crear comité de vigilancia normativa.\r\nSuscribirse a boletines oficiales.\r\nDesarrollar soluciones flexibles que se adapten a distintos estándares.\r\nObtener ISO 14001 como preparación.</td></tr><tr><th colspan=\'2\'>MANTENER FORTALEZAS</th></tr><tr><td style=\'text-align: center;\'>9</td><td>Renovar y ampliar patentes.\r\nInvertir anualmente en I+D (5% de ingresos).\r\nRegistrar nuevas funcionalidades.\r\nMonitorear posibles infracciones de competidores.</td></tr><tr><td style=\'text-align: center;\'>10</td><td>Implementar programa de fidelización con descuentos por antigüedad.\r\nRealizar encuestas NPS trimestrales.\r\nAsignar account managers dedicados a clientes clave.</td></tr><tr><td style=\'text-align: center;\'>11</td><td>Actualizar hardware y software periódicamente.\r\nMantener planes de respaldo y recuperación ante desastres.\r\nRealizar pruebas de estrés semestrales.</td></tr><tr><td style=\'text-align: center;\'>12</td><td>Optimizar procesos productivos para mantener márgenes.\r\nRevisar precios anualmente.\r\nMonitorear constantemente la competencia local.</td></tr><tr><td style=\'text-align: center;\'>13</td><td>AF0111</td></tr><tr><th colspan=\'2\'>EXPLORAR OPORTUNIDADES</th></tr><tr><td style=\'text-align: center;\'>14</td><td>Crear un sello propio "EcoSoluciones Verified".\r\nOfrecer consultoría en reportes ESG.\r\nDesarrollar dashboard de impacto ambiental para clientes.</td></tr><tr><td style=\'text-align: center;\'>15</td><td>Contratar asesor fiscal para maximizar beneficios.\r\nIncluir en propuestas comerciales el ahorro fiscal para el cliente.\r\nDestinar los ahorros a I+D.</td></tr><tr><td style=\'text-align: center;\'>16</td><td>Acelerar expansión geográfica.\r\nAbrir oficinas en 2 nuevas ciudades.\r\nLanzar campaña agresiva de branding como "líder local en tecnología ecológica".\r\nParticipar en cámaras de comercio.</td></tr><tr><td style=\'text-align: center;\'>17</td><td>Formar equipo de IA interno.\r\nDesarrollar prototipo de optimización energética predictiva en 6 meses.\r\nLanzar alianza con universidad local para investigación conjunta.</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', 'sdfsdf'),
 	(16, '2026-05-16 23:40:36', 5, '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Empresa:  EcoSoluciones S.A.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 16/05/2026 06:40:36</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores:</h6><ul><li style=\'margin-left: 80px;\'>Jesus Humberto Escalante Alanoca</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px; width: calc(100% - 40px);\'>Proporcionar tecnologías innovadoras y sostenibles que optimicen el uso de recursos naturales, ayudando a las empresas a ser más productivas y responsables con el medio ambiente.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px; width: calc(100% - 40px);\'>Ser líder regional en soluciones tecnológicas ecológicas para 2030, transformando la industria hacia un modelo de cero emisiones netas.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Sostenibilidad</li><li style=\'margin-left: 80px;\'>Innovación responsable</li><li style=\'margin-left: 80px;\'>Transparencia</li><li style=\'margin-left: 80px;\'>Compromiso con el cliente</li><li style=\'margin-left: 80px;\'>Mejora continua</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>AgroTec Sostenible</li><li style=\'margin-left: 80px;\'>LogiVerde</li><li style=\'margin-left: 80px;\'>EnerGea</li><li style=\'margin-left: 80px;\'>DataGreen Analytics</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'13\'>Proporcionar tecnologías innovadoras y sostenibles que optimicen el uso de recursos naturales, ayudando a las empresas a ser más productivas y responsables con el medio ambiente.</th></tr><tr><th rowspan=\'4\'>Incrementar la adopción de tecnologías sostenibles en clientes industriales en un 40% en 2 años.</th></tr><tr><td>Lanzar 2 nuevas funcionalidades de IA predictiva en la plataforma AgroTec por año</td></tr><tr><td>Capacitar a 100 ingenieros de cliente en prácticas sostenibles mediante talleres semestrales</td></tr><tr><td>Reducir el costo de entrada de las soluciones en un 15% mediante economías de escala</td></tr><tr><th rowspan=\'4\'>Reducir la huella de carbono operativa de la propia empresa en un 50% para 2026.</th></tr><tr><td>Migrar el 100% de los servidores a energía renovable en 12 meses</td></tr><tr><td>Implementar una política de teletrabajo híbrido que reduzca viajes en un 30%</td></tr><tr><td>Medir y reportar la huella de carbono corporativa trimestralmente</td></tr><tr><th rowspan=\'4\'>Expandir la participación de mercado en el sector logístico centroamericano en un 25% en 18 meses.</th></tr><tr><td>Establecer alianzas con 5 empresas de logística regional en el primer año</td></tr><tr><td>Desarrollar una versión localizada de LogiVerde para mercados de Centroamérica</td></tr><tr><td>Participar en 4 ferias internacionales de logística sostenible por año</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><td>Patentes propias en sensores de bajo consumo energético</td></tr><tr><td>Alto nivel de retención de clientes (85% anual)</td></tr><tr><td>Infraestructura cloud escalable y segura</td></tr><tr><td>Liderazgo en costo-beneficio versus competidores locales</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><td>Baja presencia en marketing digital comparado con competidores</td></tr><tr><td>Procesos internos manuales en gestión de proyectos</td></tr><tr><td>Falta de certificaciones ambientales internacionales (ISO 14001)</td></tr><tr><td>Dependencia de proveedores externos para componentes electrónicos</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><td>Escasez de competidores locales especializados en tecnología ecológica</td></tr><tr><td>Incentivos fiscales gubernamentales para empresas verdes</td></tr><tr><td>Alta exigencia de clientes por soluciones sostenibles, lo que favorece a empresas especializadas</td></tr><tr><td>Avances en inteligencia artificial aplicada a eficiencia energética</td></tr><tr><th rowspan=\'5\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr><tr><td>Volatilidad en precios de materias primas para sensores</td></tr><tr><td>Entrada de grandes tecnológicas globales al mercado sostenible</td></tr><tr><td>Ciberseguridad: riesgos de ataques a infraestructura IoT</td></tr><tr><td>Posibles cambios en regulaciones ambientales internacionales que exijan nuevas inversiones</td></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> Estrategia NO Identificada</li><li><strong>Tipo:</strong> Estrategia NO Identificada</li><li><strong>Descripción:</strong> Estrategia NO Identificada</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><table style=\'margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center; width: 80px;\'>N°</th><th style=\'text-align: center;\'>ACCION</th></tr></thead><tbody></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', NULL),
-	(17, '2026-05-17 01:04:26', 6, NULL, NULL),
+	(17, '2026-05-17 01:04:26', 7, NULL, NULL),
 	(18, '2026-05-24 02:04:36', 7, NULL, NULL),
 	(19, '2026-05-29 05:27:32', 5, '<p>&nbsp;</p><h5 style=\'text-align: center;\'>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h5><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Empresa:  EcoSoluciones S.A.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Fecha de elaboración: 29/05/2026 12:27:32</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>Emprendedores / Promotores:</h6><ul><li style=\'margin-left: 80px;\'>Jesus Humberto Escalante Alanoca</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>MISIÓN:</h6><h6 style=\'padding-left: 80px; width: calc(100% - 40px);\'>Proporcionar tecnologías innovadoras y sostenibles que optimicen el uso de recursos naturales, ayudando a las empresas a ser más productivas y responsables con el medio ambiente.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VISIÓN:</h6><h6 style=\'padding-left: 80px; width: calc(100% - 40px);\'>Ser líder regional en soluciones tecnológicas ecológicas para 2030, transformando la industria hacia un modelo de cero emisiones netas.</h6><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>VALORES:</h6><ul><li style=\'margin-left: 80px;\'>Sostenibilidad</li><li style=\'margin-left: 80px;\'>Innovación responsable</li><li style=\'margin-left: 80px;\'>Transparencia</li><li style=\'margin-left: 80px;\'>Compromiso con el cliente</li><li style=\'margin-left: 80px;\'>Mejora continua</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>UNIDADES ESTRATÉGICAS:</h6><ul><li style=\'margin-left: 80px;\'>AgroTec Sostenible</li><li style=\'margin-left: 80px;\'>LogiVerde</li><li style=\'margin-left: 80px;\'>EnerGea</li><li style=\'margin-left: 80px;\'>DataGreen Analytics</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>OBJETIVOS ESTRATÉGICOS:</h6><table style=\'margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center;\'>MISIÓN</th><th style=\'text-align: center;\'>OBJETIVOS GENERALES O ESTRATÉGICOS</th><th style=\'text-align: center;\'>OBJETIVOS ESPECÍFICOS</th></tr></thead><tbody><tr><th rowspan=\'4\'>Proporcionar tecnologías innovadoras y sostenibles que optimicen el uso de recursos naturales, ayudando a las empresas a ser más productivas y responsables con el medio ambiente.</th></tr><tr><th rowspan=\'1\'>Incrementar la adopción de tecnologías sostenibles en clientes industriales en un 40% en 2 años.</th></tr><tr><th rowspan=\'1\'>Reducir la huella de carbono operativa de la propia empresa en un 50% para 2026.</th></tr><tr><th rowspan=\'1\'>Expandir la participación de mercado en el sector logístico centroamericano en un 25% en 18 meses.</th></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'> ANÁLISIS FODA:</h6><table style=\'margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;\' border=\'1\'><tbody><tr><th rowspan=\'1\' width=\'150px\' style=\'text-align: center;\'>FORTALEZAS</th></tr><tr><th rowspan=\'1\' width=\'150px\' style=\'text-align: center;\'>DEBILIDADES</th></tr><tr><th rowspan=\'1\' width=\'150px\' style=\'text-align: center;\'>OPORTUNIDADES</th></tr><tr><th rowspan=\'1\' width=\'150px\' style=\'text-align: center;\'>AMENAZAS</th></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>IDENTIFICACIÓN DE ESTRATEGIA:</h6><ul style=\'padding-left: 80px;\'><li><strong>Relacion:</strong> Estrategia NO Identificada</li><li><strong>Tipo:</strong> Estrategia NO Identificada</li><li><strong>Descripción:</strong> Estrategia NO Identificada</li></ul><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>ACCIONES COMPETITIVAS:</h6><table style=\'margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;\' border=\'1\'><thead><tr><th style=\'text-align: center; width: 80px;\'>N°</th><th style=\'text-align: center;\'>ACCION</th></tr></thead><tbody><tr><th colspan=\'2\'>CORREGIR DEBILIDADES</th></tr><tr><th colspan=\'2\'>AFRONTAR AMENAZAS</th></tr><tr><th colspan=\'2\'>MANTENER FORTALEZAS</th></tr><tr><th colspan=\'2\'>EXPLORAR OPORTUNIDADES</th></tr></tbody></table><p>&nbsp;</p><h6 style=\'padding-left: 40px;\'>CONCLUSIONES:</h6>', NULL);
 
@@ -761,10 +767,9 @@ CREATE TABLE IF NOT EXISTS `preguntas_cv` (
   `Codigo` varchar(10) DEFAULT NULL,
   `Pregunta` varchar(255) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.preguntas_cv: ~25 rows (aproximadamente)
-DELETE FROM `preguntas_cv`;
 INSERT INTO `preguntas_cv` (`Id`, `Codigo`, `Pregunta`) VALUES
 	(1, 'P1', 'La empresa tiene una política sistematizada de cero defectos en la producción de productos/servicios.'),
 	(2, 'P2', 'La empresa emplea los medios productivos tecnológicamente más avanzados de su sector.'),
@@ -800,10 +805,9 @@ CREATE TABLE IF NOT EXISTS `preguntas_fp` (
   `Hostil` varchar(50) NOT NULL,
   `Favorable` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla homestead.preguntas_fp: ~16 rows (aproximadamente)
-DELETE FROM `preguntas_fp`;
+-- Volcando datos para la tabla homestead.preguntas_fp: ~17 rows (aproximadamente)
 INSERT INTO `preguntas_fp` (`Id`, `Codigo`, `Perfil`, `Hostil`, `Favorable`) VALUES
 	(1, 'F1S1', 'Crecimiento', 'Lento', 'Rápido'),
 	(2, 'F1S2', 'Naturaleza de los competidores', 'Muchos', 'Pocos'),
@@ -829,10 +833,9 @@ CREATE TABLE IF NOT EXISTS `preguntas_pest` (
   `Codigo` varchar(50) NOT NULL,
   `Pregunta` varchar(255) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.preguntas_pest: ~25 rows (aproximadamente)
-DELETE FROM `preguntas_pest`;
 INSERT INTO `preguntas_pest` (`Id`, `Codigo`, `Pregunta`) VALUES
 	(1, 'P1', 'Los cambios en la composición étnica de los consumidores de nuestro mercado está teniendo un notable impacto.'),
 	(2, 'P2', 'El envejecimiento de la población tiene un importante impacto en la demanda.'),
@@ -866,13 +869,12 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `UsuarioId` int(11) NOT NULL,
   `PlanId` int(11) NOT NULL,
   `Nombre` varchar(255) NOT NULL,
-  `Ventas` int(11) NOT NULL DEFAULT '0',
-  `Porcentaje` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `Ventas` int(11) NOT NULL DEFAULT 0,
+  `Porcentaje` decimal(10,2) NOT NULL DEFAULT 0.00,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.productos: ~7 rows (aproximadamente)
-DELETE FROM `productos`;
 INSERT INTO `productos` (`Id`, `UsuarioId`, `PlanId`, `Nombre`, `Ventas`, `Porcentaje`) VALUES
 	(1, 5, 15, 'Hosting', 5, 6.67),
 	(2, 5, 15, 'Producto 02', 10, 13.33),
@@ -887,14 +889,13 @@ CREATE TABLE IF NOT EXISTS `tcm` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `UsuarioId` int(11) NOT NULL,
   `PlanId` int(11) NOT NULL,
-  `Periodo` int(11) NOT NULL DEFAULT '0',
-  `ProductoId` int(11) NOT NULL DEFAULT '0',
-  `Valor` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `Periodo` int(11) NOT NULL DEFAULT 0,
+  `ProductoId` int(11) NOT NULL DEFAULT 0,
+  `Valor` decimal(10,2) NOT NULL DEFAULT 0.00,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla homestead.tcm: ~67 rows (aproximadamente)
-DELETE FROM `tcm`;
+-- Volcando datos para la tabla homestead.tcm: ~75 rows (aproximadamente)
 INSERT INTO `tcm` (`Id`, `UsuarioId`, `PlanId`, `Periodo`, `ProductoId`, `Valor`) VALUES
 	(1, 5, 15, 2016, 1, 1.00),
 	(2, 5, 15, 2016, 2, 9.00),
@@ -977,10 +978,9 @@ CREATE TABLE IF NOT EXISTS `unidad_estrategica` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Unidad` varchar(255) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.unidad_estrategica: ~4 rows (aproximadamente)
-DELETE FROM `unidad_estrategica`;
 INSERT INTO `unidad_estrategica` (`Id`, `Unidad`) VALUES
 	(1, 'AgroTec Sostenible'),
 	(2, 'LogiVerde'),
@@ -990,18 +990,17 @@ INSERT INTO `unidad_estrategica` (`Id`, `Unidad`) VALUES
 -- Volcando estructura para tabla homestead.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Apellido` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Correo` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Avatar` int(1) NOT NULL DEFAULT '1',
-  `Rol` enum('Administrador','Editor','Visualizador') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Editor',
+  `Nombre` varchar(50) NOT NULL,
+  `Apellido` varchar(50) DEFAULT NULL,
+  `Correo` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `Avatar` int(1) NOT NULL DEFAULT 1,
+  `Rol` enum('Administrador','Editor','Visualizador') NOT NULL DEFAULT 'Editor',
   `Estado` int(1) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla homestead.usuario: ~4 rows (aproximadamente)
-DELETE FROM `usuario`;
 INSERT INTO `usuario` (`Id`, `Nombre`, `Apellido`, `Correo`, `password`, `Avatar`, `Rol`, `Estado`) VALUES
 	(1, 'Admin', NULL, 'admin@virtual.upt.pe', '$2y$10$hn3NlEYExkoOHHqHm9lXDelSIm7U8KpnJ4xkHW2CbaWucUEQg9eqS', 1, 'Administrador', 1),
 	(5, 'Jesus Humberto', 'Escalante Alanoca', 'je2015050641@virtual.upt.pe', '$2y$10$hn3NlEYExkoOHHqHm9lXDelSIm7U8KpnJ4xkHW2CbaWucUEQg9eqS', 1, 'Administrador', 1),
@@ -1013,10 +1012,9 @@ CREATE TABLE IF NOT EXISTS `valores` (
   `Id` int(10) NOT NULL AUTO_INCREMENT,
   `Valor` varchar(255) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla homestead.valores: ~5 rows (aproximadamente)
-DELETE FROM `valores`;
 INSERT INTO `valores` (`Id`, `Valor`) VALUES
 	(1, 'Sostenibilidad'),
 	(2, 'Innovación responsable'),

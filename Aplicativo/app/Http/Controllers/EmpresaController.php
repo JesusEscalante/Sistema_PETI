@@ -330,6 +330,7 @@ class EmpresaController extends Controller
         try
         {
             $ObjObjetivoGeneral = new ObjetivosGenerales();
+            $ObjObjetivoGeneral->UnidadId = $request->input('unidad');
             $ObjObjetivoGeneral->Objetivo = $request->input('objetivo');
 
             if(ObjetivosGenerales::Agregar($ObjObjetivoGeneral))
@@ -359,6 +360,7 @@ class EmpresaController extends Controller
         try
         {
             $ObjObjetivoGeneral = ObjetivosGenerales::ObtenerPorId($request->input('id'));
+            $ObjObjetivoGeneral->UnidadId = $request->input('unidad');
             $ObjObjetivoGeneral->Objetivo = $request->input('objetivo');
 
             if(ObjetivosGenerales::Editar($ObjObjetivoGeneral))

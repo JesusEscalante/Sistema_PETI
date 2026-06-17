@@ -440,7 +440,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="row align-items-center">
-                                <div class="col-lg-6 col-sm-12"><h5 class="font-weight-bold text-primary">Objetivos Generales de la Empresa</h5></div>
+                                <div class="col-lg-6 col-sm-12"><h5 class="font-weight-bold text-primary">Objetivos Generales del Area de TI</h5></div>
                                 <div class="col-lg-6 col-sm-12 d-flex justify-content-end row">
                                     @if(auth()->user()->Rol == "Administrador")
                                     <a href="#" class="btn btn-primary btn-icon-split ml-1" data-toggle="modal" data-target="#AddObjetivo">
@@ -449,7 +449,7 @@
                                     </a>
                                     <!-- Agregar Modal-->
                                     <div class="modal fade" id="AddObjetivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content user">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title text-primary" id="exampleModalLabel"><b>Agregar Objetivo</b></h5>
@@ -458,12 +458,23 @@
                                                     </button>
                                                 </div>
                                                 <form class="user" action="/empresa/add_objetivo_general" method="post">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <div class="modal-body" style="text-align: start;">
-                                                        <div class="form-group">
-                                                            <label for="objetivo"><strong>Objetivo:</strong></label>
-                                                            <input type="text" class="form-control" name="objetivo" placeholder="Objetivo..." title="Objetivo">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <div class="modal-body" style="text-align: start;">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-6 col-sm-12">
+                                                            <label for="objetivo"><strong>Unidad Estratégica:</strong></label>
+                                                            <select class="form-control" name="unidad">
+                                                                @foreach($UnidadesEstrategicas as $Unidad)
+                                                                <option value="{{ $Unidad['Id'] }}">{{ $Unidad['Unidad'] }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="objetivo"><strong>Objetivo:</strong></label>
+                                                        <input type="text" class="form-control" name="objetivo" placeholder="Objetivo..." title="Objetivo">
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="submit" class="btn btn-primary btn-block" value="Agregar Objetivo">
@@ -508,6 +519,16 @@
                                                             <div class="modal-body" style="text-align: start;">
                                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                                 <input type="hidden" name="id" value="{{ $Objetivo->Id }}">
+                                                                <div class="form-group row">
+                                                                    <div class="col-lg-6 col-sm-12">
+                                                                        <label for="objetivo"><strong>Unidad Estratégica:</strong></label>
+                                                                        <select class="form-control" name="unidad">
+                                                                            @foreach($UnidadesEstrategicas as $Unidad)
+                                                                            <option value="{{ $Unidad['Id'] }}" <?= $Unidad['Id'] == $Objetivo->UnidadId ? 'selected' : ''?>>{{ $Unidad['Unidad'] }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="form-group">
                                                                     <label for="objetivo"><strong>Objetivo:</strong></label>
                                                                     <input type="text" class="form-control" name="objetivo" placeholder="Objetivo..." title="Objetivo" value="{{ $Objetivo['Objetivo'] }}">
