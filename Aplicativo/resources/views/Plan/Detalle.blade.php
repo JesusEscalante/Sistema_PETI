@@ -25,7 +25,7 @@
                     <input type="hidden" name="id" value="{{ $Plan->Id }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     @if(auth()->user()->Rol == "Administrador" || auth()->user()->Rol == "Editor")
-                    <textarea class="form-control" id='txtConclucion' name='conclucion' style='margin-left: 40px; width: calc(100% - 80px);'>{{ $Plan->Conclucion }}</textarea>
+                    <textarea class="form-control" id='txtConclucion' name='conclucion' style='margin-left: 40px; width: calc(100% - 80px);' rows="5">{{ $Plan->Conclucion }}</textarea>
                     @else
                     <h6 style='padding-left: 40px; width: calc(100% - 40px);'>{{ $Plan->Conclucion }}</h6>
                     @endif

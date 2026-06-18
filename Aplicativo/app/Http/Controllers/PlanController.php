@@ -122,7 +122,7 @@ class PlanController extends Controller
                         $COUNT_OBJETIVOS++;
                     }
                 }
-                $OBJETIVOS .= "<tr><th rowspan='" . ($COUNT + 1) . "'>" . $ObjGeneral->Objetivo . "</th></tr>";
+                $OBJETIVOS .= "<tr><th rowspan='" . ($COUNT + 1) . "'>" . $ObjGeneral->Unidad . "</th><th rowspan='" . ($COUNT + 1) . "'>" . $ObjGeneral->Objetivo . "</th></tr>";
                 foreach($ObjObjetivosEspecificos as $ObjEspecifico){
                     if($ObjEspecifico->ObjGeneral_Id == $ObjGeneral->Id){
                         $OBJETIVOS .= "<tr><td>" . $ObjEspecifico->Objetivo . "</td></tr>";
@@ -225,15 +225,12 @@ class PlanController extends Controller
                         "<table style='margin-left: 40px; width: calc(100% - 80px); border-collapse: collapse;' border='1'>".
                         "<thead>".
                         "<tr>".
-                        "<th style='text-align: center;'>MISIÓN</th>".
-                        "<th style='text-align: center;'>OBJETIVOS GENERALES O ESTRATÉGICOS</th>".
-                        "<th style='text-align: center;'>OBJETIVOS ESPECÍFICOS</th>".
+                        "<th style='text-align: center; width: 20%;'>UNIDAD ESTRATÉGICA</th>".
+                        "<th style='text-align: center; width: 40%;'>OBJETIVOS GENERALES O ESTRATÉGICOS</th>".
+                        "<th style='text-align: center; width: 40%;'>OBJETIVOS ESPECÍFICOS</th>".
                         "</tr>".
                         "</thead>".
                         "<tbody>".
-                        "<tr>".
-                        "<th rowspan='" . ($COUNT_OBJETIVOS + 1) . "'>" . $ObjEmpresa->Mision . "</th>".
-                        "</tr>".
                         $OBJETIVOS .
                         "</tbody>".
                         "</table>".

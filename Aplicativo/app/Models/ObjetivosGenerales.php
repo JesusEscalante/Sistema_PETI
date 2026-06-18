@@ -19,7 +19,9 @@ class ObjetivosGenerales extends Model
 
     public static function Listar()
     {
-        return ObjetivosGenerales::all();
+        return ObjetivosGenerales::join('unidad_estrategica as u', 'u.Id', '=', 'objetivo_general.UnidadId')
+                                ->select('objetivo_general.Id', 'objetivo_general.UnidadId', 'u.Unidad', 'objetivo_general.Objetivo')
+                                ->get();
     }
 
     public static function Agregar(ObjetivosGenerales $ObjObjetivosGenerales)
