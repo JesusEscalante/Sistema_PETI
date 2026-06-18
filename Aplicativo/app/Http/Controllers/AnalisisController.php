@@ -1084,8 +1084,9 @@ class AnalisisController extends Controller
             $objPest = Pest::ObtenerPorUsuarioIdPlanId(auth()->user()->Id, $PlanId);
 
             foreach($objPest as $Pest){
-                $Pest->Valor = $request->input('valor' . $Pest->Id);
-                Pest::Editar($Pest);
+                $ObPest = Pest::ObtenerPorId($Pest->Id);
+                $ObPest->Valor = $request->input('valor' . $Pest->Id);
+                Pest::Editar($ObPest);
             }
 
             session_start();

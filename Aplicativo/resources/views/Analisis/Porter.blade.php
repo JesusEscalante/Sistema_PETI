@@ -292,7 +292,7 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <form class="user" action="/empresa/add_oportunidad" method="post">
+                                <form class="user" action="/analisis/add_oportunidad" method="post">
                                 <div class="modal-body" style="text-align: start;">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="modulo" value="porter">
